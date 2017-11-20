@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import logo from "../logo.svg";
+import logo from "../img/quantumcivilisation.png";
 import LinkItem from "./LinkItem";
 class Navigator extends Component {
   componentWillMount() {}
