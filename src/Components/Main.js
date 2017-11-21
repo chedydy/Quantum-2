@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Post from "./Post";
+import Login from "./Login";
+
 class Main extends Component {
   componentWillMount() {
   }
@@ -8,6 +10,7 @@ class Main extends Component {
     return (
       <div>
         <Post />
+        <Login />
       </div>
     );
   }
