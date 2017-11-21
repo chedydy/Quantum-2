@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import AppRouter from './Routers/AppRouter';
+
 import "./App.css";
 import Navigator from "./Components/Navigator";
-
 import Footer from "./Components/Footer";
 import Main from "./Components/Main"
+
 class App extends Component {
   componentWillMount() {
     console.log("asa");
@@ -13,7 +15,7 @@ class App extends Component {
     return (
       <div className="App">
         <Navigator />
-        <Main/>
+        <AppRouter/>
         <Footer />
       </div>
     );
