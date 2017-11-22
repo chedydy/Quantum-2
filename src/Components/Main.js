@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Post from "./Post";
+import Home from "./Home";
 class Main extends Component {
   componentWillMount() {
   }
@@ -7,7 +7,7 @@ class Main extends Component {
   render() {
     return (
       <div>
-        <Post />
+        <Home />
       </div>
     );
   }

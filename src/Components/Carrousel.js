@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import aboutImg from "../img/about-bg.jpg";
 import LinkItem from "./LinkItem";
-class Header extends Component {
+class Carrousel extends Component {
   componentWillMount() {}
 
   render() {
-    const imgStyle = { width: "500px", height: "200px" };
     return (
         <header  className="masthead" >
         <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
@@ -39,4 +38,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default Carrousel;

@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-import Header from "./Header";
+import Carrousel from "./Carrousel";
 class Home extends Component {
   componentWillMount() {}
 
   render() {
-    const imgStyle = { width: "500px", height: "200px" };
     return (
       <div>
-        <Header />
+        <Carrousel />
         <div className="container">
           <div className="row">
             <div className="col-lg-8 col-md-10 mx-auto">
