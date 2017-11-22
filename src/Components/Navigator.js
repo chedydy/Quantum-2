@@ -44,10 +44,10 @@ super(props);
             id="navbarResponsive"
           >
             <ul className="navbar-nav ml-auto">
-              <LinkItem text="Home" link="index.html" />
-              <LinkItem text="About" link="about.html" />
-              <LinkItem text="Sample Post" link="post.html" />
-              <LinkItem text="Contact" link="contact.html" />
+              <LinkItem text="Home" link="/" />
+              <LinkItem text="About" link="about" />
+              <LinkItem text="Posts" link="posts" />
+              <LinkItem text="Contact" link="contact" />
             </ul>
           </div>
         </div>
