@@ -8,15 +8,15 @@ class Footer extends Component {
     const imgStyle = { width: "500px", height: "200px" };
     return (
       <footer>
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-              <ul class="list-inline text-center">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-8 col-md-10 mx-auto">
+              <ul className="list-inline text-center">
                 <FooterShareLink provider="twitter" />
                 <FooterShareLink provider="facebook" />
                 <FooterShareLink provider="github" />
               </ul>
-              <p class="copyright text-muted">
+              <p className="copyright text-muted">
                 Copyright &copy; Your Website 2017
               </p>
             </div>

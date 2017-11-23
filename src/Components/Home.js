@@ -1,13 +1,14 @@
 import React, { Component } from "react";
-import Carrousel from "./Carrousel";
+import Carousel from "./Carousel";
+import "./Home.css";
 class Home extends Component {
   componentWillMount() {}
 
   render() {
     return (
-      <div>
-        <Carrousel />
-        <div className="container">
+      <div className="home-container">
+        <Carousel className="carousel-container"/>
+        <div className="container posts-container">
           <div className="row">
             <div className="col-lg-8 col-md-10 mx-auto">
               <div className="post-preview">

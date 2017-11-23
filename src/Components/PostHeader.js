@@ -7,7 +7,7 @@ class PostHeader extends Component {
   componentWillMount() {}
 
   render() {
-    const imgStyle = { "background-image": this.props.image };
+    const imgStyle = { backgroundImage: this.props.image };
     return (
       <header className="masthead" style={imgStyle}>
         <div className="container">

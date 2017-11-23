@@ -8,7 +8,7 @@ import {
     NavLink 
 } from 'react-router-dom';
 
-import Main from '../Components/Main';
+import Home from '../Components/Home';
 import About from '../Components/About';
 import Post from '../Components/Post';
 import Contact from '../Components/Contact';
@@ -18,7 +18,7 @@ const AppRouter = () => (
     <BrowserRouter>
         <div>
             <Switch>
-                <Route path="/" component={Main} exact={true} />
+                <Route path="/" component={Home} exact={true} />
                 <Route path="/about" component={About} />
                 <Route path="/posts" component={Post} />
                 <Route path="/contact" component={Contact} />
