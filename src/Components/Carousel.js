@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import aboutImg from "../img/about-bg.jpg";
 import contactImg from "../img/contact-bg.jpg";
 import homeImg from "../img/home-bg.jpg";
-import LinkItem from "./LinkItem";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import CarouselButton from "./CarouselButton";
 import "./Carousel.css";
@@ -58,26 +57,27 @@ class Carousel extends Component {
     );
   }
 
+  renderList() {
+    const items = this.state.items.map((val, index) => {
+      return (
+        <li
+          key={index}
+          className={this.state.selected == index ? "active" : ""}
+          onClick={this.onClickSelectSlide.bind(this, index)}
+        />
+      );
+    });
+    return items;
+  }
+  
   render() {
+    const image = this.state.items[this.state.selected];
+
     return (
-      <header
-        className=""
-        style={{ backgroundImage: this.state.items[this.state.selected] }}
-      >
+      <header>
         <div className="carousel slide">
           <ol className="carousel-indicators">
-            <li
-              className={this.state.selected == 0 ? "active" : ""}
-              onClick={this.onClickSelectSlide.bind(this, 0)}
-            />
-            <li
-              className={this.state.selected == 1 ? "active" : ""}
-              onClick={this.onClickSelectSlide.bind(this, 1)}
-            />
-            <li
-              className={this.state.selected == 2 ? "active" : ""}
-              onClick={this.onClickSelectSlide.bind(this, 2)}
-            />
+            {this.renderList()}
           </ol>
           <div className={"carousel-frame"}>
             <ReactCSSTransitionGroup
@@ -88,9 +88,9 @@ class Carousel extends Component {
             >
               <img
                 className={"carousel-img"}
-                src={this.state.items[this.state.selected]}
-                key={this.state.items[this.state.selected]}
-                alt={this.state.items[this.state.selected]}
+                src={image}
+                key={image}
+                alt={image}
               />
             </ReactCSSTransitionGroup>
           </div>
