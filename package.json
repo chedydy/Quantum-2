@@ -3,12 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "aphrodite": "^1.2.5",
     "bootstrap": "^4.0.0-beta.2",
     "firebase": "^4.6.2",
     "font-awesome": "^4.7.0",
+    "gulp": "^3.9.1",
+    "moment": "~2.7.0",
     "react": "^16.1.1",
     "react-addons-css-transition-group": "^15.6.2",
+    "react-bootstrap": "^0.31.5",
     "react-dom": "^16.1.1",
+    "react-layer-mixin": "^0.3.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.17"
   },
