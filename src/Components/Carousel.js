@@ -20,6 +20,10 @@ class Carousel extends Component {
     this.slideTo(direction);
   }
 
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
   slideTo(direction) {
     let newSelected = 0;
     newSelected = this.state.selected + direction;
@@ -69,16 +73,14 @@ class Carousel extends Component {
     });
     return items;
   }
-  
+
   render() {
     const image = this.state.items[this.state.selected];
 
     return (
       <header>
         <div className="carousel slide">
-          <ol className="carousel-indicators">
-            {this.renderList()}
-          </ol>
+          <ol className="carousel-indicators">{this.renderList()}</ol>
           <div className={"carousel-frame"}>
             <ReactCSSTransitionGroup
               transitionName={this.state.slide}

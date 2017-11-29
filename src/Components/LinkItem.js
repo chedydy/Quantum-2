@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import {Link} from 'react-router-dom';
 class LinkItem extends Component {
   constructor(props) {
     super(props);
@@ -10,9 +10,9 @@ class LinkItem extends Component {
   render() {
     return (
       <li className="nav-item">
-        <a className="nav-link" href={this.props.link}>
+        <Link className="nav-link" to={this.props.link}>
           {this.props.text}
-        </a>
+        </Link>
       </li>
     );
   }

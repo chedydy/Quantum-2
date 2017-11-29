@@ -45,9 +45,9 @@ class Navigator extends Component {
           >
             <ul className="navbar-nav ml-auto">
               <LinkItem text="Home" link="/" />
-              <LinkItem text="About" link="about" />
-              <LinkItem text="Posts" link="posts" />
-              <LinkItem text="Contact" link="contact" />
+              <LinkItem text="About" link="/about" />
+              <LinkItem text="Posts" link="/posts" />
+              <LinkItem text="Contact" link="/contact" />
             </ul>
           </div>
         </div>

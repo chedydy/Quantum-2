@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import PostsPreviewService from "../Services/PostsPreviewService";
+import { Link } from "react-router-dom";
+
 class PostsPreivew extends Component {
   state = {
     posts: []
@@ -14,15 +16,15 @@ class PostsPreivew extends Component {
   renderPostsPreview() {
     const items = this.state.posts.map((val, index) => {
       return (
-        <div>
+        <div key={val.id}>
           <div className="post-preview">
-            <a href={val.id}>
+            <Link to={`/posts/${val.id}`}>
               <h2 className="post-title">{val.title}</h2>
               <h3 className="post-subtitle">{val.subTitle}</h3>
-            </a>
+            </Link>
             <p className="post-meta">
               Posted by
-              <a href="#">{val.authore}</a> on {val.publishDate}
+              <Link to="posts">{val.author}</Link> on {val.publishDate}
             </p>
           </div>
           <hr />
