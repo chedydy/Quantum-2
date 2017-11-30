@@ -11,6 +11,7 @@ import Navigator from "../Components/Navigator";
 import Footer from "../Components/Footer";
 import Main from "../Components/Main";
 import PostsPreview from "../Components/PostsPreview";
+import PostDetails from "../Components/PostDetails";
 
 const AppRouter = () => (
   <BrowserRouter>
@@ -19,6 +20,7 @@ const AppRouter = () => (
       <Switch>
         <Route path="/" component={Home} exact={true} />
         <Route path="/about" component={About} />
+        <Route path="/posts/new" component={PostDetails} />
         <Route path="/posts/:id" component={Post} />
         <Route path="/posts" component={PostsPreview} />
         <Route path="/contact" component={Contact} />
