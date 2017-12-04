@@ -6,8 +6,8 @@ class Login extends Component {
     auth()
       .signInWithPopup(provider)
       .then(result => {
-        console.log(result.user);
-        this.setState({ user: result.user });
+        const { from } = this.props.location.state || { from: { pathname: '/admin/posts/new' } }
+        this.props.history.push(from);
       })
       .catch(console.log);
   };
@@ -20,4 +20,4 @@ class Login extends Component {
   }
 }
 
-export {Login};
+export { Login };

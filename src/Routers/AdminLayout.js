@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import {Login, PostDetails} from "../Components";
+import PrivateRoute from "./PrivateRoute";
 
 // import Login from "../Components/Login";
 
@@ -8,13 +9,16 @@ class AdminLayout extends Component {
   componentWillMount() {
     console.log(this.props);
   }
+
+
+
   render() {
     return (
       <div>
         <Switch>
           <Route path="/admin" component={Login} exact={true} />
-          <Route path="/admin/login" component={Login} exact={true}/>
-          <Route path="/admin/posts/new" component={PostDetails} exact={true} />
+          <Route path="/admin/login" component={Login} exact={true} />
+          <PrivateRoute path="/admin/posts/new" component={PostDetails} exact={true} />
         </Switch>
       </div>
     );

@@ -1,16 +1,16 @@
-import React, {Component} from "react";
-import Modal from 'react-modal';
-import ReactDOM from 'react-dom';
-import app from '../firebase/firebase';
+import React, { Component } from "react";
+import Modal from "react-modal";
+import ReactDOM from "react-dom";
+import app from "../firebase/firebase";
 
 const customStyles = {
   content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)'
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)"
   }
 };
 
@@ -22,40 +22,32 @@ class PostDetails extends Component {
       modalIsOpen: false
     };
 
-    this.openModal = this
-      .openModal
-      .bind(this);
-    this.afterOpenModal = this
-      .afterOpenModal
-      .bind(this);
-    this.closeModal = this
-      .closeModal
-      .bind(this);
-    this.saveModal = this
-      .saveModal
-      .bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.afterOpenModal = this.afterOpenModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.saveModal = this.saveModal.bind(this);
   }
 
   openModal() {
-    this.setState({modalIsOpen: true});
+    this.setState({ modalIsOpen: true });
   }
 
   afterOpenModal() {
     // references are now sync'd and can be accessed.
-    this.subtitle.style.color = '#868e96';
-    this.subtitle.style.fontFamily = 'Open Sans',
-    'Helvetica Neue',
-    'Helvetica',
-    'Arial',
-    'sans-serif';
+    this.subtitle.style.color = "#868e96";
+    (this.subtitle.style.fontFamily = "Open Sans"),
+      "Helvetica Neue",
+      "Helvetica",
+      "Arial",
+      "sans-serif";
   }
 
   closeModal() {
-    this.setState({modalIsOpen: false});
+    this.setState({ modalIsOpen: false });
   }
 
   saveModal() {
-    this.setState({modalIsOpen: false});
+    this.setState({ modalIsOpen: false });
   }
 
   // writePostData(postId, title, author, genre, content) {
@@ -81,14 +73,14 @@ class PostDetails extends Component {
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
           style={customStyles}
-          contentLabel="Example Modal">
-
-          <h4 ref={subtitle => this.subtitle = subtitle}>Post Details</h4>
+          contentLabel="Example Modal"
+        >
+          <h4 ref={subtitle => (this.subtitle = subtitle)}>Post Details</h4>
           <form>
             <div>Title</div>
-            <input/>
+            <input />
             <div>Author</div>
-            <input/>
+            <input />
             <div>Genre</div>
             <select>
               <option value="personaldev">Personal Development</option>
@@ -97,12 +89,18 @@ class PostDetails extends Component {
               <option value="arg">Argumentation</option>
             </select>
             <div>Content</div>
-            <textarea rows="5" cols="80" id="TITLE"></textarea>
+            <textarea rows="5" cols="80" id="TITLE" />
             <div>
-              <a className="btn btn-secondary float-right" onClick={this.closeModal} >
+              <a
+                className="btn btn-secondary float-right"
+                onClick={this.closeModal}
+              >
                 Close
               </a>
-              <a className="btn btn-secondary float-right" onClick={this.saveModal}>
+              <a
+                className="btn btn-secondary float-right"
+                onClick={this.saveModal}
+              >
                 Save
               </a>
             </div>
@@ -113,4 +111,4 @@ class PostDetails extends Component {
   }
 }
 
-export {PostDetails};
+export { PostDetails };

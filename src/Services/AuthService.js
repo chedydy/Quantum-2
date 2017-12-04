@@ -22,6 +22,17 @@ export default {
         })
         .catch(reject);
     });
+  },
+  isAuthenticated: function() {
+    var user = auth().currentUser;
+    if (user) {
+      return true;
+    } else {
+      return false;
+    }
+  },
+  getUser: function() {
+    var user = auth().currentUser;
+    return user;
   }
-  
 };
