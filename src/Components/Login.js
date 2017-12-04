@@ -1,18 +1,23 @@
 import React, { Component } from "react";
-import {app, facebookAuthProvider} from '../firebase/firebase';
+import { provider, auth } from "../firebase/firebase";
 
 class Login extends Component {
-    facebookLogin = () => {
-        console.log(app.auth().signInWithPopup(facebookAuthProvider));
-    }
-    render(){
-        return(
-            <div>
-                <button onClick={this.facebookLogin}>Login</button>
-            </div>
-        );
-    }
+  facebookLogin = () => {
+    auth()
+      .signInWithPopup(provider)
+      .then(result => {
+        console.log(result.user);
+        this.setState({ user: result.user });
+      })
+      .catch(console.log);
+  };
+  render() {
+    return (
+      <div>
+        <button onClick={this.facebookLogin.bind(this)}>Login</button>
+      </div>
+    );
+  }
 }
 
 export default Login;
-

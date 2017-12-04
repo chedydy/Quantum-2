@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom';
 class LinkItem extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
   }
   componentWillMount() {}
 
