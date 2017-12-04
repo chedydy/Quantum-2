@@ -1,13 +1,12 @@
 import Footer from "../Components/Footer";
 import Navigator from "../Components/Navigator";
 
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Home from "../Components/Home";
 import About from "../Components/About";
 import Post from "../Components/Post";
 import Contact from "../Components/Contact";
 import NotFoundPage from "../Components/NotFound";
-import Main from "../Components/Main";
 import PostsPreview from "../Components/PostsPreview";
 
 import React, { Component } from "react";

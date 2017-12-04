@@ -66,7 +66,7 @@ class Carousel extends Component {
       return (
         <li
           key={index}
-          className={this.state.selected == index ? "active" : ""}
+          className={this.state.selected === index ? "active" : ""}
           onClick={this.onClickSelectSlide.bind(this, index)}
         />
       );

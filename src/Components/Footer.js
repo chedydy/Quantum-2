@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import aboutImg from "../img/about-bg.jpg";
 import FooterShareLink from "./FooterShareLink";
 class Footer extends Component {
   componentWillMount() {}
 
   render() {
-    const imgStyle = { width: "500px", height: "200px" };
     return (
       <footer>
         <div className="container">

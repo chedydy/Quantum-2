@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import logo from "../img/quantumcivilisation.png";
 import LinkItem from "./LinkItem";
 class Navigator extends Component {
-  constructor(props) {
-    super(props);
-  }
+  
   componentWillMount() {
     this.setState({
       navButtonsClass: "",

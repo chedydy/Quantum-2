@@ -1,7 +1,6 @@
 import React from "react";
 class CarouselButton extends React.Component {
   render() {
-    let src = this.props.image;
     return (
       <a
         className={`carousel-control-${this.props.isNext?"next":"prev"}`}
