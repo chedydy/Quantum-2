@@ -113,4 +113,4 @@ class PostDetails extends Component {
   }
 }
 
-export default PostDetails;
+export {PostDetails};
