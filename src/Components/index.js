@@ -8,6 +8,5 @@ export * from "./Post";
 export * from "./PostHeader";
 export * from "./Post";
 export * from "./Home";
-export * from "./LinkItem";
 export * from "./Login";
 export * from "./PostDetails";

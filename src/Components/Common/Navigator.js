@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import logo from "../img/quantumcivilisation.png";
-import LinkItem from "./LinkItem";
+import logo from "../../img/quantumcivilisation.png";
 class Navigator extends Component {
-  
   componentWillMount() {
     this.setState({
       navButtonsClass: "",
@@ -41,12 +39,7 @@ class Navigator extends Component {
             className={`collapse navbar-collapse ${this.state.navButtonsClass}`}
             id="navbarResponsive"
           >
-            <ul className="navbar-nav ml-auto">
-              <LinkItem text="Home" link="/" />
-              <LinkItem text="About" link="/about" />
-              <LinkItem text="Posts" link="/posts" />
-              <LinkItem text="Contact" link="/contact" />
-            </ul>
+            <ul className="navbar-nav ml-auto">{this.props.children}</ul>
           </div>
         </div>
       </nav>
@@ -54,4 +47,4 @@ class Navigator extends Component {
   }
 }
 
-export default Navigator;
+export {Navigator};

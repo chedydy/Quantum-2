@@ -1,8 +1,6 @@
-import Footer from "../Components/Footer";
-import Navigator from "../Components/Navigator";
-
 import { Route, Switch } from "react-router-dom";
-import {Contact} from "../Components/Public";
+import {Contact,PublicNavigator} from "../Components/Public";
+import Footer from "../Components/Footer";
 import Home from "../Components/Home";
 import About from "../Components/About";
 import Post from "../Components/Post";
@@ -20,7 +18,7 @@ class PublicLayout extends Component {
   render() {
     return (
       <div>
-        <Navigator />
+        <PublicNavigator />
         <Switch>
           <Route path="/about" component={About} exact={true} />
           <Route path="/posts/:id" component={Post} exact={true} />
