@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PageHeader from "./PageHeader";
-import contactImg from "../img/contact-bg.jpg";
+import contactImg from "../../img/contact-bg.jpg";
 class Contact extends Component {
   componentWillMount() {}
 
@@ -17,7 +17,7 @@ class Contact extends Component {
                 Want to get in touch with me? Fill out the form below to send me
                 a message and I will try to get back to you within 24 hours!
               </p>
-              <form name="sentMessage" id="contactForm" novalidate>
+              <form name="sentMessage" novalidate>
                 <div className="control-group">
                   <div className="form-group floating-label-form-group controls">
                     <label>Name</label>
@@ -27,7 +27,6 @@ class Contact extends Component {
                       placeholder="Name"
                       id="name"
                       required
-                      data-validation-required-message="Please enter your name."
                     />
                     <p className="help-block text-danger" />
                   </div>
@@ -41,7 +40,6 @@ class Contact extends Component {
                       placeholder="Email Address"
                       id="email"
                       required
-                      data-validation-required-message="Please enter your email address."
                     />
                     <p className="help-block text-danger" />
                   </div>
@@ -55,7 +53,6 @@ class Contact extends Component {
                       placeholder="Phone Number"
                       id="phone"
                       required
-                      data-validation-required-message="Please enter your phone number."
                     />
                     <p className="help-block text-danger" />
                   </div>
@@ -69,7 +66,6 @@ class Contact extends Component {
                       placeholder="Message"
                       id="message"
                       required
-                      data-validation-required-message="Please enter a message."
                     />
                     <p className="help-block text-danger" />
                   </div>
@@ -94,4 +90,4 @@ class Contact extends Component {
   }
 }
 
-export default Contact;
+export {Contact};
