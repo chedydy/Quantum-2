@@ -36,7 +36,7 @@ const centerButton = {
 };
 
 const container = {
-  background: 'url("'+LoginImg+'") no-repeat center',
+  background: 'url("'+LoginImg+'") no-repeat center fixed',
   backgroundColor: 'black',
   backgroundSize: 'contain',
   /* Set rules to fill background */

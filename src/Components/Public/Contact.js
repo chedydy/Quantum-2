@@ -1,8 +1,35 @@
 import React, { Component } from "react";
-import PageHeader from "./PageHeader";
+import uuid from "uuid/v4";
+
+import { app } from "../../firebase/firebase";
+import { ContactInput, ContactTextarea } from "../Common";
+import {PageHeader} from "./PageHeader";
 import contactImg from "../../img/contact-bg.jpg";
+
 class Contact extends Component {
   componentWillMount() {}
+
+  handleSubmit = e => {
+    e.preventDefault();
+
+    const name = e.target.elements.name.value;
+    const email = e.target.elements.email.value;
+    const phone = e.target.elements.phone.value;
+    const message = e.target.elements.message.value;
+
+    app
+      .ref("contact_requests/" + uuid())
+      .set({
+        name,
+        email,
+        phone,
+        message,
+        done: false
+      })
+      .then(() => {
+        this.props.history.push("/");
+      });
+  };
 
   render() {
     return (
@@ -17,59 +44,36 @@ class Contact extends Component {
                 Want to get in touch with me? Fill out the form below to send me
                 a message and I will try to get back to you within 24 hours!
               </p>
-              <form name="sentMessage" novalidate>
-                <div className="control-group">
-                  <div className="form-group floating-label-form-group controls">
-                    <label>Name</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Name"
-                      id="name"
-                      required
-                    />
-                    <p className="help-block text-danger" />
-                  </div>
-                </div>
-                <div className="control-group">
-                  <div className="form-group floating-label-form-group controls">
-                    <label>Email Address</label>
-                    <input
-                      type="email"
-                      className="form-control"
-                      placeholder="Email Address"
-                      id="email"
-                      required
-                    />
-                    <p className="help-block text-danger" />
-                  </div>
-                </div>
-                <div className="control-group">
-                  <div className="form-group col-xs-12 floating-label-form-group controls">
-                    <label>Phone Number</label>
-                    <input
-                      type="tel"
-                      className="form-control"
-                      placeholder="Phone Number"
-                      id="phone"
-                      required
-                    />
-                    <p className="help-block text-danger" />
-                  </div>
-                </div>
-                <div className="control-group">
-                  <div className="form-group floating-label-form-group controls">
-                    <label>Message</label>
-                    <textarea
-                      rows="5"
-                      className="form-control"
-                      placeholder="Message"
-                      id="message"
-                      required
-                    />
-                    <p className="help-block text-danger" />
-                  </div>
-                </div>
+              <form
+                name="sentMessage"
+                id="contactForm"
+                noValidate
+                onSubmit={this.handleSubmit}
+              >
+                <ContactInput
+                  id="name"
+                  placeholder="Name"
+                  label="Name"
+                  type="text"
+                />
+                <ContactInput
+                  id="email"
+                  placeholder="Email Address"
+                  label="Email Address"
+                  type="email"
+                />
+                <ContactInput
+                  id="phone"
+                  placeholder="Phone Number"
+                  label="Phone Number"
+                  type="tel"
+                />
+                <ContactTextarea
+                  id="message"
+                  placeholder="Message"
+                  label="Message"
+                />
+
                 <br />
                 <div id="success" />
                 <div className="form-group">
@@ -90,4 +94,5 @@ class Contact extends Component {
   }
 }
 
-export {Contact};
+export {Contact}
+

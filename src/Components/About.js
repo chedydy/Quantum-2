@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PageHeader from "./PageHeader";
+import {PageHeader} from "./Public/PageHeader";
 import aboutImg from "../img/about-bg.jpg";
 class About extends Component {
   componentWillMount() {}
@@ -10,9 +10,9 @@ class About extends Component {
         <PageHeader image={aboutImg} title={"About Me"}>
           This is what I do.
         </PageHeader>
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-8 col-md-10 mx-auto">
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe
                 nostrum ullam eveniet pariatur voluptates odit, fuga atque ea
