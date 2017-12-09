@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import PostsPreviewService from "../Services/PostsPreviewService";
+import PostsPreviewService from "../../Services/PostsPreviewService";
 import { Link } from "react-router-dom";
 
-class PostsPreivew extends Component {
+class PostsPreview extends Component {
   state = {
     posts: []
   };
@@ -36,7 +36,7 @@ class PostsPreivew extends Component {
 
   render() {
     return (
-      <div className="container posts-container">
+      <div className="container">
         <div className="row">
           <div className="col-lg-8 col-md-10 mx-auto">
             {this.renderPostsPreview()}
@@ -52,4 +52,4 @@ class PostsPreivew extends Component {
   }
 }
 
-export default PostsPreivew;
+export { PostsPreview };

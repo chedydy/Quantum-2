@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PostHeader from "./PostHeader";
-import postImg from "../img/post-bg.jpg";
-import PostsService from "../Services/PostsService";
-import PostsPreviewService from "../Services/PostsPreviewService";
+import postImg from "../../img/post-bg.jpg";
+import PostsService from "../../Services/PostsService";
+import PostsPreviewService from "../../Services/PostsPreviewService";
 import ReactMarkdown from "react-markdown";
 class Post extends Component {
   state = {
@@ -42,7 +42,10 @@ class Post extends Component {
         <article>
           <div className="container">
             <div className="row">
-              <div className="col-lg-8 col-md-10 mx-auto" style={{textAlign:"justify"}}>
+              <div
+                className="col-lg-8 col-md-10 mx-auto"
+                style={{ textAlign: "justify" }}
+              >
                 <ReactMarkdown source={this.state.post.content} />
               </div>
             </div>
@@ -53,4 +56,4 @@ class Post extends Component {
   }
 }
 
-export default Post;
+export { Post };

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
-import {Login, PostDetails} from "../Components";
+import {Login} from "../Components/Admin";
 import PrivateRoute from "./PrivateRoute";
 import AdminLayout from './AdminLayout';
 

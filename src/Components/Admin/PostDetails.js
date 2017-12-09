@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import ReactDOM from "react-dom";
 import { Redirect } from 'react-router-dom';
 
-import app from "../firebase/firebase";
+import app from "../../firebase/firebase";
 
 const customStyles = {
   content: {

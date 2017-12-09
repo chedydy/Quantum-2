@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { provider, auth } from "../firebase/firebase";
 import {FacebookLoginButton} from 'react-social-login-buttons';
-import LoginImg from "../img/QfbLogin.png";
+import LoginImg from "../../img/QfbLogin.png";
+import { provider, auth } from "../../firebase/firebase";
 
 class Login extends Component {
   facebookLogin = () => {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import aboutImg from "../img/about-bg.jpg";
-import contactImg from "../img/contact-bg.jpg";
-import homeImg from "../img/home-bg.jpg";
+import aboutImg from "../../../img/about-bg.jpg";
+import contactImg from "../../../img/contact-bg.jpg";
+import homeImg from "../../../img/home-bg.jpg";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import CarouselButton from "./CarouselButton";
 import "./Carousel.css";
@@ -109,4 +109,4 @@ class Carousel extends Component {
   }
 }
 
-export default Carousel;
+export { Carousel };

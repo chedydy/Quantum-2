@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PostDetails from "./PostDetails";
+import {PostDetails} from "./PostDetails";
 
 class NewPost extends Component {
   componentWillMount() {}
@@ -12,4 +12,4 @@ class NewPost extends Component {
     );
   }
 }
-export default NewPost;
+export {NewPost};
