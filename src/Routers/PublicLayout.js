@@ -1,8 +1,7 @@
 import { Route, Switch } from "react-router-dom";
-import {Contact,PublicNavigator} from "../Components/Public";
+import { Contact, About, PublicNavigator } from "../Components/Public";
 import Footer from "../Components/Footer";
 import Home from "../Components/Home";
-import About from "../Components/About";
 import Post from "../Components/Post";
 import NotFoundPage from "../Components/NotFound";
 import PostsPreview from "../Components/PostsPreview";
