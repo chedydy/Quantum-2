@@ -12,5 +12,15 @@ export default {
           error => reject(error)
         );
     });
+  },
+  setAbout: function(about) {
+    return new Promise((resolve, reject) => {
+      app
+        .ref()
+        .child("about")
+        .set(about)
+        .then(resolve)
+        .then(reject);
+    });
   }
 };

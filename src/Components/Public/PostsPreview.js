@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Container, Button } from "../Common";
 import PostsPreviewService from "../../Services/PostsPreviewService";
 import { Link } from "react-router-dom";
 
@@ -36,18 +37,10 @@ class PostsPreview extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-8 col-md-10 mx-auto">
-            {this.renderPostsPreview()}
-            <div className="clearfix">
-              <a className="btn btn-secondary float-right" href="#">
-                Older Posts &rarr;
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Container>
+        {this.renderPostsPreview()}
+        <Button>Older Posts &rarr;</Button>
+      </Container>
     );
   }
 }

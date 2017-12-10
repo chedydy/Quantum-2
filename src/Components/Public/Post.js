@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Container } from "../Common";
 import PostHeader from "./PostHeader";
 import postImg from "../../img/post-bg.jpg";
 import PostsService from "../../Services/PostsService";
@@ -40,16 +41,9 @@ class Post extends Component {
           publishDate={this.state.preview.publishDate}
         />
         <article>
-          <div className="container">
-            <div className="row">
-              <div
-                className="col-lg-8 col-md-10 mx-auto"
-                style={{ textAlign: "justify" }}
-              >
-                <ReactMarkdown source={this.state.post.content} />
-              </div>
-            </div>
-          </div>
+          <Container>
+            <ReactMarkdown source={this.state.post.content} />
+          </Container>
         </article>
       </div>
     );

@@ -5,7 +5,7 @@ const Container = props => {
       <div className="row">
         <div
           className="col-lg-8 col-md-10 mx-auto"
-          style={{ textAlign: "justify" }}
+          style={props.alignItems?{ textAlign: "justify" }:{}}
         >
           {props.children}
         </div>

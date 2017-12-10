@@ -1,6 +1,6 @@
 import React from "react";
 
-const ContactTextarea = props => {
+const Textarea = props => {
   return (
     <div className="control-group">
       <div className="form-group floating-label-form-group controls">
@@ -18,4 +18,4 @@ const ContactTextarea = props => {
   );
 };
 
-export { ContactTextarea };
+export { Textarea };

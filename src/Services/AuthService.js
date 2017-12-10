@@ -4,10 +4,15 @@ export default {
   login: function() {
     return new Promise((resolve, reject) => {
       auth()
-        .signInWithPopup(provider)
-        .then(result => {
-          console.log(result);
-          resolve(result.user);
+        .setPersistence(auth.Auth.Persistence.LOCAL)
+        .then(function() {
+          auth()
+            .signInWithPopup(provider)
+            .then(result => {
+              console.log(result);
+              resolve(result.user);
+            })
+            .catch(reject);
         })
         .catch(reject);
     });
