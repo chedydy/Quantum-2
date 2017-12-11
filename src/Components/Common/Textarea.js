@@ -6,13 +6,15 @@ const Textarea = props => {
       <div className="form-group floating-label-form-group controls">
         <label>{props.label}</label>
         <textarea
-          rows="5"
+          rows={props.rows || "5"}
           className="form-control"
           placeholder={props.placeholder}
           id={props.id}
           required
+          value={props.value || ""}
+          onChange={props.onChange}
+          readOnly={props.readOnly || false}
         />
-        <p className="help-block text-danger" />
       </div>
     </div>
   );

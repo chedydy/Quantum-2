@@ -11,6 +11,8 @@ const Input = props => {
           placeholder={props.placeholder}
           id={props.id}
           required
+          value={props.value || ""}
+          onChange={props.onChange}
         />
         <p className="help-block text-danger" />
       </div>

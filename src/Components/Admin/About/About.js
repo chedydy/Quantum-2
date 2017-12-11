@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ReactMarkdown from "react-markdown";
-import { Container, Button, LinkButton } from "../../Common";
+import { Container, Button, LinkButton, Textarea } from "../../Common";
 import aboutService from "../../../Services/AboutService";
 class About extends Component {
   state = {
@@ -23,11 +23,15 @@ class About extends Component {
     return (
       <div>
         <Container>
-          {this.state.title}
-          {this.state.content}
-          <div className="row">
-            <Button>Preview</Button>
-            <LinkButton link="/admin/about/edit">Edit</LinkButton>
+          <div className="col">
+            <div className="row justify-content-start">{this.state.title}</div>
+            <div className="col">
+              <Textarea rows="10" value={this.state.content} readOnly={true} />
+            </div>
+            <div className="row justify-content-end col">
+              <Button>Preview</Button>
+              <LinkButton link="/admin/about/edit">Edit</LinkButton>
+            </div>
           </div>
         </Container>
       </div>

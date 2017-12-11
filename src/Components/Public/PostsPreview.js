@@ -38,8 +38,10 @@ class PostsPreview extends Component {
   render() {
     return (
       <Container>
-        {this.renderPostsPreview()}
-        <Button>Older Posts &rarr;</Button>
+        <div className="col-lg-8 col-md-10 mx-auto">
+          {this.renderPostsPreview()}
+          <Button>Older Posts &rarr;</Button>
+        </div>
       </Container>
     );
   }
