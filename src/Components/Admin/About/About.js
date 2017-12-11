@@ -24,6 +24,7 @@ class About extends Component {
         <Container>
           <div className="col">
             <div className="row justify-content-center">{this.state.title}</div>
+            <div className="row justify-content-center">{this.state.image}</div>
             <div className="col">
               <Textarea rows="10" value={this.state.content} readOnly={true} />
             </div>

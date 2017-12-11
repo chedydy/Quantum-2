@@ -1,4 +1,4 @@
-import { app } from "../firebase/firebase";
+import { app, storage } from "../firebase/firebase";
 
 export default {
   getAbout: function() {
@@ -13,14 +13,21 @@ export default {
         );
     });
   },
-  setAbout: function(about) {
+  setAbout: function({ title, content, image }) {
     return new Promise((resolve, reject) => {
-      app
-        .ref()
-        .child("about")
-        .set(about)
-        .then(resolve)
-        .then(reject);
+      Promise.all([
+        app
+          .ref()
+          .child("about")
+          .set({ title, content }),
+        storage
+          .child("about/image.jpg")
+          .put(image)
+      ])
+        .then(values => {
+          resolve();
+        })
+        .catch(reject);
     });
   }
 };

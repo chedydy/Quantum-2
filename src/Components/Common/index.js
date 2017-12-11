@@ -1,4 +1,5 @@
 export * from "./Input";
+export * from "./FileInput";
 export * from "./Textarea";
 export * from "./Navigator";
 export * from "./LinkItem";

@@ -1,14 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import { Switch } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import { AdminNavigator, NewPost, About, EditAbout } from "../Components/Admin";
 
-class AdminLayout extends Component {
-  componentWillMount() {
-    console.log(this.props);
-  }
-
-  render() {
+const AdminLayout=()=>{
     return (
       <div>
         <AdminNavigator />
@@ -20,6 +15,4 @@ class AdminLayout extends Component {
       </div>
     );
   }
-}
-
-export default AdminLayout;
+export {AdminLayout};
