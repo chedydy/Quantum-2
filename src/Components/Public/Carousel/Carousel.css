@@ -1,0 +1,77 @@
+@keyframes slidein {
+    0% {
+        right: -100%;
+    }
+    100% {
+        right: 0;
+    }
+}
+
+@keyframes slideout {
+    0% {
+        right: 0;
+    }
+    100% {
+        right: 100%;
+    }
+}
+
+@keyframes slidein-reverse {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 0;
+    }
+}
+
+@keyframes slideout-reverse {
+    0% {
+        left: 0;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+.carousel-appear {
+    animation: slidein 1s ease-in-out both;
+}
+
+.carousel-enter {
+    animation: slidein 1s ease-in-out both;
+}
+
+.carousel-leave {
+    animation: slideout 1s ease-in-out both;
+}
+
+.carousel-reverse-appear {
+    animation: slidein-reverse 1s ease-in-out both;
+}
+
+.carousel-reverse-enter {
+    animation: slidein-reverse 1s ease-in-out both;
+}
+
+.carousel-reverse-leave {
+    animation: slideout-reverse 1s ease-in-out both;
+}
+
+.carousel-frame {
+    position: relative;
+    height: 50vh;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.carousel-img {
+    position: absolute;
+    z-index: -1;
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+
