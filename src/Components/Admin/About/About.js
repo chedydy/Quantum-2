@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ReactMarkdown from "react-markdown";
 import { Container, Button, LinkButton, Textarea } from "../../Common";
 import aboutService from "../../../Services/AboutService";
 class About extends Component {
@@ -24,7 +23,7 @@ class About extends Component {
       <div>
         <Container>
           <div className="col">
-            <div className="row justify-content-start">{this.state.title}</div>
+            <div className="row justify-content-center">{this.state.title}</div>
             <div className="col">
               <Textarea rows="10" value={this.state.content} readOnly={true} />
             </div>

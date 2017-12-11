@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import logo from "../../img/quantumcivilisation.png";
+import React from "react";
 import { LinkItem, Navigator } from "../Common";
 const PublicNavigator = props => {
   return (

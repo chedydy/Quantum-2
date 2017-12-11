@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { FooterShareLink, Container } from "../Common";
 const Footer = () => {
   return (

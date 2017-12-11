@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Carousel } from "../Carousel/Carousel";
 import {PostsPreview} from "../PostsPreview";
 import "./Home.css";

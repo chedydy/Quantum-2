@@ -44,7 +44,6 @@ const container = {
   minWidth: '1024px',
   /* Set up proportionate scaling */
   width: '100%',
-  height: 'auto',
 	
   /* Set up positioning */
   position: 'fixed',
