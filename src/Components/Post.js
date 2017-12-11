@@ -4,6 +4,7 @@ import postImg from "../img/post-bg.jpg";
 import PostsService from "../Services/PostsService";
 import PostsPreviewService from "../Services/PostsPreviewService";
 import ReactMarkdown from "react-markdown";
+
 class Post extends Component {
   state = {
     post: {
