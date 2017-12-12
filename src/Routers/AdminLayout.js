@@ -2,6 +2,7 @@ import React from "react";
 import { Switch } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import { AdminNavigator, NewPost, About, EditAbout } from "../Components/Admin";
+import { ContactRequests } from '../Components/Admin/ContactRequsts';
 
 const AdminLayout = () => {
   return (
@@ -15,6 +16,7 @@ const AdminLayout = () => {
           component={EditAbout}
           exact={true}
         />
+        <PrivateRoute path="/admin/contactrequests/" component={ContactRequests} exact={true} />
       </Switch>
     </div>
   );

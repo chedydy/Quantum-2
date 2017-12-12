@@ -6,6 +6,7 @@ const AdminNavigator = props => {
       <LinkItem text="Contacts" link="/" />
       <LinkItem text="Posts" link="/posts" />
       <LinkItem text="About" link="/admin/about/"/>
+      <LinkItem text="Contact requests" link="/admin/contactrequests/" />
     </Navigator>
   );
 };

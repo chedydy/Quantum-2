@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import uuid from "uuid/v4";
+import moment from 'moment';
 
 import { app } from "../../firebase/firebase";
 import { Input, Textarea, Container } from "../Common";
@@ -13,7 +14,8 @@ class Contact extends Component {
     phone: "",
     message: ""
   };
-  componentWillMount() {}
+  componentWillMount() {
+  }
 
   handleSubmit = e => {
     e.preventDefault();
@@ -30,6 +32,7 @@ class Contact extends Component {
         email,
         phone,
         message,
+        time: moment().format('DD/MM/YYYY HH:mm'),
         done: false
       })
       .then(() => {
