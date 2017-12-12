@@ -29,12 +29,19 @@ export default {
     });
   },
   isAuthenticated: function() {
-    var user = auth().currentUser;
+    var user = this.getUser();
     if (user) {
       return true;
     } else {
       return false;
     }
+  },
+  checkAuthState: function() {
+    return new Promise((resolve, reject) => {
+      auth().onAuthStateChanged(function() {
+        resolve();
+      });
+    });
   },
   getUser: function() {
     var user = auth().currentUser;
