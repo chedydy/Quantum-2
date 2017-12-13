@@ -28,10 +28,15 @@ class Posts extends Component {
   }
   render() {
     return (
-      <div>
-        <Container>
-          <div className="col-12">{this.renderPostsPreview()}</div>
-        </Container>
+      <div className="row justify-content-center align-items-center">
+        <div className="col-10">
+          <div className="row">
+            <div class="col-6 text-left">Title</div>
+            <div class="col-2 text-left">Author</div>
+            <div class="col-2 text-left">Publish Date</div>
+          </div>
+          {this.renderPostsPreview()}
+        </div>
       </div>
     );
   }
