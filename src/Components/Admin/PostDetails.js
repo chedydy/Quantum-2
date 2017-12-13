@@ -52,10 +52,6 @@ class PostDetails extends Component {
     this.setState({ modalIsOpen: false });
   }
 
-  openContactRequests() {
-    
-  }
-
   // writePostData(postId, title, author, genre, content) {
   //   firebase.database().ref('postdetails/' + postId).set({
   //     title: title,
@@ -72,9 +68,6 @@ class PostDetails extends Component {
         <div className="clearfix">
           <a className="btn btn-secondary" onClick={this.openModal}>
             New Post
-          </a>
-          <a className="btn btn-secondary" onClick={this.openContactRequests}>
-            Contact requests
           </a>
         </div>
         <Modal
