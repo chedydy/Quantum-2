@@ -56,11 +56,11 @@ class ContactRequests extends Component {
 
   closeModal() {
     this.setState({ modalIsOpen: false });
+    this.setState({ clickedItem: {} });
   }
 
   handleClickDetails(item) {
-    console.log(item);
-    this.setState({ clickedItem:  item});
+    this.setState({ clickedItem: item});
     this.openModal();
   }
 
@@ -70,7 +70,6 @@ class ContactRequests extends Component {
         {
             this.state.loaded ?
             this.contactRequests.map((item) => {
-                console.log(item);
                 return (
                     <div key={item.id}>
                         <div style={itemHeader}>
