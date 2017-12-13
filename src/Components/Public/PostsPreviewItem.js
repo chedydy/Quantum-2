@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const PostsPreviewItem = ({postPreview}) => {
   return (
-    <div key={postPreview.id}>
+    <div>
       <div className="post-preview">
         <Link to={`/posts/${postPreview.id}`}>
           <h2 className="post-title">{postPreview.title}</h2>

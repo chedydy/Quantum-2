@@ -16,7 +16,7 @@ class PostsPreview extends Component {
 
   renderPostsPreview() {
     const items = this.state.posts.map((val, index) => {
-      return <PostsPreviewItem postPreview={val} />;
+      return <PostsPreviewItem postPreview={val} key={val.id}/>;
     });
     return items;
   }
