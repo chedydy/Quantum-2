@@ -15,7 +15,7 @@ class Navigator extends Component {
     });
   }
   render() {
-    const imgStyle = { width: "250px", height: "100px",cursor: "pointer" };
+    const imgStyle = { width: "250px", height: "100px", cursor: "pointer" };
     return (
       <nav
         className="navbar navbar-expand-xl navbar-light fixed-top"

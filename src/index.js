@@ -12,3 +12,4 @@ authService.checkAuthState().then(() => {
   ReactDOM.render(<App />, document.getElementById("root"));
   registerServiceWorker();
 });
+

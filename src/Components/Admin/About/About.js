@@ -8,17 +8,15 @@ class About extends Component {
     content: "",
     preview: false
   };
+  setAbout(about) {
+    this.setState({
+      ...this.state,
+      title: about.title,
+      content: about.content
+    });
+  }
   componentWillMount() {
-    aboutService
-      .getAbout()
-      .then(about => {
-        this.setState({
-          ...this.state,
-          title: about.title,
-          content: about.content
-        });
-      })
-      .catch(console.log);
+    aboutService.getAbout(this.setAbout.bind(this));
   }
 
   showPreview() {

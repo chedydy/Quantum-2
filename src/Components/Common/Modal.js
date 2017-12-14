@@ -1,4 +1,5 @@
-import React from "react";
+import React, { Component } from "react";
+
 const ModalBody = props => {
   return <div className="modal-body">{props.children}</div>;
 };
@@ -24,18 +25,35 @@ const ModalFooter = props => {
   );
 };
 
-const Modal = props => {
-  return (
-    <div className="modal fade">
-      <div className="modal-dialog">
-        <div className="modal-content">
-          <ModalHeader title={props.title} />
-          <ModalBody>{props.children}</ModalBody>
-          <ModalFooter />
+// const Modal = props => {
+//   return (
+//     <div className="modal fade">
+//       <div className="modal-dialog">
+//         <div className="modal-content">
+//           <ModalHeader title={props.title} />
+//           <ModalBody>{props.children}</ModalBody>
+//           <ModalFooter />
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+class Modal extends Component {
+  render() {
+    const { title, children } = this.props;
+    return (
+      <div className="modal fade">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <ModalHeader title={title} />
+            <ModalBody>{children}</ModalBody>
+            <ModalFooter />
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export { Modal };

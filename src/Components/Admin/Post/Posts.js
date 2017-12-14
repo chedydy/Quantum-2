@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, LinkButton } from "../../Common";
+import { LinkButton } from "../../Common";
 import { PostsItem } from "./PostsItem";
 import PostsService from "../../../Services/PostsService";
 import PostsPreviewService from "../../../Services/PostsPreviewService";
@@ -9,7 +9,6 @@ class Posts extends Component {
     postPreviews: []
   };
   componentWillMount() {
-    var id = this.props.match.params.id;
     Promise.all([
       PostsPreviewService.getPreviews()
       //   PostsService.getPost(id)
@@ -33,7 +32,9 @@ class Posts extends Component {
           <div className="row justify-content-center">
             <div className="col-6 text-left align-self-center">Title</div>
             <div className="col-2 text-left align-self-center">Author</div>
-            <div className="col-2 text-left align-self-center">Publish Date</div>
+            <div className="col-2 text-left align-self-center">
+              Publish Date
+            </div>
             <div className="col-1 text-left align-self-center">Actions</div>
           </div>
           {this.renderPostsPreview()}
