@@ -8,3 +8,4 @@ export * from "./FooterShareLink";
 export * from "./Button";
 export * from "./LinkButton";
 export * from "./SubmitButton";
+export * from "./Modal";

@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import ReactDOM from "react-dom";
 import { Redirect } from 'react-router-dom';
 
-import app from "../../firebase/firebase";
+import app from "../../../firebase/firebase";
 
 const customStyles = {
   content: {
@@ -52,10 +52,6 @@ class PostDetails extends Component {
     this.setState({ modalIsOpen: false });
   }
 
-  openContactRequests() {
-    
-  }
-
   // writePostData(postId, title, author, genre, content) {
   //   firebase.database().ref('postdetails/' + postId).set({
   //     title: title,
@@ -72,9 +68,6 @@ class PostDetails extends Component {
         <div className="clearfix">
           <a className="btn btn-secondary" onClick={this.openModal}>
             New Post
-          </a>
-          <a className="btn btn-secondary" onClick={this.openContactRequests}>
-            Contact requests
           </a>
         </div>
         <Modal

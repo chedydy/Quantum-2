@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import logo from "../../img/quantumcivilisation.png";
 class Navigator extends Component {
   componentWillMount() {
@@ -14,19 +15,21 @@ class Navigator extends Component {
     });
   }
   render() {
-    const imgStyle = { width: "250px", height: "100px" };
+    const imgStyle = { width: "250px", height: "100px", cursor: "pointer" };
     return (
       <nav
         className="navbar navbar-expand-xl navbar-light fixed-top"
         id="mainNav"
       >
         <div className="container-fluid ">
-          <img
-            src={logo}
-            className="navbar-brand"
-            alt="logo"
-            style={imgStyle}
-          />
+          <Link to="/">
+            <img
+              src={logo}
+              className="navbar-brand"
+              alt="logo"
+              style={imgStyle}
+            />
+          </Link>
           <button
             className="navbar-toggler navbar-toggler-right"
             type="button"
@@ -47,4 +50,4 @@ class Navigator extends Component {
   }
 }
 
-export {Navigator};
+export { Navigator };

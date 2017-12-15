@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import uuid from "uuid/v4";
+import moment from 'moment';
 
 import { app } from "../../firebase/firebase";
 import { Input, Textarea, Container } from "../Common";
@@ -7,7 +8,14 @@ import { PageHeader } from "./PageHeader";
 import contactImg from "../../img/contact-bg.jpg";
 
 class Contact extends Component {
-  componentWillMount() {}
+  state = {
+    name: "",
+    email: "",
+    phone: "",
+    message: ""
+  };
+  componentWillMount() {
+  }
 
   handleSubmit = e => {
     e.preventDefault();
@@ -24,11 +32,16 @@ class Contact extends Component {
         email,
         phone,
         message,
+        time: moment().format('DD/MM/YYYY HH:mm'),
         done: false
       })
       .then(() => {
         this.props.history.push("/");
       });
+  };
+
+  handleChange = (field, e) => {
+    this.setState({ ...this.state, [field]: e.target.value });
   };
 
   render() {
@@ -48,20 +61,37 @@ class Contact extends Component {
             noValidate
             onSubmit={this.handleSubmit}
           >
-            <Input id="name" placeholder="Name" label="Name" type="text" />
+            <Input
+              id="name"
+              placeholder="Name"
+              label="Name"
+              type="text"
+              value={this.state.name}
+              onChange={this.handleChange.bind(this, "name")}
+            />
             <Input
               id="email"
               placeholder="Email Address"
               label="Email Address"
               type="email"
+              value={this.state.email}
+              onChange={this.handleChange.bind(this, "email")}
             />
             <Input
               id="phone"
               placeholder="Phone Number"
               label="Phone Number"
               type="tel"
+              value={this.state.phone}
+              onChange={this.handleChange.bind(this, "phone")}
             />
-            <Textarea id="message" placeholder="Message" label="Message" />
+            <Textarea
+              id="message"
+              placeholder="Message"
+              label="Message"
+              value={this.state.message}
+              onChange={this.handleChange.bind(this, "message")}
+            />
 
             <br />
             <div id="success" />

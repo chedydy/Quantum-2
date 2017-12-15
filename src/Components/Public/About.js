@@ -9,16 +9,14 @@ class About extends Component {
     title: "",
     content: ""
   };
+  setAbout(about) {
+    this.setState({
+      title: about.title,
+      content: about.content
+    });
+  }
   componentWillMount() {
-    aboutService
-      .getAbout()
-      .then(about => {
-        this.setState({
-          title: about.title,
-          content: about.content
-        });
-      })
-      .catch(console.log);
+    aboutService.getAbout(this.setAbout.bind(this));
   }
 
   render() {

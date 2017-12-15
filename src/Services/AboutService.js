@@ -1,28 +1,21 @@
 import { app, storage } from "../firebase/firebase";
+const aboutRef = app.ref().child("about");
 
 export default {
-  getAbout: function() {
-    return new Promise((resolve, reject) => {
-      app
-        .ref()
-        .child("about")
-        .once(
-          "value",
-          snapshot => resolve(snapshot.val()),
-          error => reject(error)
-        );
-    });
+  getAbout: function(callback) {
+    aboutRef.on(
+      "value",
+      snapshot => callback(snapshot.val()),
+      error => {
+        console.log(error);
+      }
+    );
   },
   setAbout: function({ title, content, image }) {
     return new Promise((resolve, reject) => {
       Promise.all([
-        app
-          .ref()
-          .child("about")
-          .set({ title, content }),
-        storage
-          .child("about/image.jpg")
-          .put(image)
+        aboutRef.set({ title, content }),
+        storage.child("about/image.jpg").put(image)
       ])
         .then(values => {
           resolve();
