@@ -1,3 +1,11 @@
+import {app} from '../firebase/firebase';
+import uuid from "uuid/v4";
+import _ from 'lodash';
+
+const postsRef = app
+  .ref()
+  .child('posts');
+
 const posts = [
   {
     id: '1',
@@ -68,30 +76,44 @@ As I stand out here in the wonders of the unknown at Hadley, I
       must explore, and this is exploration at its greatest.
 
 Placeholder text by [Space Ipsum](http://spaceipsum.com/ "Space Ipsum"). Photographs by [NASA on The Commons](https://www.flickr.com/photos/nasacommons/ "NASA on The Commons")`
-  },
-  {
+  }, {
     id: '2'
-  },
-  {
+  }, {
     id: '3'
-  },
-  {
+  }, {
     id: '4'
   }
 ];
 
 export default {
-  getPosts: function() {
+  getPosts : function () {
     return new Promise((resolve, reject) => {
-      resolve(posts);
+      postsRef
+        .once('value', function (snapshot) {
+          resolve(snapshot.val());
+        }, function (error) {
+          reject(error);
+        })
     });
   },
-  getPost: function(id) {
+  getPost : function (id) {
     return new Promise((resolve, reject) => {
-      var post = posts.find(value => {
-        return value.id === id;
-      });
-      resolve(post);
+      postsRef
+        .child(id)
+        .once('value', function (snapshot) {
+          resolve(snapshot.val());
+        }, function (error) {
+          reject(error);
+        })
     });
+  },
+  addPost : function (post) {
+    const id = uuid();
+    return postsRef
+      .child(id)
+      .set({
+        ...post,
+        id: id
+      })
   }
 };

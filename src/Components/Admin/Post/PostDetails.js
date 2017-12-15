@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Modal from "react-modal";
 import ReactDOM from "react-dom";
 import { Redirect } from 'react-router-dom';
-
+import PostService from '../../../Services/PostsService';
 import app from "../../../firebase/firebase";
 
 const customStyles = {
@@ -44,22 +44,26 @@ class PostDetails extends Component {
       "sans-serif";
   }
 
+  handleSubmit = e => {
+    e.preventDefault();
+
+    const post = {content: e.target.elements.Content.value};
+
+    PostService.addPost(post)
+      .then(() => {
+        this.closeModal()
+      })
+      .catch(console.log)
+  };
+
   closeModal() {
     this.setState({ modalIsOpen: false });
   }
 
   saveModal() {
     this.setState({ modalIsOpen: false });
+    PostService.addPost()
   }
-
-  // writePostData(postId, title, author, genre, content) {
-  //   firebase.database().ref('postdetails/' + postId).set({
-  //     title: title,
-  //     author: author,
-  //     genre: genre,
-  //     content: content
-  //   });
-  // }
 
   render() {
     return (
@@ -78,7 +82,7 @@ class PostDetails extends Component {
           contentLabel="Example Modal"
         >
           <h4 ref={subtitle => (this.subtitle = subtitle)}>Post Details</h4>
-          <form>
+          <form onSubmit={this.handleSubmit.bind(this)}>
             <div>Title</div>
             <input />
             <div>Author</div>
@@ -91,7 +95,7 @@ class PostDetails extends Component {
               <option value="arg">Argumentation</option>
             </select>
             <div>Content</div>
-            <textarea rows="5" cols="80" id="TITLE" />
+            <textarea rows="5" cols="80" id="Content" />
             <div>
               <a
                 className="btn btn-secondary float-right"
@@ -99,12 +103,14 @@ class PostDetails extends Component {
               >
                 Close
               </a>
-              <a
-                className="btn btn-secondary float-right"
-                onClick={this.saveModal}
+              <div className="form-group">
+              <button
+                type="submit"
+                className="btn btn-secondary"
               >
                 Save
-              </a>
+              </button></div>
+              
             </div>
           </form>
         </Modal>
