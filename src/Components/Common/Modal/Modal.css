@@ -1,0 +1,17 @@
+.modal-dialog {
+  max-width: fit-content;
+  max-height: 80vw;
+}
+.modal-body {
+  overflow-y: scroll;
+}
+.modal-content {
+  max-height: 70vh;
+}
+.modal-header {
+  min-height: 7vh;
+}
+.modal-footer {
+  min-height: 10vh;
+}
+

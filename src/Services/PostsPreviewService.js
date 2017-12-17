@@ -1,11 +1,10 @@
 import {app} from '../firebase/firebase';
-
+const postPreviewRef= app.ref().child('posts_preview');
 export default {
 
   getPreviews : function () {
     return new Promise((resolve, reject) => {
-      app.ref()
-        .child('posts_preview')
+      postPreviewRef
         .once('value', function (snapshot) {
           resolve(snapshot.val());
         }, function (error) {
@@ -16,10 +15,9 @@ export default {
 
   getPreview : function (id) {
     return new Promise((resolve, reject) => {
-      app.ref()
-        .child('posts_preview')
+      postPreviewRef.child(id)
         .once('value', function (snapshot) {
-          resolve(snapshot.val().child(id));
+          resolve(snapshot.val());
         })
     });
   }

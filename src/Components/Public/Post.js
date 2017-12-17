@@ -1,10 +1,7 @@
 import React, { Component } from "react";
-import { Container } from "../Common";
-import PostHeader from "./PostHeader";
-import postImg from "../../img/post-bg.jpg";
 import PostsService from "../../Services/PostsService";
 import PostsPreviewService from "../../Services/PostsPreviewService";
-import ReactMarkdown from "react-markdown";
+import { PostContent } from "./PostContent";
 
 class Post extends Component {
   state = {
@@ -32,22 +29,7 @@ class Post extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <PostHeader
-          image={postImg}
-          title={this.state.preview.title}
-          subtitle={this.state.preview.subTitle}
-          author={this.state.preview.author}
-          publishDate={this.state.preview.publishDate}
-        />
-        <article>
-          <Container>
-            <ReactMarkdown source={this.state.post.content} />
-          </Container>
-        </article>
-      </div>
-    );
+    return <PostContent preview={this.state.preview} post={this.state.post} />;
   }
 }
 

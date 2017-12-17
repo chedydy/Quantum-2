@@ -12,7 +12,7 @@ import { ContactRequests } from "../Components/Admin/ContactRequsts";
 
 const AdminLayout = () => {
   return (
-    <div>
+    <div id="AdminLayout">
       <AdminNavigator />
       <Switch>
         <PrivateRoute path="/admin/" component={Posts} exact={true} />

@@ -18,7 +18,7 @@ class Navigator extends Component {
     const imgStyle = { width: "250px", height: "100px", cursor: "pointer" };
     return (
       <nav
-        className="navbar navbar-expand-xl navbar-light fixed-top"
+        className="navbar navbar-expand-xl navbar-light"
         id="mainNav"
       >
         <div className="container-fluid ">

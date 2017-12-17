@@ -6,3 +6,4 @@ export * from "./Home/Home";
 export * from "./PostsPreview";
 export * from "./Footer"
 export * from "./Post"
+export * from "./PostContent"
