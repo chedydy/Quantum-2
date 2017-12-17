@@ -4,10 +4,9 @@ import { Login } from "../Components/Admin";
 import PrivateRoute from "./PrivateRoute";
 import { AdminLayout } from "./AdminLayout";
 
-// import Login from "../Components/Login";
-
 class LoginLayout extends Component {
   componentWillMount() {
+    //ToDo: Remove for production
     console.log(this.props);
   }
 

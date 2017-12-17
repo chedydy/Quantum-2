@@ -9,6 +9,7 @@ import {
   NewPost
 } from "../Components/Admin";
 import { ContactRequests } from "../Components/Admin/ContactRequsts";
+import Logout from "../Components/Admin/Logout";
 
 const AdminLayout = () => {
   return (
@@ -33,6 +34,11 @@ const AdminLayout = () => {
           component={ContactRequests}
           exact={true}
         />
+        <PrivateRoute
+        path="/admin/logout/"
+        component={Logout}
+        exact={true}
+      />
       </Switch>
     </div>
   );

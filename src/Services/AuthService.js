@@ -9,7 +9,6 @@ export default {
           auth()
             .signInWithPopup(provider)
             .then(result => {
-              console.log(result);
               resolve(result.user);
             })
             .catch(reject);
@@ -22,8 +21,7 @@ export default {
       auth()
         .signOut()
         .then(result => {
-          console.log(result);
-          resolve(result.user);
+          resolve(result);
         })
         .catch(reject);
     });

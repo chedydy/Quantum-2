@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import Modal from "react-modal";
 import _ from 'lodash';
 
@@ -23,21 +22,6 @@ class ContactRequests extends Component {
   }
 
   componentDidMount() {
-    // app
-    // .ref("contact_requests/")
-    // .once('value')
-    // .then((result) => {
-    //   this.contactRequests = 
-    //     _(result.val()) //wrap object so that you can chain lodash methods
-    //         .mapValues((value, id)=>_.merge({}, value, {id})) //attach id to object
-    //         .values() //get the values of the result
-    //         .value() //unwrap array of objects
-
-    
-    //     this.setState(() => {
-    //         return {loaded: true}
-    //     });    
-    // });
     app
     .ref("contact_requests/")
     .on('value',(result)=>{

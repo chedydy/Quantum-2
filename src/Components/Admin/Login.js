@@ -3,17 +3,33 @@ import {FacebookLoginButton} from 'react-social-login-buttons';
 import LoginImg from "../../img/QfbLogin.png";
 import { provider, auth } from "../../firebase/firebase";
 import Media from "react-media";
+import AuthService from "../../Services/AuthService";
 
 class Login extends Component {
   facebookLogin = () => {
-    auth()
-      .signInWithPopup(provider)
-      .then(result => {
-        const { from } = this.props.location.state || { from: { pathname: '/admin/posts/new' } }
-        this.props.history.push(from);
-      })
-      .catch(console.log);
-  };
+    AuthService.login().then((result) => {
+            const { from } = this.props.location.state || { from: { pathname: '/admin/posts/new' } }
+            this.props.history.push(from);
+          })
+  }
+  // facebookLogin = () => {
+  //   auth()
+  //     .signInWithPopup(provider)
+  //     .then(result => {
+  //       const { from } = this.props.location.state || { from: { pathname: '/admin/posts/new' } }
+  //       this.props.history.push(from);
+  //     })
+  //     .catch(console.log);
+  // };
+  // facebookLogout = () => {
+  //   auth()
+  //   .signOut()
+  //   .then(function() {
+  //     console.log('logged out');
+  //   }).catch(function(error) {
+  //     console.log('logged out error');
+  //   });
+  // }
   render() {
     return (
       <div>
