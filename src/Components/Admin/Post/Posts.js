@@ -31,18 +31,20 @@ class Posts extends Component {
       <div className="row justify-content-center align-items-center">
         <div className="col-11">
           <div className="row justify-content-center">
-            <div className="col-6 text-left align-self-center">Title</div>
+            <div className="col-4 text-left align-self-center">Title</div>
             <div className="col-2 text-left align-self-center">Author</div>
             <div className="col-2 text-left align-self-center">
               Publish Date
             </div>
-            <div className="col-1 text-left align-self-center">Actions</div>
+            <div className="col-3 text-left align-self-center">Actions</div>
           </div>
           {this.renderPostsPreview()}
           <div className="row justify-content-center">
-            <div className="col-1 offset-10 align-self-center">
-            <PostDetails />
-              {/* <LinkButton link="/admin/posts/new">New Post</LinkButton> */}
+            <div className="col-3 offset-8 align-self-center">
+              <div className="row">
+                <PostDetails />
+                {/* <LinkButton link="/admin/posts/new">New Post</LinkButton> */}
+              </div>
             </div>
           </div>
         </div>

@@ -7,6 +7,7 @@ const Textarea = props => {
         <label>{props.label}</label>
         <textarea
           rows={props.rows || "5"}
+          style={{zIndex:'unset'}}
           className="form-control"
           placeholder={props.placeholder}
           id={props.id}

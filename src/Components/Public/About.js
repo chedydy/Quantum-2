@@ -1,18 +1,18 @@
 import React, { Component } from "react";
-import ReactMarkdown from "react-markdown";
-import { PageHeader } from "./PageHeader";
-import { Container } from "../Common";
+import { AboutContent } from "./AboutContent";
 import aboutService from "../../Services/AboutService";
 import aboutImg from "../../img/about-bg.jpg";
 class About extends Component {
   state = {
     title: "",
-    content: ""
+    content: "",
+    image: aboutImg
   };
   setAbout(about) {
     this.setState({
       title: about.title,
-      content: about.content
+      content: about.content,
+      image: aboutImg
     });
   }
   componentWillMount() {
@@ -20,16 +20,7 @@ class About extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <PageHeader image={aboutImg} title={"About Me"}>
-          {this.state.title}
-        </PageHeader>
-        <Container>
-          <ReactMarkdown source={this.state.content} />
-        </Container>
-      </div>
-    );
+    return <AboutContent about={this.state} />;
   }
 }
 

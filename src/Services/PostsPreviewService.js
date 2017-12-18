@@ -20,5 +20,8 @@ export default {
           resolve(snapshot.val());
         })
     });
+  },
+  updatePreview: function(preview) {
+    return postPreviewRef.child(preview.id).set(preview);
   }
 };

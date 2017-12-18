@@ -6,7 +6,8 @@ import {
   About,
   EditAbout,
   Posts,
-  NewPost
+  NewPost,
+  EditPost
 } from "../Components/Admin";
 import { ContactRequests } from "../Components/Admin/ContactRequsts";
 
@@ -20,6 +21,11 @@ const AdminLayout = () => {
         <PrivateRoute
           path="/admin/posts/new"
           component={NewPost}
+          exact={true}
+        />
+        <PrivateRoute
+          path="/admin/posts/edit/:id"
+          component={EditPost}
           exact={true}
         />
         <PrivateRoute path="/admin/about/" component={About} exact={true} />

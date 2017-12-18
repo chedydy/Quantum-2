@@ -6,7 +6,7 @@ class About extends Component {
   state = {
     title: "",
     content: "",
-    preview: false
+    image: ""
   };
   setAbout(about) {
     this.setState({
@@ -19,18 +19,10 @@ class About extends Component {
     aboutService.getAbout(this.setAbout.bind(this));
   }
 
-  showPreview() {
-    this.setState({
-      ...this.state,
-      preview: true
-    });
-  }
-
   render() {
     return (
       <div>
         <Container>
-          <PreviewAbout modalIsOpen={this.state.preview} />
           <div className="col">
             <div className="row justify-content-center">{this.state.title}</div>
             <div className="row justify-content-center">{this.state.image}</div>
@@ -38,7 +30,7 @@ class About extends Component {
               <Textarea rows="10" value={this.state.content} readOnly={true} />
             </div>
             <div className="row justify-content-end col">
-              <Button onClick={this.showPreview.bind(this)}>Preview</Button>
+              <PreviewAbout about={this.state} />
               <LinkButton link="/admin/about/edit">Edit</LinkButton>
             </div>
           </div>

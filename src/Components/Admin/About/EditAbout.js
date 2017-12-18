@@ -4,9 +4,9 @@ import {
   Textarea,
   FileInput,
   Container,
-  SubmitButton,
-  Button
+  SubmitButton
 } from "../../Common";
+import { PreviewAbout } from "./PreviewAbout";
 import aboutService from "../../../Services/AboutService";
 class EditAbout extends Component {
   state = {
@@ -88,7 +88,7 @@ class EditAbout extends Component {
               />
               <br />
               <div className="row justify-content-end col">
-                <Button>Preview</Button>
+                <PreviewAbout about={this.state} />
                 <SubmitButton>Save</SubmitButton>
               </div>
             </form>
