@@ -1,23 +1,23 @@
 import React, { Component } from "react";
 import ReactModal from "react-modal";
 import { Button } from "../Button";
-import { ModalBody, ModalFooter, ModalHeader } from "./ModalComponents";
+import { ModalBody, ModalFooterForm, ModalHeader } from "./ModalComponents";
 
-class Modal extends Component {
+class FormModal extends Component {
   state = {
     modalIsOpen: false
   };
   componentWillMount() {
     ReactModal.setAppElement(this.props.appElement);
   }
+
+  handleSubmit = e => {
+    this.props.onSubmit(e);
+    this.closeModal();
+  };
+
   openModal() {
     this.setState({ modalIsOpen: true });
-  }
-
-  afterOpenModal() {
-    if (this.props.afterOpen) {
-      this.props.afterOpen();
-    }
   }
 
   closeModal() {
@@ -31,7 +31,6 @@ class Modal extends Component {
         <Button onClick={this.openModal.bind(this)}>{buttonText}</Button>
         <ReactModal
           isOpen={this.state.modalIsOpen}
-          onAfterOpen={this.afterOpenModal.bind(this)}
           onRequestClose={this.closeModal.bind(this)}
           className={{
             base: "",
@@ -42,9 +41,11 @@ class Modal extends Component {
           contentLabel="Example Modal"
         >
           <div className="modal-content">
-            <ModalHeader title={title} onClick={this.closeModal.bind(this)} />
-            <ModalBody>{children}</ModalBody>
-            <ModalFooter onCloseClick={this.closeModal.bind(this)} />
+            <form onSubmit={this.handleSubmit.bind(this)}>
+              <ModalHeader title={title} onClick={this.closeModal.bind(this)} />
+              <ModalBody>{children}</ModalBody>
+              <ModalFooterForm onCloseClick={this.closeModal.bind(this)} />
+            </form>
           </div>
         </ReactModal>
       </div>
@@ -52,4 +53,4 @@ class Modal extends Component {
   }
 }
 
-export { Modal };
+export { FormModal };
