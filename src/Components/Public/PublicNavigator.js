@@ -1,12 +1,12 @@
 import React from "react";
-import { LinkItem, Navigator } from "../Common";
+import { NavLink, Navigator } from "../Common";
 const PublicNavigator = props => {
   return (
     <Navigator>
-      <LinkItem text="Home" link="/" />
-      <LinkItem text="About" link="/about" />
-      <LinkItem text="Posts" link="/posts" />
-      <LinkItem text="Contact" link="/contact" />
+      <NavLink text="Home" link="/" />
+      <NavLink text="About" link="/about" />
+      <NavLink text="Posts" link="/posts" />
+      <NavLink text="Contact" link="/contact" />
     </Navigator>
   );
 };

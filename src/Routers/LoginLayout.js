@@ -5,11 +5,6 @@ import PrivateRoute from "./PrivateRoute";
 import { AdminLayout } from "./AdminLayout";
 
 class LoginLayout extends Component {
-  componentWillMount() {
-    //ToDo: Remove for production
-    console.log(this.props);
-  }
-
   render() {
     return (
       <div>

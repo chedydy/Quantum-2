@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const LinkItem = props => {
+const NavLink = props => {
   return (
     <li className="nav-item">
       <Link className="nav-link" to={props.link}>
@@ -10,4 +10,4 @@ const LinkItem = props => {
   );
 };
 
-export { LinkItem };
+export { NavLink };
