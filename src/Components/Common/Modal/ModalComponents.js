@@ -32,10 +32,7 @@ const ModalFooter = props => {
 const ModalFooterForm = props => {
   return (
     <div className="modal-footer">
-      <button
-        type="submit"
-        className="btn btn-primary"
-      >
+      <button type="submit" className="btn btn-primary">
         Save
       </button>
       <button

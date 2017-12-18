@@ -11,6 +11,12 @@ class FormModal extends Component {
     ReactModal.setAppElement(this.props.appElement);
   }
 
+  afterOpenModal() {
+    if (this.props.afterOpen) {
+      this.props.afterOpen();
+    }
+  }
+
   handleSubmit = e => {
     this.props.onSubmit(e);
     this.closeModal();
@@ -31,6 +37,7 @@ class FormModal extends Component {
         <Button onClick={this.openModal.bind(this)}>{buttonText}</Button>
         <ReactModal
           isOpen={this.state.modalIsOpen}
+          onAfterOpen={this.afterOpenModal.bind(this)}
           onRequestClose={this.closeModal.bind(this)}
           className={{
             base: "",

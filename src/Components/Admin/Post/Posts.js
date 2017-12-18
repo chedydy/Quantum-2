@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { LinkButton } from "../../Common";
 import { PostsItem } from "./PostsItem";
+import { PostDetails } from "./PostDetails";
 import PostsService from "../../../Services/PostsService";
 import PostsPreviewService from "../../../Services/PostsPreviewService";
 class Posts extends Component {
@@ -40,7 +41,8 @@ class Posts extends Component {
           {this.renderPostsPreview()}
           <div className="row justify-content-center">
             <div className="col-1 offset-10 align-self-center">
-              <LinkButton link="/admin/posts/new">New Post</LinkButton>
+            <PostDetails />
+              {/* <LinkButton link="/admin/posts/new">New Post</LinkButton> */}
             </div>
           </div>
         </div>
