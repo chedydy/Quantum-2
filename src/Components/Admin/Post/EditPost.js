@@ -9,7 +9,7 @@ import {
   Modal
 } from "../../Common";
 import { PostContent } from "../../Public";
-import {PostPreviewService,PostService} from "../../../Services";
+import { PostPreviewService, PostService } from "../../../Services";
 import "./EditPost.css";
 class EditPost extends Component {
   state = {

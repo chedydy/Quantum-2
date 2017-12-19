@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import uuid from "uuid/v4";
-import moment from 'moment';
+import moment from "moment";
 
 import { app } from "../../firebase/firebase";
 import { Input, Textarea, Container } from "../Common";
@@ -14,8 +14,7 @@ class Contact extends Component {
     phone: "",
     message: ""
   };
-  componentWillMount() {
-  }
+  componentWillMount() {}
 
   handleSubmit = e => {
     e.preventDefault();
@@ -32,7 +31,7 @@ class Contact extends Component {
         email,
         phone,
         message,
-        time: moment().format('DD/MM/YYYY HH:mm'),
+        time: moment().format("DD/MM/YYYY HH:mm"),
         done: false
       })
       .then(() => {
@@ -51,60 +50,62 @@ class Contact extends Component {
           Have questions? I have answers (maybe).
         </PageHeader>
         <Container>
-          <p>
-            Want to get in touch with me? Fill out the form below to send me a
-            message and I will try to get back to you within 24 hours!
-          </p>
-          <form
-            name="sentMessage"
-            id="contactForm"
-            noValidate
-            onSubmit={this.handleSubmit}
-          >
-            <Input
-              id="name"
-              placeholder="Name"
-              label="Name"
-              type="text"
-              value={this.state.name}
-              onChange={this.handleChange.bind(this, "name")}
-            />
-            <Input
-              id="email"
-              placeholder="Email Address"
-              label="Email Address"
-              type="email"
-              value={this.state.email}
-              onChange={this.handleChange.bind(this, "email")}
-            />
-            <Input
-              id="phone"
-              placeholder="Phone Number"
-              label="Phone Number"
-              type="tel"
-              value={this.state.phone}
-              onChange={this.handleChange.bind(this, "phone")}
-            />
-            <Textarea
-              id="message"
-              placeholder="Message"
-              label="Message"
-              value={this.state.message}
-              onChange={this.handleChange.bind(this, "message")}
-            />
+          <div className="col">
+            <p>
+              Want to get in touch with me? Fill out the form below to send me a
+              message and I will try to get back to you within 24 hours!
+            </p>
+            <form
+              name="sentMessage"
+              id="contactForm"
+              noValidate
+              onSubmit={this.handleSubmit}
+            >
+              <Input
+                id="name"
+                placeholder="Name"
+                label="Name"
+                type="text"
+                value={this.state.name}
+                onChange={this.handleChange.bind(this, "name")}
+              />
+              <Input
+                id="email"
+                placeholder="Email Address"
+                label="Email Address"
+                type="email"
+                value={this.state.email}
+                onChange={this.handleChange.bind(this, "email")}
+              />
+              <Input
+                id="phone"
+                placeholder="Phone Number"
+                label="Phone Number"
+                type="tel"
+                value={this.state.phone}
+                onChange={this.handleChange.bind(this, "phone")}
+              />
+              <Textarea
+                id="message"
+                placeholder="Message"
+                label="Message"
+                value={this.state.message}
+                onChange={this.handleChange.bind(this, "message")}
+              />
 
-            <br />
-            <div id="success" />
-            <div className="form-group">
-              <button
-                type="submit"
-                className="btn btn-secondary"
-                id="sendMessageButton"
-              >
-                Send
-              </button>
-            </div>
-          </form>
+              <br />
+              <div id="success" />
+              <div className="form-group">
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  id="sendMessageButton"
+                >
+                  Send
+                </button>
+              </div>
+            </form>
+          </div>
         </Container>
       </div>
     );

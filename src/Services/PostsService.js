@@ -3,7 +3,7 @@ import uuid from "uuid/v4";
 import _ from "lodash";
 
 const postsRef = app.ref().child("posts");
-const PostService= {
+const PostService = {
   subscribePreview: function(id, callback) {
     postsRef.child(id).on(
       "value",
@@ -38,4 +38,4 @@ const PostService= {
   }
 };
 
-export {PostService}
+export { PostService };

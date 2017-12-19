@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { Navigator, NavLink, NavButton } from "../Common";
-import {AuthService} from "../../Services";
+import { AuthService } from "../../Services";
 
 class AdminNav extends React.Component {
   redirectToLogin() {

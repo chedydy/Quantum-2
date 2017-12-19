@@ -2,7 +2,10 @@ import React from "react";
 
 const PageHeader = props => {
   return (
-    <header className="masthead" style={{ backgroundImage: props.image }}>
+    <header
+      className="masthead"
+      style={{ backgroundImage: `url(${props.image})` }}
+    >
       <div className="container">
         <div className="row">
           <div className="col-lg-8 col-md-10 mx-auto">

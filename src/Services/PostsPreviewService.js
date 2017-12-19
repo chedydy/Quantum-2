@@ -1,7 +1,7 @@
 import _ from "lodash";
 import { app } from "../firebase/firebase";
 const postPreviewRef = app.ref().child("posts_preview");
-const PostPreviewService={
+const PostPreviewService = {
   subscribePreviews: function(callback) {
     postPreviewRef.on(
       "value",
@@ -51,4 +51,4 @@ const PostPreviewService={
   }
 };
 
-export {PostPreviewService} 
+export { PostPreviewService };

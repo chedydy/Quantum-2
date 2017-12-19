@@ -7,11 +7,11 @@ class PostsPreview extends Component {
   state = {
     posts: []
   };
-
+  setPreviesState(posts) {
+    this.setState({ posts });
+  }
   componentWillMount() {
-    PostPreviewService.getPreviews()
-      .then(posts => this.setState({ posts }))
-      .catch(error => console.log(error));
+    PostPreviewService.subscribePreviews(this.setPreviesState.bind(this));
   }
 
   renderPostsPreview() {

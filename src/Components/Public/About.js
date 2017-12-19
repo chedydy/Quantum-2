@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { AboutContent } from "./AboutContent";
-import {AboutService} from "../../Services";
+import { AboutService } from "../../Services";
 import aboutImg from "../../img/about-bg.jpg";
 class About extends Component {
   state = {

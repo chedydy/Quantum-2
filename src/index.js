@@ -6,10 +6,9 @@ import "./Components/Custom.css";
 import "./index.css";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
-import {AuthService} from "./Services";
+import { AuthService } from "./Services";
 
 AuthService.checkAuthState().then(() => {
   ReactDOM.render(<App />, document.getElementById("root"));
   registerServiceWorker();
 });
-
