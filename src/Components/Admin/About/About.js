@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Container, Button, LinkButton, Textarea } from "../../Common";
 import { PreviewAbout } from "./PreviewAbout";
-import aboutService from "../../../Services/AboutService";
+import {AboutService} from "../../../Services";
 class About extends Component {
   state = {
     title: "",
@@ -16,7 +16,7 @@ class About extends Component {
     });
   }
   componentWillMount() {
-    aboutService.getAbout(this.setAbout.bind(this));
+    AboutService.getAbout(this.setAbout.bind(this));
   }
 
   render() {

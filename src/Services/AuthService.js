@@ -1,6 +1,5 @@
 import { provider, auth } from "../firebase/firebase";
-
-export default {
+const AuthService = {
   login: function() {
     return new Promise((resolve, reject) => {
       auth()
@@ -46,3 +45,5 @@ export default {
     return user;
   }
 };
+
+export { AuthService };

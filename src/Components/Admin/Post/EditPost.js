@@ -9,8 +9,7 @@ import {
   Modal
 } from "../../Common";
 import { PostContent } from "../../Public";
-import PostsService from "../../../Services/PostsService";
-import PostsPreviewService from "../../../Services/PostsPreviewService";
+import {PostPreviewService,PostService} from "../../../Services";
 import "./EditPost.css";
 class EditPost extends Component {
   state = {
@@ -29,8 +28,8 @@ class EditPost extends Component {
   componentWillMount() {
     var id = this.props.match.params.id;
     Promise.all([
-      PostsPreviewService.getPreview(id),
-      PostsService.getPost(id)
+      PostPreviewService.getPreview(id),
+      PostService.getPost(id)
     ]).then(values => {
       this.setState({ preview: values[0], post: values[1] });
     });
@@ -40,8 +39,8 @@ class EditPost extends Component {
     e.preventDefault();
     //    const image = e.target.elements.image.files[0];
     Promise.all([
-      PostsPreviewService.updatePreview(this.state.preview),
-      PostsService.updatePost(this.state.post)
+      PostPreviewService.updatePreview(this.state.preview),
+      PostService.updatePost(this.state.post)
     ])
       .then(() => {
         this.props.history.push("/admin/posts/");

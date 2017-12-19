@@ -1,7 +1,6 @@
 import { app, storage } from "../firebase/firebase";
 const aboutRef = app.ref().child("about");
-
-export default {
+const AboutService = {
   getAbout: function(callback) {
     aboutRef.on(
       "value",
@@ -24,3 +23,4 @@ export default {
     });
   }
 };
+export { AboutService };

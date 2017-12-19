@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { LinkButton } from "../../Common";
 import { PostsItem } from "./PostsItem";
 import { PostDetails } from "./PostDetails";
-import PostsService from "../../../Services/PostsService";
-import PostsPreviewService from "../../../Services/PostsPreviewService";
+import { PostPreviewService, PostService } from "../../../Services";
 class Posts extends Component {
   state = {
     // posts: []
@@ -11,7 +10,7 @@ class Posts extends Component {
   };
   componentWillMount() {
     Promise.all([
-      PostsPreviewService.getPreviews()
+      PostPreviewService.getPreviews()
       //   PostsService.getPost(id)
     ]).then(values => {
       this.setState({

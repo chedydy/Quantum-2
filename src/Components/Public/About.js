@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { AboutContent } from "./AboutContent";
-import aboutService from "../../Services/AboutService";
+import {AboutService} from "../../Services";
 import aboutImg from "../../img/about-bg.jpg";
 class About extends Component {
   state = {
@@ -16,7 +16,7 @@ class About extends Component {
     });
   }
   componentWillMount() {
-    aboutService.getAbout(this.setAbout.bind(this));
+    AboutService.getAbout(this.setAbout.bind(this));
   }
 
   render() {

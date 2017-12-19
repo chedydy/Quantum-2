@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { FormModal } from "../../Common";
-import PostService from "../../../Services/PostsService";
+import {PostService} from "../../../Services";
 
 class PostDetails extends Component {
   handleSubmit = e => {

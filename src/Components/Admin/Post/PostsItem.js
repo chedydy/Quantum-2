@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Modal, LinkButton } from "../../Common";
 import { PostContent } from "../../Public";
-import PostService from "../../../Services/PostsService";
+import { PostService } from "../../../Services";
 class PostsItem extends Component {
   state = {
     post: {

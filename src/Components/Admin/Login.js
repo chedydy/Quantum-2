@@ -1,88 +1,81 @@
 import React, { Component } from "react";
-import {FacebookLoginButton} from 'react-social-login-buttons';
+import { FacebookLoginButton } from "react-social-login-buttons";
 import LoginImg from "../../img/QfbLogin.png";
 import { provider, auth } from "../../firebase/firebase";
 import Media from "react-media";
-import AuthService from "../../Services/AuthService";
+import { AuthService } from "../../Services";
 
 class Login extends Component {
   facebookLogin = () => {
-    AuthService.login().then((result) => {
-            const { from } = this.props.location.state || { from: { pathname: '/admin/posts/new' } }
-            this.props.history.push(from);
-          })
-  }
-  // facebookLogin = () => {
-  //   auth()
-  //     .signInWithPopup(provider)
-  //     .then(result => {
-  //       const { from } = this.props.location.state || { from: { pathname: '/admin/posts/new' } }
-  //       this.props.history.push(from);
-  //     })
-  //     .catch(console.log);
-  // };
-  // facebookLogout = () => {
-  //   auth()
-  //   .signOut()
-  //   .then(function() {
-  //     console.log('logged out');
-  //   }).catch(function(error) {
-  //     console.log('logged out error');
-  //   });
-  // }
+    AuthService.login().then(result => {
+      const { from } = this.props.location.state || {
+        from: { pathname: "/admin/posts/new" }
+      };
+      this.props.history.push(from);
+    });
+  };
+
   render() {
     return (
       <div>
         <div style={container}>
-          <div style={{'textAlign': 'center'}}>
+          <div style={{ textAlign: "center" }}>
             <Media query="(max-width: 500px)">
               {matches =>
                 matches ? (
-                  <FacebookLoginButton style={smallBtn} text="Login" onClick={this.facebookLogin.bind(this)} />
+                  <FacebookLoginButton
+                    style={smallBtn}
+                    text="Login"
+                    onClick={this.facebookLogin.bind(this)}
+                  />
                 ) : (
-                  <FacebookLoginButton style={bigBtn} text="Facebook Login" onClick={this.facebookLogin.bind(this)} />
+                  <FacebookLoginButton
+                    style={bigBtn}
+                    text="Facebook Login"
+                    onClick={this.facebookLogin.bind(this)}
+                  />
                 )
               }
-            </Media>  
-          </div>            
-        </div>  
+            </Media>
+          </div>
+        </div>
       </div>
     );
   }
 }
 
 const bigBtn = {
-  boxShadow: 'none',
-  position: 'absolute',
-  margin: '20px auto',
-  right: '45%'
-}
+  boxShadow: "none",
+  position: "absolute",
+  margin: "20px auto",
+  right: "45%"
+};
 
 const smallBtn = {
-  boxShadow: 'none',
-  position: 'absolute',
-  margin: '20px auto',
-  right: '30%'
-}
+  boxShadow: "none",
+  position: "absolute",
+  margin: "20px auto",
+  right: "30%"
+};
 
 const container = {
-  background: 'url("'+LoginImg+'") no-repeat center fixed',
-  backgroundColor: 'black',
-  backgroundSize: 'contain',
+  background: 'url("' + LoginImg + '") no-repeat center fixed',
+  backgroundColor: "black",
+  backgroundSize: "contain",
   /* Set rules to fill background */
-  minHeight: '100%',
-  minWidth: '100%',
+  minHeight: "100%",
+  minWidth: "100%",
   /* Set up proportionate scaling */
-  width: '100%',
-	
+  width: "100%",
+
   /* Set up positioning */
-  position: 'fixed',
+  position: "fixed",
   top: 0,
   left: 0,
 
-  display: 'flex',
+  display: "flex",
   // flexDirection: 'column',
-  height: '500px',
+  height: "500px"
 };
 
 export { Login };

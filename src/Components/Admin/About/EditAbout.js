@@ -7,7 +7,7 @@ import {
   SubmitButton
 } from "../../Common";
 import { PreviewAbout } from "./PreviewAbout";
-import aboutService from "../../../Services/AboutService";
+import { AboutService } from "../../../Services";
 class EditAbout extends Component {
   state = {
     title: "",
@@ -19,7 +19,7 @@ class EditAbout extends Component {
     this.setState({ title: about.title, content: about.content });
   }
   componentWillMount() {
-    aboutService.getAbout(this.setAbout.bind(this));
+    AboutService.getAbout(this.setAbout.bind(this));
   }
 
   handleSubmit = e => {
@@ -27,7 +27,7 @@ class EditAbout extends Component {
     const title = e.target.elements.title.value;
     const content = e.target.elements.content.value;
     const image = e.target.elements.image.files[0];
-    aboutService.setAbout({ title, content, image }).then(() => {
+    AboutService.setAbout({ title, content, image }).then(() => {
       this.props.history.push("/admin/about");
     });
   };

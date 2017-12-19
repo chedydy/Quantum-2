@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container, Button } from "../Common";
-import PostsPreviewService from "../../Services/PostsPreviewService";
+import { PostPreviewService } from "../../Services";
 import { PostsPreviewItem } from "./PostsPreviewItem";
 
 class PostsPreview extends Component {
@@ -9,14 +9,14 @@ class PostsPreview extends Component {
   };
 
   componentWillMount() {
-    PostsPreviewService.getPreviews()
+    PostPreviewService.getPreviews()
       .then(posts => this.setState({ posts }))
       .catch(error => console.log(error));
   }
 
   renderPostsPreview() {
     const items = this.state.posts.map((val, index) => {
-      return <PostsPreviewItem postPreview={val} key={val.id}/>;
+      return <PostsPreviewItem postPreview={val} key={val.id} />;
     });
     return items;
   }

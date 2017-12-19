@@ -3,20 +3,15 @@ import uuid from "uuid/v4";
 import _ from "lodash";
 
 const postsRef = app.ref().child("posts");
-
-export default {
-  getPosts: function() {
-    return new Promise((resolve, reject) => {
-      postsRef.once(
-        "value",
-        function(snapshot) {
-          resolve(snapshot.val());
-        },
-        function(error) {
-          reject(error);
-        }
-      );
-    });
+const PostService= {
+  subscribePreview: function(id, callback) {
+    postsRef.child(id).on(
+      "value",
+      snapshot => callback(snapshot.val()),
+      error => {
+        console.log(error);
+      }
+    );
   },
   getPost: function(id) {
     return new Promise((resolve, reject) => {
@@ -42,3 +37,5 @@ export default {
     return postsRef.child(post.id).set(post);
   }
 };
+
+export {PostService}
