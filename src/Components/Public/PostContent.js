@@ -8,7 +8,7 @@ const PostContent = ({ preview, post }) => {
   return (
     <div>
       <PostHeader
-        image={postImg}
+        image={post.imageUrl}
         title={preview.title}
         subtitle={preview.subTitle}
         author={preview.author}

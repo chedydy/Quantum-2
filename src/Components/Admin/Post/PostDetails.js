@@ -1,13 +1,18 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { FormModal } from "../../Common";
-import { PostService } from "../../../Services";
+import { PostService, PostPreviewService } from "../../../Services";
+import uuid from "uuid/v4";
 
 class PostDetails extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const post = { content: e.target.elements.Content.value };
-    PostService.addPost(post)
+    const id = uuid();
+    Promise.all(
+      PostService.updatePost({ ...post, id }),
+      PostPreviewService.updatePreview({ id, ...{} })
+    )
       .then(() => {
         this.closeModal();
       })
