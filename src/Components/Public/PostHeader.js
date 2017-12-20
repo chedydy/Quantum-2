@@ -3,7 +3,7 @@ class PostHeader extends Component {
   componentWillMount() {}
 
   render() {
-    const imgStyle = { backgroundImage: this.props.image };
+    const imgStyle = { backgroundImage: `url(${this.props.image})` };
     return (
       <header className="masthead" style={imgStyle}>
         <div className="container">
@@ -13,7 +13,8 @@ class PostHeader extends Component {
                 <h1>{this.props.title}</h1>
                 <h2 className="subheading">{this.props.subtitle}</h2>
                 <span className="meta">
-                  Posted by <a href="#">{this.props.author}</a> on {this.props.publishDate}
+                  Posted by <a href="#">{this.props.author}</a> on{" "}
+                  {this.props.publishDate}
                 </span>
               </div>
             </div>

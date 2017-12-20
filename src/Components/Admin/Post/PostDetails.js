@@ -1,3 +1,4 @@
+
 import React, {Component} from "react";
 import uuid from "uuid/v4";
 import {
@@ -29,6 +30,7 @@ class PostDetails extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+
     //    const image = e.target.elements.image.files[0];
     const id = uuid();
     Promise.all([
