@@ -26,7 +26,7 @@ class PostsPreview extends Component {
       <Container>
         <div className="col-lg-8 col-md-10 mx-auto">
           {this.renderPostsPreview()}
-          <Button>Older Posts &rarr;</Button>
+          <Button style={{color: "white"}}>Older Posts &rarr;</Button>
         </div>
       </Container>
     );

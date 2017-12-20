@@ -135,16 +135,16 @@ class EditPost extends Component {
               <br />
               <div className="row justify-content-end col">
                 <Modal
-                  buttonText="Preview"
                   title="Preview Post"
                   appElement="#root"
+                  className="fa fa-eye fa-3x save-button margin"
                 >
                   <PostContent
                     post={this.state.post}
                     preview={this.state.preview}
                   />
                 </Modal>
-                <SubmitButton>Save</SubmitButton>
+                <SubmitButton className="fa fa-floppy-o fa-3x save-button"></SubmitButton>
               </div>
             </form>
           </div>

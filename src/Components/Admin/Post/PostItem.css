@@ -1,19 +1,18 @@
- 
-.floating-label-form-group{
-    position: sticky !important;
+.edit-button:hover { 
+    text-decoration: unset!important;
 }
 
-.save-button {
+.preview-button {
     border: 0 !important;
     background: transparent !important;
     cursor: pointer !important;
 }
 
-.save-button:hover { 
+.preview-button:hover { 
     color: #0085A1 !important;
 }
 
-.save-button:focus {
+.preview-button:focus {
     outline: 0 !important;
 }
 .margin {

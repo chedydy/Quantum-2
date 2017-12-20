@@ -1,8 +1,9 @@
-import React, { Component } from "react";
-import { LinkButton } from "../../Common";
-import { PostsItem } from "./PostsItem";
-import { PostDetails } from "./PostDetails";
-import { PostPreviewService, PostService } from "../../../Services";
+import React, {Component} from "react";
+import {LinkButton} from "../../Common";
+import {PostsItem} from "./PostsItem";
+import {PostDetails} from "./PostDetails";
+import {PostPreviewService, PostService} from "../../../Services";
+
 class Posts extends Component {
   state = {
     // posts: []
@@ -20,9 +21,17 @@ class Posts extends Component {
     });
   }
   renderPostsPreview() {
-    const items = this.state.postPreviews.map((val, index) => {
-      return <PostsItem postPreview={val} key={val.id} />;
-    });
+    const items = this
+      .state
+      .postPreviews
+      .map((val, index) => {
+        return (
+          <div>
+            <PostsItem postPreview={val} key={val.id}/>
+            <hr />
+          </div>
+        );
+      });
     return items;
   }
   render() {
@@ -41,8 +50,7 @@ class Posts extends Component {
           <div className="row justify-content-center">
             <div className="col-3 offset-8 align-self-center">
               <div className="row">
-                <PostDetails />
-                {/* <LinkButton link="/admin/posts/new">New Post</LinkButton> */}
+                <PostDetails/> {/* <LinkButton link="/admin/posts/new">New Post</LinkButton> */}
               </div>
             </div>
           </div>
@@ -52,4 +60,4 @@ class Posts extends Component {
   }
 }
 
-export { Posts };
+export {Posts};

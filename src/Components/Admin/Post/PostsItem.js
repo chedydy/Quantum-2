@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { Modal, LinkButton } from "../../Common";
 import { PostContent } from "../../Public";
 import { PostService } from "../../../Services";
+import './PostItem.css';
+
 class PostsItem extends Component {
   state = {
     post: {
@@ -30,15 +32,13 @@ class PostsItem extends Component {
         <div className="col-3 align-self-center">
           <div className="row">
             <Modal
-              buttonText="Preview"
               title="Preview Post"
               appElement="#root"
               afterOpen={this.loadPostDetails.bind(this)}
-            >
+              className="fa fa-eye fa-3x preview-button margin">
               <PostContent post={this.state.post} preview={postPreview} />
             </Modal>
-            <LinkButton link={`/admin/posts/edit/${this.props.postPreview.id}`}>
-              Edit
+            <LinkButton link={`/admin/posts/edit/${this.props.postPreview.id}`} className="fa fa-pencil-square-o fa-3x edit-button">
             </LinkButton>
           </div>
         </div>

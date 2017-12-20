@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import aboutImg from "../../../img/about-bg.jpg";
-import contactImg from "../../../img/contact-bg.jpg";
-import homeImg from "../../../img/home-bg.jpg";
+import aboutImg from "../../../img/caru 1.1.png";
+import contactImg from "../../../img/caru1.2.jpg";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import CarouselButton from "./CarouselButton";
 import "./Carousel.css";
@@ -9,7 +8,7 @@ class Carousel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: [aboutImg, contactImg, homeImg],
+      items: [aboutImg, contactImg],
       selected: 0,
       slide: "slide"
     };
@@ -28,9 +27,9 @@ class Carousel extends Component {
     let newSelected = 0;
     newSelected = this.state.selected + direction;
     if (newSelected < 0) {
-      newSelected = 2;
+      newSelected = this.state.items.length -1;
     }
-    if (newSelected > 2) {
+    if (newSelected > this.state.items.length -1) {
       newSelected = 0;
     }
     let slide = direction < 0 ? "carousel-reverse" : "carousel";

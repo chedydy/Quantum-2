@@ -25,10 +25,10 @@ class Modal extends Component {
   }
 
   render() {
-    const { title, children, buttonText } = this.props;
+    const { title, children, buttonText, className } = this.props;
     return (
       <div>
-        <Button onClick={this.openModal.bind(this)}>{buttonText}</Button>
+        <Button onClick={this.openModal.bind(this)} className={className}>{buttonText}</Button>
         <ReactModal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal.bind(this)}
