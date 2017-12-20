@@ -9,16 +9,11 @@ class Posts extends Component {
     // posts: []
     postPreviews: []
   };
+  setPreviesState(postPreviews) {
+    this.setState({postPreviews});
+  }
   componentWillMount() {
-    Promise.all([
-      PostPreviewService.getPreviews()
-      //   PostsService.getPost(id)
-    ]).then(values => {
-      this.setState({
-        postPreviews: values[0]
-        //  posts: values[0]
-      });
-    });
+    PostPreviewService.subscribePreviews(this.setPreviesState.bind(this));
   }
   renderPostsPreview() {
     const items = this
@@ -26,9 +21,9 @@ class Posts extends Component {
       .postPreviews
       .map((val, index) => {
         return (
-          <div>
-            <PostsItem postPreview={val} key={val.id}/>
-            <hr />
+          <div key={val.id}>
+            <PostsItem postPreview={val}/>
+            <hr/>
           </div>
         );
       });
@@ -38,13 +33,21 @@ class Posts extends Component {
     return (
       <div className="row justify-content-center align-items-center">
         <div className="col-11">
-          <div className="row justify-content-center">
+          <div
+            className="row justify-content-center"
+            style={{
+            marginBottom: "30px",
+            marginTop: "30px",
+            fontWeight: "bold",
+            fontSize: "25px",
+            textDecorationLine: "overline"
+          }}>
             <div className="col-4 text-left align-self-center">Title</div>
             <div className="col-2 text-left align-self-center">Author</div>
             <div className="col-2 text-left align-self-center">
               Publish Date
             </div>
-            <div className="col-3 text-left align-self-center">Actions</div>
+            <div className="col-3 text-left align-self-center"></div>
           </div>
           {this.renderPostsPreview()}
           <div className="row justify-content-center">
