@@ -8,7 +8,7 @@ class PostHeader extends Component {
       <header className="masthead" style={imgStyle}>
         <div className="container">
           <div className="row">
-            <div className="col-lg-8 col-md-10 mx-auto">
+            <div className="mx-auto">
               <div className="post-heading">
                 <h1>{this.props.title}</h1>
                 <h2 className="subheading">{this.props.subtitle}</h2>

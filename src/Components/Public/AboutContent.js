@@ -9,7 +9,9 @@ const AboutContent = ({ about }) => {
         {about.title}
       </PageHeader>
       <Container>
-        <ReactMarkdown source={about.content} />
+        <div style={{ textAlign: "justify" }}>
+          <ReactMarkdown source={about.content} />
+        </div>
       </Container>
     </div>
   );

@@ -15,9 +15,11 @@ const PostContent = ({ preview, post }) => {
         publishDate={preview.publishDate}
       />
       <article>
-        <Container>
-          <ReactMarkdown source={post.content} />
-        </Container>
+        <div className="container">
+          <div style={{textAlign:'justify'}}>
+            <ReactMarkdown source={post.content} />
+          </div>
+        </div>
       </article>
     </div>
   );

@@ -24,7 +24,7 @@ const PostService = {
     return new Promise((resolve, reject) => {
       Promise.all([
         postsRef.child(id).set({ content, id }),
-        postsStorageRef.child(`${id}.jpg`).put(image)
+        image ? postsStorageRef.child(`${id}.jpg`).put(image) : undefined
       ])
         .then(values => {
           resolve();

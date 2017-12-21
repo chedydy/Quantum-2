@@ -10,7 +10,7 @@ const FileInput = props => {
           className="form-control"
           placeholder={props.placeholder}
           id={props.id}
-          required
+          required={props.required}
           onChange={props.onChange}
           accept={props.fileTypes}
         />

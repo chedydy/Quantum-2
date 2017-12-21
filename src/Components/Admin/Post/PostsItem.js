@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Modal, LinkButton,Button } from "../../Common";
+import { Modal, LinkButton, Button } from "../../Common";
 import { PostContent } from "../../Public";
-import { PostService,PostPreviewService } from "../../../Services";
-import './PostItem.css';
+import { PostService, PostPreviewService } from "../../../Services";
+import "./PostItem.css";
 
 class PostsItem extends Component {
   state = {
@@ -16,9 +16,9 @@ class PostsItem extends Component {
       .then(post => this.setState({ post }))
       .catch(console.log);
   }
-  deletePost(){
-PostService.deletePost(this.props.postPreview.id);
-PostPreviewService.deletePreview(this.props.postPreview.id);
+  deletePost() {
+    PostService.deletePost(this.props.postPreview.id);
+    PostPreviewService.deletePreview(this.props.postPreview.id);
   }
   render() {
     const { postPreview } = this.props;
@@ -39,12 +39,18 @@ PostPreviewService.deletePreview(this.props.postPreview.id);
               title="Preview Post"
               appElement="#root"
               afterOpen={this.loadPostDetails.bind(this)}
-              className="fa fa-eye fa-3x preview-button margin">
-              <PostContent post={this.state.post} preview={postPreview} />        
+              className="fa fa-eye fa-3x preview-button margin"
+            >
+              <PostContent post={this.state.post} preview={postPreview} />
             </Modal>
-            <LinkButton link={`/admin/posts/edit/${this.props.postPreview.id}`} className="fa fa-pencil-square-o fa-3x edit-button margin">
-            </LinkButton>
-            <Button onClick={this.deletePost.bind(this)} className="fa fa-times fa-3x save-button"></Button>      
+            <LinkButton
+              link={`/admin/posts/edit/${this.props.postPreview.id}`}
+              className="fa fa-pencil-square-o fa-3x edit-button margin"
+            />
+            <Button
+              onClick={this.deletePost.bind(this)}
+              className="fa fa-times fa-3x save-button"
+            />
           </div>
         </div>
       </div>

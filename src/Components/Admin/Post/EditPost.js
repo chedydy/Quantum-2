@@ -77,10 +77,10 @@ class EditPost extends Component {
     reader.onloadend = () => {
       this.setState({
         ...this.state,
-        preview: {
-          ...this.state.preview,
+        post: {
+          ...this.state.post,
           image: image,
-          imagePreviewUrl: reader.result
+          imageUrl: reader.result
         }
       });
     };
@@ -117,7 +117,7 @@ class EditPost extends Component {
                 value={this.state.preview.tags}
                 onChange={this.handlePreviewChange.bind(this, "tags")}
               />
-              {/* <img src={this.state.preview.imagePreviewUrl} alt="Selected" />
+              {/* <img src={this.state.preview.imagePreviewUrl} alt="Selected" />*/}
               <FileInput
                 id="image"
                 placeholder="Select image"
@@ -125,7 +125,15 @@ class EditPost extends Component {
                 type="file"
                 fileTypes="image/*"
                 onChange={this.handleImageChange.bind(this)}
-              /> */}
+              /> 
+              <Input
+                id="tags"
+                placeholder="Tags"
+                label="Tags"
+                type="text"
+                value={this.state.preview.tags}
+                onChange={this.handlePreviewChange.bind(this, "imageUrl")}
+              />
               <Textarea
                 id="content"
                 placeholder="Content"
