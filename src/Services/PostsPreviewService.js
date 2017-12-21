@@ -48,6 +48,9 @@ const PostPreviewService = {
   },
   updatePreview: function(preview) {
     return postPreviewRef.child(preview.id).set(preview);
+  },
+  deletePreview:function(id){
+    return postPreviewRef.child(id).remove();
   }
 };
 

@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Modal, LinkButton } from "../../Common";
-import { DeleteButton } from '../../Common/DeleteButton';
+import { Modal, LinkButton,Button } from "../../Common";
 import { PostContent } from "../../Public";
-import { PostService } from "../../../Services";
+import { PostService,PostPreviewService } from "../../../Services";
 import './PostItem.css';
 
 class PostsItem extends Component {
@@ -16,6 +15,10 @@ class PostsItem extends Component {
     PostService.getPost(this.props.postPreview.id)
       .then(post => this.setState({ post }))
       .catch(console.log);
+  }
+  deletePost(){
+PostService.deletePost(this.props.postPreview.id);
+PostPreviewService.deletePreview(this.props.postPreview.id);
   }
   render() {
     const { postPreview } = this.props;
@@ -41,7 +44,7 @@ class PostsItem extends Component {
             </Modal>
             <LinkButton link={`/admin/posts/edit/${this.props.postPreview.id}`} className="fa fa-pencil-square-o fa-3x edit-button margin">
             </LinkButton>
-            <DeleteButton link={`/admin/posts/delete${this.props.postPreview.id}`} className="fa fa-times fa-3x save-button"></DeleteButton>      
+            <Button onClick={this.deletePost.bind(this)} className="fa fa-times fa-3x save-button"></Button>      
           </div>
         </div>
       </div>

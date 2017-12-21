@@ -1,57 +1,49 @@
-import {app, storage} from "../firebase/firebase";
+import { app, storage } from "../firebase/firebase";
 import _ from "lodash";
 
-const postsRef = app
-  .ref()
-  .child("posts");
+const postsRef = app.ref().child("posts");
 const postsStorageRef = storage.child("posts");
 const PostService = {
-  getPost: function (id) {
+  getPost: function(id) {
     return new Promise((resolve, reject) => {
       Promise.all([
-        postsRef
-          .child(id)
-          .once("value"),
-        postsStorageRef
-          .child(`${id}.jpg`)
-          .getDownloadURL()
-      ]).then(values => {
-        const post = values[0].val();
-        resolve({
-          ...post,
-          imageUrl: values[1]
-        });
-      }).catch(reject);
+        postsRef.child(id).once("value"),
+        postsStorageRef.child(`${id}.jpg`).getDownloadURL()
+      ])
+        .then(values => {
+          const post = values[0].val();
+          resolve({
+            ...post,
+            imageUrl: values[1]
+          });
+        })
+        .catch(reject);
     });
   },
-  updatePost: function ({id, content, image}) {
+  updatePost: function({ id, content, image }) {
     return new Promise((resolve, reject) => {
       Promise.all([
-        postsRef
-          .child(id)
-          .set({content, id}),
-        postsStorageRef
-          .child(`${id}.jpg`)
-          .put(image)
-      ]).then(values => {
-        resolve();
-      }).catch(reject);
+        postsRef.child(id).set({ content, id }),
+        postsStorageRef.child(`${id}.jpg`).put(image)
+      ])
+        .then(values => {
+          resolve();
+        })
+        .catch(reject);
     });
   },
-  deletePost: function ({id, content, image}) {
+  deletePost: function(id) {
     return new Promise((resolve, reject) => {
       Promise.all([
-        postsRef
-          .child(id)
-          .deletePost({content, id}),
-        postsStorageRef
-          .child(`${id}.jpg`)
-          .delete(image)
-      ]).then(values => {
-        resolve();
-      }).catch(reject);
+        postsRef.child(id).remove(),
+        postsStorageRef.child(`${id}.jpg`).delete()
+      ])
+        .then(values => {
+          resolve();
+        })
+        .catch(reject);
     });
   }
 };
 
-export {PostService};
+export { PostService };
