@@ -43,7 +43,12 @@ const PostService = {
     return new Promise((resolve, reject) => {
       Promise.all([
         postsRef.child(id).remove(),
-        postsStorageRef.child(`${id}.jpg`).delete()
+        postsStorageRef
+          .child(`${id}.jpg`)
+          .delete()
+          .catch(function(err) {
+            console.error("err", err);
+          })
       ])
         .then(values => {
           resolve();
