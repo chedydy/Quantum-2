@@ -86,6 +86,7 @@ class PostDetails extends Component {
     return (
       <div>
         <FormModal
+          style={{color: "white"}}
           buttonText="New Post"
           title="New Post"
           appElement="#root"

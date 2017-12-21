@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Modal, LinkButton } from "../../Common";
+import { DeleteButton } from '../../Common/DeleteButton';
 import { PostContent } from "../../Public";
 import { PostService } from "../../../Services";
 import './PostItem.css';
@@ -36,10 +37,11 @@ class PostsItem extends Component {
               appElement="#root"
               afterOpen={this.loadPostDetails.bind(this)}
               className="fa fa-eye fa-3x preview-button margin">
-              <PostContent post={this.state.post} preview={postPreview} />
+              <PostContent post={this.state.post} preview={postPreview} />        
             </Modal>
-            <LinkButton link={`/admin/posts/edit/${this.props.postPreview.id}`} className="fa fa-pencil-square-o fa-3x edit-button">
+            <LinkButton link={`/admin/posts/edit/${this.props.postPreview.id}`} className="fa fa-pencil-square-o fa-3x edit-button margin">
             </LinkButton>
+            <DeleteButton link={`/admin/posts/delete${this.props.postPreview.id}`} className="fa fa-times fa-3x save-button"></DeleteButton>      
           </div>
         </div>
       </div>

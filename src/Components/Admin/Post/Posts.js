@@ -10,7 +10,7 @@ class Posts extends Component {
     postPreviews: []
   };
   setPreviesState(postPreviews) {
-    this.setState({postPreviews});
+    this.setState({ postPreviews });
   }
   componentWillMount() {
     PostPreviewService.subscribePreviews(this.setPreviesState.bind(this));
@@ -21,7 +21,7 @@ class Posts extends Component {
       .postPreviews
       .map((val, index) => {
         return (
-          <div key={val.id}>
+          <div  key={val.id}>
             <PostsItem postPreview={val}/>
             <hr/>
           </div>
@@ -33,15 +33,7 @@ class Posts extends Component {
     return (
       <div className="row justify-content-center align-items-center">
         <div className="col-11">
-          <div
-            className="row justify-content-center"
-            style={{
-            marginBottom: "30px",
-            marginTop: "30px",
-            fontWeight: "bold",
-            fontSize: "25px",
-            textDecorationLine: "overline"
-          }}>
+          <div className="row justify-content-center" style={{marginBottom: "30px", marginTop: "30px", fontWeight: "bold", fontSize: "25px", border: "2px solid #0085A1"}}>
             <div className="col-4 text-left align-self-center">Title</div>
             <div className="col-2 text-left align-self-center">Author</div>
             <div className="col-2 text-left align-self-center">
