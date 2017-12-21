@@ -8,7 +8,12 @@ const PostService = {
     return new Promise((resolve, reject) => {
       Promise.all([
         postsRef.child(id).once("value"),
-        postsStorageRef.child(`${id}.jpg`).getDownloadURL()
+        postsStorageRef
+          .child(`${id}.jpg`)
+          .getDownloadURL()
+          .catch(function(err) {
+            console.error("err", err);
+          })
       ])
         .then(values => {
           const post = values[0].val();
@@ -17,7 +22,9 @@ const PostService = {
             imageUrl: values[1]
           });
         })
-        .catch(reject);
+        .catch(err => {
+          console.log(err);
+        });
     });
   },
   updatePost: function({ id, content, image }) {

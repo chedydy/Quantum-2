@@ -18,8 +18,12 @@ class FormModal extends Component {
   }
 
   handleSubmit = e => {
-    this.props.onSubmit(e);
-    this.closeModal();
+    this.props
+      .onSubmit(e)
+      .then(() => {
+        this.closeModal();
+      })
+      .catch(console.log);
   };
 
   openModal() {
