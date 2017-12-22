@@ -10,8 +10,7 @@ const PostsPreviewItem = ({postPreview}) => {
           <h3 className="post-subtitle">{postPreview.subTitle}</h3>
         </Link>
         <p className="post-meta">
-          Posted by
-          <a href={postPreview.authorLink}>{postPreview.author}</a> on {postPreview.publishDate}
+          Posted by <a href={postPreview.authorLink}>{postPreview.author}</a> on {postPreview.publishDate}
         </p>
       </div>
       <hr />

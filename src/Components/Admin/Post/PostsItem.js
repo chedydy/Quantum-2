@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { Modal, LinkButton, Button } from "../../Common";
 import { PostContent } from "../../Public";
 import { PostService, PostPreviewService } from "../../../Services";

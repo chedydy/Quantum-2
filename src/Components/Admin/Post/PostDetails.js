@@ -11,7 +11,11 @@ import {
   FormModal
 } from "../../Common";
 import { PostContent } from "../../Public";
-import { PostPreviewService, PostService,AuthService } from "../../../Services";
+import {
+  PostPreviewService,
+  PostService,
+  AuthService
+} from "../../../Services";
 import "./EditPost.css";
 
 class PostDetails extends Component {
@@ -29,14 +33,15 @@ class PostDetails extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const id = uuid();
-    const user=AuthService.getUser();
-    const author=user.displayName;
+    const user = AuthService.getUser();
+    const author = user.displayName;
     return Promise.all([
       PostPreviewService.updatePreview({
         ...this.state.preview,
         id,
         author,
-        publishDate:moment().format("DD/MM/YYYY HH:mm")
+        publishDate: moment().format("LL"),
+        authorLink:`https://www.facebook.com/app_scoped_user_id/${user.providerData[0].uid}`
       }),
       PostService.updatePost({
         ...this.state.post,
