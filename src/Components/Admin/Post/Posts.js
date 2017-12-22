@@ -45,7 +45,7 @@ class Posts extends Component {
           <div className="row justify-content-center">
             <div className="col-3 offset-8 align-self-center">
               <div className="row">
-                <PostDetails/> {/* <LinkButton link="/admin/posts/new">New Post</LinkButton> */}
+                <PostDetails/>
               </div>
             </div>
           </div>

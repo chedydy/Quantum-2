@@ -13,7 +13,7 @@ class PostHeader extends Component {
                 <h1>{this.props.title}</h1>
                 <h2 className="subheading">{this.props.subtitle}</h2>
                 <span className="meta">
-                  Posted by <a href="#">{this.props.author}</a> on{" "}
+                  Posted by <a href={this.props.authorLink}>{this.props.author}</a> on{" "}
                   {this.props.publishDate}
                 </span>
               </div>

@@ -11,7 +11,7 @@ const PostsPreviewItem = ({postPreview}) => {
         </Link>
         <p className="post-meta">
           Posted by
-          <Link to="posts">{postPreview.author}</Link> on {postPreview.publishDate}
+          <a href={postPreview.authorLink}>{postPreview.author}</a> on {postPreview.publishDate}
         </p>
       </div>
       <hr />
