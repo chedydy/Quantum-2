@@ -13,7 +13,7 @@ class EditAbout extends Component {
     title: "",
     content: "",
     image: "",
-    imagePreviewUrl: ""
+    imageUrl: ""
   };
   setAbout(about) {
     this.setState({ title: about.title, content: about.content });
@@ -43,8 +43,8 @@ class EditAbout extends Component {
     reader.onloadend = () => {
       this.setState({
         ...this.state,
-        image: image,
-        imagePreviewUrl: reader.result
+        image,
+        imageUrl: reader.result
       });
     };
     reader.readAsDataURL(image);
@@ -69,7 +69,6 @@ class EditAbout extends Component {
                 value={this.state.title}
                 onChange={this.handleChange.bind(this, "title")}
               />
-              <img src={this.state.imagePreviewUrl} alt="Selected image" />
               <FileInput
                 id="image"
                 placeholder="Select image"

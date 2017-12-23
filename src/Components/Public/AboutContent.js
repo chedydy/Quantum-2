@@ -5,7 +5,7 @@ import { Container } from "../Common";
 const AboutContent = ({ about }) => {
   return (
     <div>
-      <PageHeader image={about.image} title={"About Me"}>
+      <PageHeader image={about.imageUrl} title={"About Me"}>
         {about.title}
       </PageHeader>
       <Container>

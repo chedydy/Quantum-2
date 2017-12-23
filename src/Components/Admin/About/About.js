@@ -11,9 +11,7 @@ class About extends Component {
   };
   setAbout(about) {
     this.setState({
-      ...this.state,
-      title: about.title,
-      content: about.content
+      ...about
     });
   }
   componentWillMount() {

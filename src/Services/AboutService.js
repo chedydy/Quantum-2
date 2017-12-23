@@ -10,16 +10,29 @@ const AboutService = {
       }
     );
   },
-  setAbout: function({ title, content, image }) {
+  setAbout: function({ title, content, image, imageUrl }) {
     return new Promise((resolve, reject) => {
-      Promise.all([
-        aboutRef.set({ title, content }),
-        storage.child("about/image.jpg").put(image)
-      ])
-        .then(values => {
-          resolve();
-        })
-        .catch(reject);
+      if (image) {
+        storage
+          .child("about/image.jpg")
+          .put(image)
+          .then(result => {
+            aboutRef
+              .set({ title, content, imageUrl: result.downloadURL })
+
+              .then(values => {
+                resolve();
+              })
+              .catch(reject);
+          });
+      } else {
+        aboutRef
+          .set({ title, content, imageUrl })
+          .then(values => {
+            resolve();
+          })
+          .catch(reject);
+      }
     });
   }
 };
