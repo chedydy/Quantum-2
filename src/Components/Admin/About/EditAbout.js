@@ -16,7 +16,11 @@ class EditAbout extends Component {
     imageUrl: ""
   };
   setAbout(about) {
-    this.setState({ title: about.title, content: about.content });
+    this.setState({
+      title: about.title,
+      content: about.content,
+      imageUrl: about.imageUrl
+    });
   }
   componentWillMount() {
     AboutService.getAbout(this.setAbout.bind(this));
@@ -24,10 +28,7 @@ class EditAbout extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const title = e.target.elements.title.value;
-    const content = e.target.elements.content.value;
-    const image = e.target.elements.image.files[0];
-    AboutService.setAbout({ title, content, image }).then(() => {
+    AboutService.setAbout({ ...this.state }).then(() => {
       this.props.history.push("/admin/about");
     });
   };

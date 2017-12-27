@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import uuid from "uuid/v4";
 import moment from "moment";
+import _ from "lodash";
 import {
   Input,
   Textarea,
@@ -41,7 +42,10 @@ class PostDetails extends Component {
         id,
         author,
         publishDate: moment().format("LL"),
-        authorLink:`https://www.facebook.com/app_scoped_user_id/${user.providerData[0].uid}`
+        authorLink: `https://www.facebook.com/app_scoped_user_id/${
+          user.providerData[0].uid
+        }`,
+        tags: this.state.tagsArray
       }),
       PostService.updatePost({
         ...this.state.post,
@@ -58,6 +62,20 @@ class PostDetails extends Component {
         [field]: e.target.value
       }
     });
+  };
+
+  handleTagsChange = e => {
+    const value = e.target.value;
+    const tags = value.split(" ");
+    const newState = {
+      ...this.state,
+      preview: {
+        ...this.state.preview,
+        tags: value
+      },
+      tagsArray: _.mapKeys(tags)
+    };
+    this.setState(newState);
   };
 
   handlePostChange = (field, e) => {
@@ -126,7 +144,7 @@ class PostDetails extends Component {
             label="Tags"
             type="text"
             value={this.state.preview.tags}
-            onChange={this.handlePreviewChange.bind(this, "tags")}
+            onChange={this.handleTagsChange.bind(this)}
           />
           <FileInput
             id="image"

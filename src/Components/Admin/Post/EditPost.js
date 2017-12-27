@@ -22,8 +22,6 @@ class EditPost extends Component {
       title: "",
       subTitle: "",
       tags: ""
-      // image: "",
-      // imagePreviewUrl: ""
     }
   };
 
@@ -39,7 +37,6 @@ class EditPost extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    //    const image = e.target.elements.image.files[0];
     Promise.all([
       PostPreviewService.updatePreview(this.state.preview),
       PostService.updatePost(this.state.post)
@@ -117,7 +114,6 @@ class EditPost extends Component {
                 value={this.state.preview.tags}
                 onChange={this.handlePreviewChange.bind(this, "tags")}
               />
-              {/* <img src={this.state.preview.imagePreviewUrl} alt="Selected" />*/}
               <FileInput
                 id="image"
                 placeholder="Select image"
@@ -126,14 +122,6 @@ class EditPost extends Component {
                 fileTypes="image/*"
                 onChange={this.handleImageChange.bind(this)}
               /> 
-              <Input
-                id="tags"
-                placeholder="Tags"
-                label="Tags"
-                type="text"
-                value={this.state.preview.tags}
-                onChange={this.handlePreviewChange.bind(this, "imageUrl")}
-              />
               <Textarea
                 id="content"
                 placeholder="Content"
