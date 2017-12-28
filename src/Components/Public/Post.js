@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PostsService from "../../Services/PostsService";
 import { PostPreviewService, PostService } from "../../Services";
 import { PostContent } from "./PostContent";
 

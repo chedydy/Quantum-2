@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Container, Button, LinkButton, Textarea, Modal } from "../../Common";
+import React from "react";
+import { Modal } from "../../Common";
 import { AboutContent } from "../../Public";
 const PreviewAbout = ({ about }) => {
   return (

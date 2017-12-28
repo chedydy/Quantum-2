@@ -5,10 +5,8 @@ import {
   FileInput,
   Container,
   SubmitButton,
-  Button,
   Modal
 } from "../../Common";
-import { DeleteButton } from "../../Common/DeleteButton";
 import { PostContent } from "../../Public";
 import { PostPreviewService, PostService } from "../../../Services";
 import "./EditPost.css";

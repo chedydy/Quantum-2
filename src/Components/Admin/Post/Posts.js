@@ -1,12 +1,10 @@
 import React, {Component} from "react";
-import {LinkButton} from "../../Common";
 import {PostsItem} from "./PostsItem";
 import {PostDetails} from "./PostDetails";
-import {PostPreviewService, PostService} from "../../../Services";
+import {PostPreviewService} from "../../../Services";
 
 class Posts extends Component {
   state = {
-    // posts: []
     postPreviews: []
   };
   setPreviesState(postPreviews) {

@@ -51,7 +51,7 @@ const PostPreviewService = {
             if (
               previews[j].tags &&
               previews[j].tags[tags[i]] &&
-              filteredPreviews.indexOf(previews[j]) == -1
+              filteredPreviews.indexOf(previews[j]) === -1
             ) {
               filteredPreviews.push(previews[j]);
             }

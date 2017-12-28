@@ -1,5 +1,5 @@
 import React from "react";
-import { FooterShareLink, Container } from "../Common";
+import { FooterShareLink } from "../Common";
 const Footer = () => {
   return (
     <footer>

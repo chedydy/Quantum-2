@@ -1,5 +1,4 @@
 import { app, storage } from "../firebase/firebase";
-import _ from "lodash";
 
 const postsRef = app.ref().child("posts");
 const postsStorageRef = storage.child("posts");

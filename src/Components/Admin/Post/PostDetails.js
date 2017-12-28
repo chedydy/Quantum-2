@@ -6,12 +6,8 @@ import {
   Input,
   Textarea,
   FileInput,
-  Container,
-  SubmitButton,
-  Button,
   FormModal
 } from "../../Common";
-import { PostContent } from "../../Public";
 import {
   PostPreviewService,
   PostService,

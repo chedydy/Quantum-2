@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { FacebookLoginButton } from "react-social-login-buttons";
 import LoginImg from "../../img/QfbLogin.png";
-import { provider, auth } from "../../firebase/firebase";
 import Media from "react-media";
 import { AuthService } from "../../Services";
 
