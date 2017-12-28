@@ -2,6 +2,19 @@ import _ from "lodash";
 import { app } from "../firebase/firebase";
 const postPreviewRef = app.ref().child("posts_preview");
 const tagsRef = app.ref().child("tags");
+function searchText(object, text) {
+  for (let key in object) {
+    if (key != "authorLink") {
+      const value = object[key];
+      if (
+        (typeof value === "string" || value instanceof String) &&
+        value.toLowerCase().indexOf(text.toLowerCase()) != -1
+      ) {
+        return true;
+      }
+    }
+  }
+}
 const PostPreviewService = {
   subscribePreviews: function(callback) {
     postPreviewRef.on(
@@ -39,28 +52,6 @@ const PostPreviewService = {
       );
     });
   },
-  getByTags: function(tags) {
-    return new Promise((resolve, reject) => {
-      postPreviewRef.once("value", function(snapshot) {
-        const previews = _.map(snapshot.val(), (val, id) => {
-          return { ...val };
-        });
-        const filteredPreviews = [];
-        for (let i = 0; i < tags.length; i++) {
-          for (let j = 0; j < previews.length; j++) {
-            if (
-              previews[j].tags &&
-              previews[j].tags[tags[i]] &&
-              filteredPreviews.indexOf(previews[j]) === -1
-            ) {
-              filteredPreviews.push(previews[j]);
-            }
-          }
-        }
-        resolve(filteredPreviews);
-      });
-    });
-  },
   filterByTags: function(posts, tags) {
     const previews = posts.slice();
     const filteredPreviews = [];
@@ -73,6 +64,19 @@ const PostPreviewService = {
         ) {
           filteredPreviews.push(previews[j]);
         }
+      }
+    }
+    return filteredPreviews;
+  },
+  filterByText: function(posts, text) {
+    const previews = posts.slice();
+    const filteredPreviews = [];
+    for (let j = 0; j < previews.length; j++) {
+      if (
+        searchText(previews[j], text) &&
+        filteredPreviews.indexOf(previews[j]) === -1
+      ) {
+        filteredPreviews.push(previews[j]);
       }
     }
     return filteredPreviews;

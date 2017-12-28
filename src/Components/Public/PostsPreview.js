@@ -34,10 +34,21 @@ class PostsPreview extends Component {
       selectValue: value,
       filteredPosts:
         value === ""
-          ? this.state.posts
+          ? this.state.posts.slice()
           : PostPreviewService.filterByTags(this.state.posts, value.split(","))
     });
   }
+
+  handleSearchChange(e) {
+    const filter = e.target.value;
+    this.setState({
+      filteredPosts:
+        filter === ""
+          ? this.state.posts.slice()
+          : PostPreviewService.filterByText(this.state.posts, filter)
+    });
+  }
+
   renderPostsPreview() {
     const items = this.state.filteredPosts.slice().map((val, index) => {
       return <PostsPreviewItem postPreview={val} key={val.id} />;
@@ -50,17 +61,26 @@ class PostsPreview extends Component {
     return (
       <Container>
         <div className="col-lg-8 col-md-10 mx-auto">
-          <Select
-            closeOnSelect
-            multi
-            onChange={this.handleSelectChange.bind(this)}
-            options={tags}
-            placeholder="Search..."
-            removeSelected={true}
-            rtl={false}
-            simpleValue
-            value={selectValue}
-          />
+          <div className="row">
+            <input
+              type="text"
+              className="Select col-6 search-input"
+              placeholder="Search..."
+              onChange={this.handleSearchChange.bind(this)}
+            />
+            <Select
+              closeOnSelect
+              multi
+              onChange={this.handleSelectChange.bind(this)}
+              options={tags}
+              placeholder="Tags"
+              removeSelected={true}
+              rtl={false}
+              simpleValue
+              value={selectValue}
+              className="col-6"
+            />
+          </div>
           {this.renderPostsPreview()}
           <Button style={{ color: "white" }}>Older Posts &rarr;</Button>
         </div>

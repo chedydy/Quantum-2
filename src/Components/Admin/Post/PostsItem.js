@@ -24,7 +24,9 @@ class PostsItem extends Component {
     return (
       <div className="row justify-content-center">
         <div className="col-4 text-left align-self-center">
-          {postPreview.title.slice(0, 50) + "..."}
+          {postPreview.title.length > 50
+            ? postPreview.title.slice(0, 50) + "..."
+            : postPreview.title}
         </div>
         <div className="col-2 text-left align-self-center">
           {postPreview.author}
