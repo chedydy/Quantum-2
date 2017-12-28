@@ -5,15 +5,17 @@ import _ from "lodash";
 import { Container, Button } from "../Common";
 import { PostPreviewService } from "../../Services";
 import { PostsPreviewItem } from "./PostsPreviewItem";
+import "./PostsPreview.css";
 
 class PostsPreview extends Component {
   state = {
     posts: [],
     tags: [],
-    selectValue: []
+    selectValue: [],
+    filteredPosts: []
   };
   setPreviesState(posts) {
-    this.setState({ posts });
+    this.setState({ posts, filteredPosts: posts });
   }
   componentWillMount() {
     PostPreviewService.subscribePreviews(this.setPreviesState.bind(this));
@@ -28,17 +30,16 @@ class PostsPreview extends Component {
     });
   }
   handleSelectChange(value) {
-    this.setState({ selectValue: value });
-    if (value === "") {
-      PostPreviewService.subscribePreviews(this.setPreviesState.bind(this));
-      return;
-    }
-    PostPreviewService.getByTags(value.split(",")).then(previews => {
-      this.setPreviesState(previews);
+    this.setState({
+      selectValue: value,
+      filteredPosts:
+        value === ""
+          ? this.state.posts
+          : PostPreviewService.filterByTags(this.state.posts, value.split(","))
     });
   }
   renderPostsPreview() {
-    const items = this.state.posts.map((val, index) => {
+    const items = this.state.filteredPosts.slice().map((val, index) => {
       return <PostsPreviewItem postPreview={val} key={val.id} />;
     });
     return items;

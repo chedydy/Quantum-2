@@ -2,12 +2,7 @@ import React, { Component } from "react";
 import uuid from "uuid/v4";
 import moment from "moment";
 import _ from "lodash";
-import {
-  Input,
-  Textarea,
-  FileInput,
-  FormModal
-} from "../../Common";
+import { Input, Textarea, FileInput, FormModal } from "../../Common";
 import {
   PostPreviewService,
   PostService,

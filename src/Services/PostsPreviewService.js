@@ -61,6 +61,22 @@ const PostPreviewService = {
       });
     });
   },
+  filterByTags: function(posts, tags) {
+    const previews = posts.slice();
+    const filteredPreviews = [];
+    for (let i = 0; i < tags.length; i++) {
+      for (let j = 0; j < previews.length; j++) {
+        if (
+          previews[j].tags &&
+          previews[j].tags[tags[i]] &&
+          filteredPreviews.indexOf(previews[j]) === -1
+        ) {
+          filteredPreviews.push(previews[j]);
+        }
+      }
+    }
+    return filteredPreviews;
+  },
   getTags: function() {
     return new Promise((resolve, reject) => {
       tagsRef.once("value", function(snapshot) {
@@ -76,7 +92,7 @@ const PostPreviewService = {
     });
   },
   updatePreview: function(preview) {
-    const tags=_.mapKeys(preview.tags);
+    const tags = _.mapKeys(preview.tags);
     tagsRef.update(tags);
     return postPreviewRef.child(preview.id).set(preview);
   },
