@@ -3,7 +3,7 @@ import uuid from "uuid/v4";
 import moment from "moment";
 
 import { app } from "../../firebase/firebase";
-import { SelectInput, Textarea, Container } from "../Common";
+import { Input, Textarea, Container } from "../Common";
 import { PageHeader } from "./PageHeader";
 import contactImg from "../../img/contact-bg.jpg";
 
@@ -61,7 +61,7 @@ class Contact extends Component {
               noValidate
               onSubmit={this.handleSubmit}
             >
-              <SelectInput
+              <Input
                 id="name"
                 placeholder="Name"
                 label="Name"
@@ -69,7 +69,7 @@ class Contact extends Component {
                 value={this.state.name}
                 onChange={this.handleChange.bind(this, "name")}
               />
-              <SelectInput
+              <Input
                 id="email"
                 placeholder="Email Address"
                 label="Email Address"
@@ -77,7 +77,7 @@ class Contact extends Component {
                 value={this.state.email}
                 onChange={this.handleChange.bind(this, "email")}
               />
-              <SelectInput
+              <Input
                 id="phone"
                 placeholder="Phone Number"
                 label="Phone Number"

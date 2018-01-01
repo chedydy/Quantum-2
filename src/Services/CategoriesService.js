@@ -29,6 +29,13 @@ const CategoriesService = {
     categoriesRef.child(category.replace("-", "/")).update({
       [id]: true
     });
+  },
+  update(category, id) {
+    const categoryNode = category.replace("-", "/");
+    categoriesRef.child(`${categoryNode}/${id}`).remove();
+    categoriesRef.child(categoryNode).update({
+      [id]: true
+    });
   }
 };
 

@@ -25,9 +25,9 @@ class PostDetails extends Component {
     preview: {
       title: "",
       subTitle: "",
-      tags: ""
+      tags: "",
+      category: ""
     },
-    category: "",
     categories: []
   };
   componentWillMount() {
@@ -56,7 +56,7 @@ class PostDetails extends Component {
         ...this.state.post,
         id
       }),
-      CategoriesService.add(this.state.category, id)
+      CategoriesService.add(this.state.preview.category, id)
     ]);
   };
 
@@ -67,12 +67,6 @@ class PostDetails extends Component {
         ...this.state.preview,
         [field]: e.target.value
       }
-    });
-  };
-
-  handleCategoryChange = (e) => {
-    this.setState({
-      category: e.target.value
     });
   };
 
@@ -156,7 +150,7 @@ class PostDetails extends Component {
             label="Category"
             value={this.state.category}
             options={this.state.categories}
-            onChange={this.handleCategoryChange.bind(this)}
+            onChange={this.handlePreviewChange.bind(this, "category")}
           />
           <FileInput
             id="image"

@@ -1,14 +1,20 @@
 import React, { Component } from "react";
+import _ from "lodash";
 import {
   Input,
   Textarea,
   FileInput,
   Container,
   SubmitButton,
-  Modal
+  Modal,
+  SelectInput
 } from "../../Common";
 import { PostContent } from "../../Public";
-import { PostPreviewService, PostService } from "../../../Services";
+import {
+  PostPreviewService,
+  PostService,
+  CategoriesService
+} from "../../../Services";
 import "./EditPost.css";
 
 class EditPost extends Component {
@@ -19,25 +25,48 @@ class EditPost extends Component {
     preview: {
       title: "",
       subTitle: "",
-      tags: ""
-    }
+      tags: "",
+      category: ""
+    },
+    categories: []
   };
 
   componentWillMount() {
     var id = this.props.match.params.id;
+    CategoriesService.subscribe(this.setCategoriesState.bind(this));
     Promise.all([
       PostPreviewService.getPreview(id),
       PostService.getPost(id)
     ]).then(values => {
-      this.setState({ preview: values[0], post: values[1] });
+      let tags = "";
+      _.forEach(values[0].tags, (val, key) => {
+        tags = `${tags} ${val}`;
+      });
+      tags = tags.trim();
+      this.setState({
+        preview: { ...values[0], tags },
+        post: values[1],
+        tagsArray: values[0].tags
+      });
     });
+  }
+
+  setCategoriesState(categories) {
+    this.setState({ categories });
   }
 
   handleSubmit = e => {
     e.preventDefault();
     Promise.all([
-      PostPreviewService.updatePreview(this.state.preview),
-      PostService.updatePost(this.state.post)
+      PostPreviewService.updatePreview({
+        ...this.state.preview,
+        tags: this.state.tagsArray
+      }),
+      PostService.updatePost(this.state.post),
+      CategoriesService.update(
+        this.state.preview.category,
+        this.state.preview.id
+      )
     ])
       .then(() => {
         this.props.history.push("/admin/posts/");
@@ -65,6 +94,20 @@ class EditPost extends Component {
     });
   };
 
+  handleTagsChange = e => {
+    const value = e.target.value;
+    const tags = value.split(" ");
+    const newState = {
+      ...this.state,
+      preview: {
+        ...this.state.preview,
+        tags: value
+      },
+      tagsArray: _.mapKeys(tags)
+    };
+    this.setState(newState);
+  };
+
   handleImageChange = e => {
     e.preventDefault();
     let reader = new FileReader();
@@ -87,7 +130,7 @@ class EditPost extends Component {
       <div>
         <Container>
           <div className="col">
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit.bind(this)}>
               <Input
                 id="title"
                 placeholder="Title"
@@ -110,7 +153,15 @@ class EditPost extends Component {
                 label="Tags"
                 type="text"
                 value={this.state.preview.tags}
-                onChange={this.handlePreviewChange.bind(this, "tags")}
+                onChange={this.handleTagsChange.bind(this)}
+              />
+              <SelectInput
+                id="category"
+                placeholder="Category"
+                label="Category"
+                value={this.state.preview.category}
+                options={this.state.categories}
+                onChange={this.handlePreviewChange.bind(this, "category")}
               />
               <FileInput
                 id="image"
@@ -119,7 +170,7 @@ class EditPost extends Component {
                 type="file"
                 fileTypes="image/*"
                 onChange={this.handleImageChange.bind(this)}
-              /> 
+              />
               <Textarea
                 id="content"
                 placeholder="Content"
@@ -140,7 +191,7 @@ class EditPost extends Component {
                     preview={this.state.preview}
                   />
                 </Modal>
-                <SubmitButton className="fa fa-floppy-o fa-3x save-button"></SubmitButton>
+                <SubmitButton className="fa fa-floppy-o fa-3x save-button" />
               </div>
             </form>
           </div>
