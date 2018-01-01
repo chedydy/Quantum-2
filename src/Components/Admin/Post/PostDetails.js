@@ -2,11 +2,18 @@ import React, { Component } from "react";
 import uuid from "uuid/v4";
 import moment from "moment";
 import _ from "lodash";
-import { Input, Textarea, FileInput, FormModal } from "../../Common";
+import {
+  Input,
+  Textarea,
+  FileInput,
+  FormModal,
+  SelectInput
+} from "../../Common";
 import {
   PostPreviewService,
   PostService,
-  AuthService
+  AuthService,
+  CategoriesService
 } from "../../../Services";
 import "./EditPost.css";
 
@@ -19,9 +26,16 @@ class PostDetails extends Component {
       title: "",
       subTitle: "",
       tags: ""
-    }
+    },
+    category: "",
+    categories: []
   };
-
+  componentWillMount() {
+    CategoriesService.subscribe(this.setCategoriesState.bind(this));
+  }
+  setCategoriesState(categories) {
+    this.setState({ categories });
+  }
   handleSubmit = e => {
     e.preventDefault();
     const id = uuid();
@@ -41,7 +55,8 @@ class PostDetails extends Component {
       PostService.updatePost({
         ...this.state.post,
         id
-      })
+      }),
+      CategoriesService.add(this.state.category, id)
     ]);
   };
 
@@ -52,6 +67,12 @@ class PostDetails extends Component {
         ...this.state.preview,
         [field]: e.target.value
       }
+    });
+  };
+
+  handleCategoryChange = (e) => {
+    this.setState({
+      category: e.target.value
     });
   };
 
@@ -105,14 +126,6 @@ class PostDetails extends Component {
           appElement="#root"
           onSubmit={this.handleSubmit.bind(this)}
         >
-          {
-            // <div>Title</div> <input /> <div>Author</div> <input /> <div>Genre</div>
-            // <select>   <option value="personaldev">Personal Development</option>
-            // <option value="res">Research</option>   <option
-            // value="discover">Discovery</option>   <option
-            // value="arg">Argumentation</option> </select> <div>Content</div> <textarea
-            // rows="5" cols="80" id="Content" />
-          }
           <Input
             id="title"
             placeholder="Title"
@@ -136,6 +149,14 @@ class PostDetails extends Component {
             type="text"
             value={this.state.preview.tags}
             onChange={this.handleTagsChange.bind(this)}
+          />
+          <SelectInput
+            id="category"
+            placeholder="Category"
+            label="Category"
+            value={this.state.category}
+            options={this.state.categories}
+            onChange={this.handleCategoryChange.bind(this)}
           />
           <FileInput
             id="image"

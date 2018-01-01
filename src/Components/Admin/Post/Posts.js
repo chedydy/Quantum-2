@@ -12,7 +12,6 @@ class Posts extends Component {
   }
   componentWillMount() {
     PostPreviewService.subscribePreviews(this.setPreviesState.bind(this));
-    PostPreviewService.getByTags(['test1',]);
   }
   renderPostsPreview() {
     const items = this

@@ -10,3 +10,4 @@ export * from "./Button";
 export * from "./LinkButton";
 export * from "./SubmitButton";
 export * from "./Modal";
+export * from "./SelectInput";
