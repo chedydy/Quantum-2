@@ -11,7 +11,16 @@ const FileInput = props => {
           placeholder={props.placeholder}
           id={props.id}
           required={props.required}
-          onChange={props.onChange}
+          onChange={e => {
+            props.onChange;
+            e.preventDefault();
+            let reader = new FileReader();
+            let image = e.target.files[0];
+            reader.onloadend = () => {
+              props.onChange(image, reader.result);
+            };
+            reader.readAsDataURL(image);
+          }}
           accept={props.fileTypes}
         />
       </div>

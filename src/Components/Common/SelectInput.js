@@ -14,9 +14,8 @@ const SelectInput = props => {
         <select
           className="form-control"
           id={props.id}
-          required
           value={props.value || ""}
-          onChange={props.onChange}
+          onChange={event => props.onChange(event.target.value)}
         >
           <option value="" disabled defaultValue>
             {props.label}

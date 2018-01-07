@@ -3,11 +3,7 @@ import uuid from "uuid/v4";
 import moment from "moment";
 import _ from "lodash";
 import {
-  Input,
-  Textarea,
-  FileInput,
   FormModal,
-  SelectInput
 } from "../../Common";
 import {
   PostPreviewService,
@@ -15,6 +11,7 @@ import {
   AuthService,
   CategoriesService
 } from "../../../Services";
+import { PostForm } from "./PostForm";
 import "./EditPost.css";
 
 class PostDetails extends Component {
@@ -50,7 +47,7 @@ class PostDetails extends Component {
         authorLink: `https://www.facebook.com/app_scoped_user_id/${
           user.providerData[0].uid
         }`,
-        tags: this.state.tagsArray
+        tags: _.mapKeys(this.state.preview.tags.split(" "))
       }),
       PostService.updatePost({
         ...this.state.post,
@@ -60,56 +57,15 @@ class PostDetails extends Component {
     ]);
   };
 
-  handlePreviewChange = (field, e) => {
+  updateProps(field, subField, value) {
     this.setState({
       ...this.state,
-      preview: {
-        ...this.state.preview,
-        [field]: e.target.value
+      [field]: {
+        ...this.state[field],
+        [subField]: value
       }
     });
-  };
-
-  handleTagsChange = e => {
-    const value = e.target.value;
-    const tags = value.split(" ");
-    const newState = {
-      ...this.state,
-      preview: {
-        ...this.state.preview,
-        tags: value
-      },
-      tagsArray: _.mapKeys(tags)
-    };
-    this.setState(newState);
-  };
-
-  handlePostChange = (field, e) => {
-    this.setState({
-      ...this.state,
-      post: {
-        ...this.state.post,
-        [field]: e.target.value
-      }
-    });
-  };
-
-  handleImageChange = e => {
-    e.preventDefault();
-    let reader = new FileReader();
-    let image = e.target.files[0];
-    reader.onloadend = () => {
-      this.setState({
-        ...this.state,
-        post: {
-          ...this.state.post,
-          image
-        }
-      });
-    };
-    reader.readAsDataURL(image);
-  };
-
+  }
   render() {
     return (
       <div>
@@ -120,54 +76,11 @@ class PostDetails extends Component {
           appElement="#root"
           onSubmit={this.handleSubmit.bind(this)}
         >
-          <Input
-            id="title"
-            placeholder="Title"
-            label="Title"
-            type="text"
-            value={this.state.preview.title}
-            onChange={this.handlePreviewChange.bind(this, "title")}
-          />
-          <Input
-            id="subTitle"
-            placeholder="Subtitle"
-            label="Subtitle"
-            type="text"
-            value={this.state.preview.subTitle}
-            onChange={this.handlePreviewChange.bind(this, "subTitle")}
-          />
-          <Input
-            id="tags"
-            placeholder="Tags"
-            label="Tags"
-            type="text"
-            value={this.state.preview.tags}
-            onChange={this.handleTagsChange.bind(this)}
-          />
-          <SelectInput
-            id="category"
-            placeholder="Category"
-            label="Category"
-            value={this.state.category}
-            options={this.state.categories}
-            onChange={this.handlePreviewChange.bind(this, "category")}
-          />
-          <FileInput
-            id="image"
-            placeholder="Select image"
-            label="Image"
-            type="file"
-            required
-            fileTypes="image/*"
-            onChange={this.handleImageChange.bind(this)}
-          />
-          <Textarea
-            id="content"
-            placeholder="Content"
-            label="Content"
-            rows="10"
-            value={this.state.post.content}
-            onChange={this.handlePostChange.bind(this, "content")}
+          <PostForm
+            post={this.state.post}
+            preview={this.state.preview}
+            categories={this.state.categories}
+            updateProps={this.updateProps.bind(this)}
           />
           <br />
         </FormModal>

@@ -1,15 +1,12 @@
 import React, { Component } from "react";
 import _ from "lodash";
 import {
-  Input,
-  Textarea,
-  FileInput,
   Container,
   SubmitButton,
   Modal,
-  SelectInput
 } from "../../Common";
 import { PostContent } from "../../Public";
+import { PostForm } from "./PostForm";
 import {
   PostPreviewService,
   PostService,
@@ -45,8 +42,7 @@ class EditPost extends Component {
       tags = tags.trim();
       this.setState({
         preview: { ...values[0], tags },
-        post: values[1],
-        tagsArray: values[0].tags
+        post: values[1]
       });
     });
   }
@@ -60,7 +56,7 @@ class EditPost extends Component {
     Promise.all([
       PostPreviewService.updatePreview({
         ...this.state.preview,
-        tags: this.state.tagsArray
+        tags: _.mapKeys(this.state.preview.tags.split(" "))
       }),
       PostService.updatePost(this.state.post),
       CategoriesService.update(
@@ -74,110 +70,27 @@ class EditPost extends Component {
       .catch(console.log);
   };
 
-  handlePreviewChange = (field, e) => {
+  
+  updateProps(field, subField, value) {
     this.setState({
       ...this.state,
-      preview: {
-        ...this.state.preview,
-        [field]: e.target.value
+      [field]: {
+        ...this.state[field],
+        [subField]: value
       }
     });
-  };
-
-  handlePostChange = (field, e) => {
-    this.setState({
-      ...this.state,
-      post: {
-        ...this.state.post,
-        [field]: e.target.value
-      }
-    });
-  };
-
-  handleTagsChange = e => {
-    const value = e.target.value;
-    const tags = value.split(" ");
-    const newState = {
-      ...this.state,
-      preview: {
-        ...this.state.preview,
-        tags: value
-      },
-      tagsArray: _.mapKeys(tags)
-    };
-    this.setState(newState);
-  };
-
-  handleImageChange = e => {
-    e.preventDefault();
-    let reader = new FileReader();
-    let image = e.target.files[0];
-    reader.onloadend = () => {
-      this.setState({
-        ...this.state,
-        post: {
-          ...this.state.post,
-          image: image,
-          imageUrl: reader.result
-        }
-      });
-    };
-    reader.readAsDataURL(image);
-  };
-
+  }
   render() {
     return (
       <div>
         <Container>
           <div className="col">
             <form onSubmit={this.handleSubmit.bind(this)}>
-              <Input
-                id="title"
-                placeholder="Title"
-                label="Title"
-                type="text"
-                value={this.state.preview.title}
-                onChange={this.handlePreviewChange.bind(this, "title")}
-              />
-              <Input
-                id="subTitle"
-                placeholder="Subtitle"
-                label="Subtitle"
-                type="text"
-                value={this.state.preview.subTitle}
-                onChange={this.handlePreviewChange.bind(this, "subTitle")}
-              />
-              <Input
-                id="tags"
-                placeholder="Tags"
-                label="Tags"
-                type="text"
-                value={this.state.preview.tags}
-                onChange={this.handleTagsChange.bind(this)}
-              />
-              <SelectInput
-                id="category"
-                placeholder="Category"
-                label="Category"
-                value={this.state.preview.category}
-                options={this.state.categories}
-                onChange={this.handlePreviewChange.bind(this, "category")}
-              />
-              <FileInput
-                id="image"
-                placeholder="Select image"
-                label="Image"
-                type="file"
-                fileTypes="image/*"
-                onChange={this.handleImageChange.bind(this)}
-              />
-              <Textarea
-                id="content"
-                placeholder="Content"
-                label="Content"
-                rows="10"
-                value={this.state.post.content}
-                onChange={this.handlePostChange.bind(this, "content")}
+              <PostForm
+                post={this.state.post}
+                preview={this.state.preview}
+                categories={this.state.categories}
+                updateProps={this.updateProps.bind(this)}
               />
               <br />
               <div className="row justify-content-end col">

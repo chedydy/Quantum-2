@@ -13,7 +13,7 @@ const Textarea = props => {
           id={props.id}
           required
           value={props.value || ""}
-          onChange={props.onChange}
+          onChange={(e)=>props.onChange(e.target.value)}
           readOnly={props.readOnly || false}
         />
       </div>
