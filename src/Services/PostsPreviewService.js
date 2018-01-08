@@ -4,11 +4,11 @@ const postPreviewRef = app.ref().child("posts_preview");
 const tagsRef = app.ref().child("tags");
 function searchText(object, text) {
   for (let key in object) {
-    if (key != "authorLink") {
+    if (key !== "authorLink") {
       const value = object[key];
       if (
         (typeof value === "string" || value instanceof String) &&
-        value.toLowerCase().indexOf(text.toLowerCase()) != -1
+        value.toLowerCase().indexOf(text.toLowerCase()) !== -1
       ) {
         return true;
       }
@@ -39,17 +39,14 @@ const PostPreviewService = {
       }
     );
   },
-  getPreviews: function() {
+  getPreviews() {
     return new Promise((resolve, reject) => {
-      postPreviewRef.once(
-        "value",
-        function(snapshot) {
+      postPreviewRef
+        .once("value")
+        .then(snapshot => {
           resolve(snapshot.val());
-        },
-        function(error) {
-          reject(error);
-        }
-      );
+        })
+        .catch(reject);
     });
   },
   filterByTags: function(posts, tags) {

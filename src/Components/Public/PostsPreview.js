@@ -3,7 +3,7 @@ import Select from "react-select";
 import "react-select/dist/react-select.css";
 import _ from "lodash";
 import { Container, Button } from "../Common";
-import { PostPreviewService } from "../../Services";
+import { PostPreviewService, CategoriesService } from "../../Services";
 import { PostsPreviewItem } from "./PostsPreviewItem";
 import "./PostsPreview.css";
 
@@ -12,13 +12,28 @@ class PostsPreview extends Component {
     posts: [],
     tags: [],
     selectValue: [],
-    filteredPosts: []
+    filteredPosts: [],
+    categories: []
   };
-  setPreviesState(posts) {
+  setPreviewsState(posts) {
     this.setState({ posts, filteredPosts: posts });
   }
+  setCategoriesState(categories) {
+    this.setState({ categories });
+  }
+  mapCategory(value, id, previews,categories) {
+    if (value !== true) {
+      _.forEach(value, (val, key) => {
+        this.mapCategory(val, key, previews,value);
+      });
+    }
+    else if(value===true){
+      categories[id]=previews[id];
+    }
+  }
   componentWillMount() {
-    PostPreviewService.subscribePreviews(this.setPreviesState.bind(this));
+    PostPreviewService.subscribePreviews(this.setPreviewsState.bind(this));
+    CategoriesService.subscribe(this.setCategoriesState.bind(this));
     PostPreviewService.getTags().then(tags => {
       tags = _.map(tags, (val, id) => {
         return { label: id, value: id };
@@ -28,6 +43,16 @@ class PostsPreview extends Component {
         tags
       });
     });
+    Promise.all([PostPreviewService.getPreviews(), CategoriesService.get()])
+      .then((values)=>{
+        const previews=values[0];
+        const categories=values[1];
+        _.forEach(categories, (val, id) => {
+          this.mapCategory(val,id,previews,categories);
+        });
+        console.log(categories);
+      })
+      .catch(console.log);
   }
   handleSelectChange(value) {
     this.setState({

@@ -10,9 +10,8 @@ const Input = props => {
           className="form-control"
           placeholder={props.placeholder}
           id={props.id}
-          required
           value={props.value || ""}
-          onChange={props.onChange}
+          onChange={(event)=>props.onChange(event.target.value)}
         />
         <p className="help-block text-danger" />
       </div>
