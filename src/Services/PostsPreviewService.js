@@ -39,17 +39,14 @@ const PostPreviewService = {
       }
     );
   },
-  getPreviews: function() {
+  getPreviews() {
     return new Promise((resolve, reject) => {
-      postPreviewRef.once(
-        "value",
-        function(snapshot) {
+      postPreviewRef
+        .once("value")
+        .then(snapshot => {
           resolve(snapshot.val());
-        },
-        function(error) {
-          reject(error);
-        }
-      );
+        })
+        .catch(reject);
     });
   },
   filterByTags: function(posts, tags) {

@@ -21,6 +21,16 @@ class PostsPreview extends Component {
   setCategoriesState(categories) {
     this.setState({ categories });
   }
+  mapCategory(value, id, previews,categories) {
+    if (value !== true) {
+      _.forEach(value, (val, key) => {
+        this.mapCategory(val, key, previews,value);
+      });
+    }
+    else if(value===true){
+      categories[id]=previews[id];
+    }
+  }
   componentWillMount() {
     PostPreviewService.subscribePreviews(this.setPreviewsState.bind(this));
     CategoriesService.subscribe(this.setCategoriesState.bind(this));
@@ -33,6 +43,16 @@ class PostsPreview extends Component {
         tags
       });
     });
+    Promise.all([PostPreviewService.getPreviews(), CategoriesService.get()])
+      .then((values)=>{
+        const previews=values[0];
+        const categories=values[1];
+        _.forEach(categories, (val, id) => {
+          this.mapCategory(val,id,previews,categories);
+        });
+        console.log(categories);
+      })
+      .catch(console.log);
   }
   handleSelectChange(value) {
     this.setState({

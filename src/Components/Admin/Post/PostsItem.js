@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { Modal, LinkButton, Button } from "../../Common";
 import { PostContent } from "../../Public";
-import { PostService, PostPreviewService } from "../../../Services";
+import {
+  PostService,
+  PostPreviewService,
+  CategoriesService
+} from "../../../Services";
 import "./PostItem.css";
 
 class PostsItem extends Component {
@@ -18,6 +22,10 @@ class PostsItem extends Component {
   deletePost() {
     PostService.deletePost(this.props.postPreview.id);
     PostPreviewService.deletePreview(this.props.postPreview.id);
+    CategoriesService.delete(
+      this.props.postPreview.category,
+      this.props.postPreview.id
+    );
   }
   render() {
     const { postPreview } = this.props;

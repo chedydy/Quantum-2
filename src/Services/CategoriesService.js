@@ -25,17 +25,33 @@ const CategoriesService = {
       }
     );
   },
+  get() {
+    return new Promise((resolve, reject) => {
+      categoriesRef
+        .once("value")
+        .then(snapshot => {
+          const categories = snapshot.val();
+          resolve(categories);
+        })
+        .catch(reject);
+    });
+  },
   add(category, id) {
     categoriesRef.child(category.replace("-", "/")).update({
       [id]: true
     });
   },
-  update(category, id) {
+  update({oldCategory, category, id}) {
+    const oldCategoryNode = oldCategory.replace("-", "/");
     const categoryNode = category.replace("-", "/");
-    categoriesRef.child(`${categoryNode}/${id}`).remove();
+    categoriesRef.child(`${oldCategoryNode}/${id}`).remove();
     categoriesRef.child(categoryNode).update({
       [id]: true
     });
+  },
+  delete(category, id) {
+    const categoryNode = category.replace("-", "/");
+    categoriesRef.child(`${categoryNode}/${id}`).remove();
   }
 };
 

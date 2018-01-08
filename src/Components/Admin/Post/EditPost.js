@@ -22,7 +22,8 @@ class EditPost extends NewPost {
       tags = tags.trim();
       this.setState({
         preview: { ...values[0], tags },
-        post: values[1]
+        post: values[1],
+        oldCategory: values[0].category
       });
     });
   }
@@ -34,10 +35,11 @@ class EditPost extends NewPost {
         tags: _.mapKeys(this.state.preview.tags.split(" "))
       }),
       PostService.updatePost(this.state.post),
-      CategoriesService.update(
-        this.state.preview.category,
-        this.state.preview.id
-      )
+      CategoriesService.update({
+        oldCategory: this.state.oldCategory,
+        category: this.state.preview.category,
+        id: this.state.preview.id
+      })
     ])
       .then(() => {
         this.props.history.push("/admin/posts/");
