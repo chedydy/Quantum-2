@@ -38,7 +38,7 @@ class FormModal extends Component {
     const { title, children, buttonText } = this.props;
     return (
       <div>
-        <Button onClick={this.openModal.bind(this)}>{buttonText}</Button>
+        <Button style={{color: "white"}} onClick={this.openModal.bind(this)}>{buttonText}</Button>
         <ReactModal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal.bind(this)}

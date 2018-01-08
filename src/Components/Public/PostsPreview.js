@@ -83,6 +83,7 @@ class PostsPreview extends Component {
           </div>
           {this.renderPostsPreview()}
           <Button style={{ color: "white" }}>Older Posts &rarr;</Button>
+          <br />
         </div>
       </Container>
     );

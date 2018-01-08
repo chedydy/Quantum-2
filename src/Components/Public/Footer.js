@@ -2,7 +2,7 @@ import React from "react";
 import { FooterShareLink } from "../Common";
 const Footer = () => {
   return (
-    <footer>
+    <footer className="background">
       <div className="container">
         <div className="row justify-content-center">
           <div className="col">

@@ -1,14 +1,15 @@
 import React from "react";
-import { Carousel } from "../Carousel/Carousel";
+import {Carousel} from "../Carousel/Carousel";
 import {PostsPreview} from "../PostsPreview";
 import "./Home.css";
-const Home = ()=>{
-    return (
-      <div className="home-container">
-        <Carousel className="carousel-container" />
-        <PostsPreview />
-      </div>
-    );
-  }
+const Home = () => {
+  return (
+    <div className="home-container">
+      <br />
+      <Carousel className="carousel-container"/>
+      <PostsPreview/>
+    </div>
+  );
+}
 
-export { Home };
+export {Home};

@@ -1,9 +1,9 @@
-/* .home-container{
+.home-container{
     display: flex;
     flex-direction: column;
 }
 
-.carousel-container{
+/* .carousel-container{
     flex:0.2;
     overflow: hidden;
 }
@@ -11,3 +11,7 @@
 .posts-container{
     flex:0.8
 } */
+
+.background {
+    background-color: gainsboro;
+}

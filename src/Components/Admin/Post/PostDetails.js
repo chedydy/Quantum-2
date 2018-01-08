@@ -140,7 +140,7 @@ class PostDetails extends Component {
           <FileInput
             id="image"
             placeholder="Select image"
-            label="Image"
+            label="Choose file"
             type="file"
             required
             fileTypes="image/*"

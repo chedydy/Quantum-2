@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../img/quantumcivilisation.png";
+import './Navigator.css';
+
 class Navigator extends Component {
   componentWillMount() {
     this.setState({
@@ -18,10 +20,10 @@ class Navigator extends Component {
     const imgStyle = { width: "250px", height: "100px", cursor: "pointer" };
     return (
       <nav
-        className="navbar navbar-expand-xl navbar-light"
+        className="navbar navbar-expand-xl navbar-light background"
         id="mainNav"
       >
-        <div className="container-fluid ">
+        <div className="container-fluid background__color">
           <Link to="/">
             <img
               src={logo}
