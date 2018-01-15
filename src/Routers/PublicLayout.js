@@ -7,7 +7,8 @@ import {
   PublicNavigator,
   PostsPreview,
   Footer,
-  Post
+  Post,
+  Posts
 } from "../Components/Public";
 import NotFoundPage from "../Components/NotFound";
 
@@ -18,7 +19,7 @@ const PublicLayout = () => {
       <Switch>
         <Route path="/about" component={About} exact={true} />
         <Route path="/posts/:id" component={Post} exact={true} />
-        <Route path="/posts" component={PostsPreview} exact={true} />
+        <Route path="/posts" component={Posts} exact={true} />
         <Route path="/contact" component={Contact} exact={true} />
         <Route path="/" component={Home} exact={true} />
         <Route component={NotFoundPage} exact={true} />
