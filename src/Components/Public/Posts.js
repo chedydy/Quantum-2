@@ -96,7 +96,7 @@ class Posts extends Component {
         return <div key={id} />;
       } else {
         return (
-          <Category key={id} name={id}>
+          <Category key={id} name={id} isFirst>
             {this.renderSubCategory(val)}
           </Category>
         );
@@ -109,30 +109,30 @@ class Posts extends Component {
     const { tags, selectValue } = this.state;
     return (
       <Container>
-        <div className="col-lg-8 col-md-10 mx-auto">
-          <div className="row">
-            <input
-              type="text"
-              className="Select col-6 search-input"
-              placeholder="Search..."
-              onChange={this.handleSearchChange.bind(this)}
-            />
-            <Select
-              closeOnSelect
-              multi
-              onChange={this.handleSelectChange.bind(this)}
-              options={tags}
-              placeholder="Tags"
-              removeSelected={true}
-              rtl={false}
-              simpleValue
-              value={selectValue}
-              className="col-6"
-            />
-          </div>
-          {this.renderCategories()}
-          <br />
+        <div style={{ display: "flex" }}>
+          <input
+            type="text"
+            className="Select flex-5 search-input"
+            placeholder="Search..."
+            onChange={this.handleSearchChange.bind(this)}
+          />
+          <div className="spacer" />
+          <Select
+            closeOnSelect
+            multi
+            onChange={this.handleSelectChange.bind(this)}
+            options={tags}
+            placeholder="Tags"
+            removeSelected={true}
+            rtl={false}
+            simpleValue
+            value={selectValue}
+            className="flex-5"
+          />
         </div>
+        <br />
+        {this.renderCategories()}
+        <br />
       </Container>
     );
   }

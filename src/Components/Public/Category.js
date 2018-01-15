@@ -7,7 +7,7 @@ class Category extends Component {
       <div className="category-boss-container">
         <div
           style={{
-            flexGrow: '0.5',
+            flexGrow: this.props.isFirst ? "0" : "0.5",
             flexShrink: "1",
             flexBasis: "0%"
           }}
@@ -15,9 +15,10 @@ class Category extends Component {
         <div
           className="category-mini-boss-container"
           style={{
-            flexGrow: '9.5',
+            flexGrow: this.props.isFirst ? "1" : "9.5",
             flexShrink: "1",
-            flexBasis: "0%"
+            flexBasis: "0%",
+            paddingLeft: this.props.isFirst ? 0 : 21
           }}
         >
           <div

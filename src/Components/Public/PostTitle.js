@@ -7,7 +7,7 @@ class PostTitle extends Component {
       <div className="title-boss-container">
         <div
           style={{
-            flexGrow: '0.5',
+            flexGrow: "0.5",
             flexShrink: "1",
             flexBasis: "0%"
           }}
@@ -15,7 +15,7 @@ class PostTitle extends Component {
         <div
           className="title-mini-boss-container"
           style={{
-            flexGrow: '9.5',
+            flexGrow: "9.5",
             flexShrink: "1",
             flexBasis: "0%"
           }}
@@ -27,7 +27,11 @@ class PostTitle extends Component {
             className="title-container"
           >
             <div className="title-inline">
-              <div className="title-text">{this.props.title}</div>
+              <div className="title-text">
+                {this.props.title.length > 30
+                  ? this.props.title.slice(0, 30) + "..."
+                  : this.props.title}
+              </div>
             </div>
           </div>
         </div>
