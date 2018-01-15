@@ -15,7 +15,8 @@ class Posts extends Component {
     tags: [],
     selectValue: [],
     filteredPosts: [],
-    categories: []
+    categories: [],
+    mapCategories: {}
   };
 
   mapCategory(value, id, previews, categories) {
@@ -24,58 +25,80 @@ class Posts extends Component {
         this.mapCategory(val, key, previews, value);
       });
     } else if (value === true) {
+      if (!previews[id]) {
+        delete categories[id];
+        return;
+      }
       categories[id] = previews[id];
     }
   }
 
   componentWillMount() {
-    PostPreviewService.getTags().then(tags => {
-      tags = _.map(tags, (val, id) => {
-        return { label: id, value: id };
-      });
-      this.setState({
-        ...this.state,
-        tags
-      });
-    });
-    Promise.all([PostPreviewService.getPreviews(), CategoriesService.get()])
+    Promise.all([
+      PostPreviewService.getPreviews(),
+      CategoriesService.get(),
+      PostPreviewService.getTags()
+    ])
       .then(values => {
-        const previews = values[0];
-        const categories = values[1];
-        _.forEach(categories, (val, id) => {
-          this.mapCategory(val, id, previews, categories);
+        let tags = _.map(values[2], (val, id) => {
+          return { label: id, value: id };
         });
-        this.setState({ categories });
+        let categories = values[1];
+        let mapCategories = JSON.parse(JSON.stringify(categories));
+        _.forEach(mapCategories, (val, id) => {
+          this.mapCategory(val, id, values[0], mapCategories);
+        });
+        let posts = _.map(values[0], val => {
+          return val;
+        });
+        this.setState({
+          posts,
+          categories,
+          tags,
+          mapCategories
+        });
       })
       .catch(console.log);
   }
 
   handleSelectChange(value) {
+    let filteredPosts =
+      value === ""
+        ? this.state.posts.slice()
+        : PostPreviewService.filterByTags(this.state.posts, value.split(","));
+    filteredPosts = _.keyBy(filteredPosts, "id");
+    let mapCategories = JSON.parse(JSON.stringify(this.state.categories));
+    _.forEach(mapCategories, (val, id) => {
+      this.mapCategory(val, id, filteredPosts, mapCategories);
+    });
     this.setState({
       selectValue: value,
-      filteredPosts:
-        value === ""
-          ? this.state.posts.slice()
-          : PostPreviewService.filterByTags(this.state.posts, value.split(","))
+      mapCategories
     });
   }
 
   handleSearchChange(e) {
     const filter = e.target.value;
+    let filteredPosts =
+      filter === ""
+        ? this.state.posts.slice()
+        : PostPreviewService.filterByText(this.state.posts, filter);
+    filteredPosts = _.keyBy(filteredPosts, "id");
+    let mapCategories = JSON.parse(JSON.stringify(this.state.categories));
+    _.forEach(mapCategories, (val, id) => {
+      this.mapCategory(val, id, filteredPosts, mapCategories);
+    });
     this.setState({
-      filteredPosts:
-        filter === ""
-          ? this.state.posts.slice()
-          : PostPreviewService.filterByText(this.state.posts, filter)
+      mapCategories
     });
   }
 
-  renderSubCategory(subCategory, flex) {
+  renderSubCategory(subCategory) {
     if (subCategory.title) {
       return <Title key={subCategory.title} {...subCategory} />;
     }
     const items = _.map(subCategory, (val, id) => {
-      if (!val) {
+      if (!val || _.isEmpty(val)) {
         return "";
       }
       if (val.title) {
@@ -91,13 +114,22 @@ class Posts extends Component {
     return items;
   }
   renderCategories() {
-    const items = _.map(this.state.categories, (val, id) => {
-      if (!val) {
+    const items = _.map(this.state.mapCategories, (val, id) => {
+      if (!val || _.isEmpty(val)) {
         return <div key={id} />;
       } else {
+        const children = this.renderSubCategory(val);
+        if (
+          children == "" ||
+          _.every(children, val => {
+            return val == "";
+          })
+        ) {
+          return <div key={id} />;
+        }
         return (
           <Category key={id} name={id} isFirst>
-            {this.renderSubCategory(val)}
+            {children}
           </Category>
         );
       }
