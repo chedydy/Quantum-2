@@ -17,7 +17,7 @@ function searchText(object, text) {
 }
 const PostPreviewService = {
   subscribePreviews: function(callback) {
-    postPreviewRef.on(
+    postPreviewRef.orderByChild("publishDate").limitToLast(5).on(
       "value",
       snapshot => {
         const previews = _.map(snapshot.val(), (val, id) => {
