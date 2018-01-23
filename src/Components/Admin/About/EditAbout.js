@@ -89,7 +89,7 @@ class EditAbout extends Component {
               <br />
               <div className="row justify-content-end col">
                 <PreviewAbout about={this.state} />
-                <SubmitButton>Save</SubmitButton>
+                <SubmitButton className="fa fa-floppy-o fa-3x preview-button margin"></SubmitButton>
               </div>
             </form>
           </div>

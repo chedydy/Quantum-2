@@ -2,7 +2,9 @@
 .floating-label-form-group{
     position: sticky !important;
 }
-
+.textbox-style {
+    align-content: space-around;
+}
 .save-button {
     border: 0 !important;
     background: transparent !important;

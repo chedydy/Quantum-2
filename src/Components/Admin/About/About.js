@@ -23,14 +23,17 @@ class About extends Component {
       <div>
         <Container>
           <div className="col">
-            <div className="row justify-content-center">{this.state.title}</div>
+            <br />
+            <h4 className="row justify-content-center">{this.state.title}</h4>
+            <br />
             <div className="row justify-content-center">{this.state.image}</div>
             <div className="col">
-              <Textarea rows="10" value={this.state.content} readOnly={true} />
+              <Textarea rows="20" value={this.state.content} readOnly={true} />
             </div>
+            <br />
             <div className="row justify-content-end col">
               <PreviewAbout about={this.state} />
-              <LinkButton link="/admin/about/edit">Edit</LinkButton>
+              <LinkButton link="/admin/about/edit" className="fa fa-pencil-square-o fa-3x edit-button margin"></LinkButton>
             </div>
           </div>
         </Container>

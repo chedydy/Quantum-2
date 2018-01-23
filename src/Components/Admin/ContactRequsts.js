@@ -72,7 +72,7 @@ class ContactRequests extends Component {
                     <div key={item.id}>
                         <div style={itemHeader}>
                             <h2 style={paddingText}>Message from {item.name} on {item.time}</h2>
-                            <button style={paddingButton} onClick={this.handleClickDetails.bind(this, item)}>Details ...</button>
+                            <button className="fa fa-info-circle fa-3x preview-button margin" style={paddingButton} onClick={this.handleClickDetails.bind(this, item)}></button>
                         </div>
                         <p style={alignText}>
                             {item.message.slice(0, 50) + '...'}
