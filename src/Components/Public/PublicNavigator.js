@@ -1,12 +1,21 @@
 import React from "react";
-import { NavLink, Navigator } from "../Common";
+import {NavLink, Navigator} from "../Common";
+import {Link} from "react-router-dom";
 const PublicNavigator = props => {
   return (
     <Navigator>
-      <NavLink text="Home" link="/" />
-      <NavLink text="About" link="/about" />
-      <NavLink text="Posts" link="/posts" />
-      <NavLink text="Contact" link="/contact" />
+      <Link className="nav-link" to="/">
+        Home
+      </Link>
+      <Link className="nav-link" to="/about">
+        About
+      </Link>
+      <Link className="nav-link" to="/posts">
+        Posts
+      </Link>
+      <Link className="nav-link" to="/contact">
+        Contact
+      </Link>
     </Navigator>
   );
 };

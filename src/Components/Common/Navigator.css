@@ -4,6 +4,55 @@
 }
 
 .background__color {
-    background-color: gainsboro;
-    border-bottom: 2px;   
+    background-color: #f0f8ff;
 }
+
+.navbar-toggler-right{
+    margin-right: 20px !important;
+    font-size: 40px !important;
+    color: #C000FF !important;
+    border: 0 !important;
+}
+.side-menu-filler{
+    height: 100%;
+    width: 70vw;
+    position: absolute;
+    float: left;
+    left: 0px;
+    top: 0px;
+    border: 1px solid blue;
+    background-color: transparent;
+    z-index: 1;
+}
+.side-menu{
+    height: 100%;
+    width: 30vw;
+    position: absolute;
+    float: right;
+    right: 0px;
+    top: 0px;
+    border-left: 1px solid #eeeeee;
+    background-color: #f0f8ff;
+    z-index: 1;
+}
+
+.side-menu-list {
+    list-style-position: inside;
+    padding-left: 0px;
+    border-top: 20px solid  lightgray;
+}
+.side-menu-list-item {
+    /* display:table-cell; */
+    list-style-type: none;
+    text-align: start;
+    border-bottom: 1px solid lightgray;
+    background-color: #f3e6ff;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.side-menu-list-item:hover,
+.side-menu-list-item:active {
+    background-color: #e6ccff;
+    border-left: 10px solid #C000FF;
+}
+
