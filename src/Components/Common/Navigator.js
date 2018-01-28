@@ -89,7 +89,7 @@ class NavigatorComponent extends Component {
               return (
                 <li
                   className={`side-menu-list-item ${
-                    child.props.to === this.props.match.path
+                    child.props.to ===  this.state.currentPath
                       ? "side-menu-list-item-active"
                       : ""
                   }`}

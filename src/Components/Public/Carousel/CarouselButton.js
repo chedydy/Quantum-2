@@ -3,12 +3,20 @@ class CarouselButton extends React.Component {
   render() {
     return (
       <a
-        className={`carousel-control-${this.props.isNext?"next":"prev"}`}
+        className={`carousel-control-${this.props.isNext ? "next" : "prev"}`}
         onClick={this.props.onClickButton}
         role="button"
+        style={{ cursor: "pointer" }}
       >
-        <span className={`carousel-control-${this.props.isNext?"next":"prev"}-icon`} aria-hidden="true" />
-        <span className="sr-only">${this.props.isNext?"Next":"Previous"}</span>
+        <span
+          className={`carousel-control-${
+            this.props.isNext ? "next" : "prev"
+          }-icon`}
+          aria-hidden="true"
+        />
+        <span className="sr-only">
+          ${this.props.isNext ? "Next" : "Previous"}
+        </span>
       </a>
     );
   }

@@ -17,6 +17,7 @@ class Carousel extends Component {
   onClickCarouselButton(direction) {
     clearInterval(this.interval);
     this.slideTo(direction);
+    this.setInitialSlide();
   }
 
   componentWillUnmount() {
@@ -27,9 +28,9 @@ class Carousel extends Component {
     let newSelected = 0;
     newSelected = this.state.selected + direction;
     if (newSelected < 0) {
-      newSelected = this.state.items.length -1;
+      newSelected = this.state.items.length - 1;
     }
-    if (newSelected > this.state.items.length -1) {
+    if (newSelected > this.state.items.length - 1) {
       newSelected = 0;
     }
     let slide = direction < 0 ? "carousel-reverse" : "carousel";
@@ -38,6 +39,7 @@ class Carousel extends Component {
       slide: slide
     });
     this.selectSlide(newSelected);
+    
   }
 
   onClickSelectSlide(slideIndex) {
@@ -50,14 +52,16 @@ class Carousel extends Component {
       selected: slideIndex
     });
   }
-
-  componentWillMount() {
+  setInitialSlide() {
     this.interval = setInterval(
       function() {
         this.slideTo(1);
       }.bind(this),
       3000
     );
+  }
+  componentWillMount() {
+    this.setInitialSlide();
   }
 
   renderList() {
