@@ -1,18 +1,15 @@
-import React, {Component} from "react";
-import {Link} from "react-router-dom";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import logo from "../../img/quantumcivilisation.png";
-import './Navigator.css';
+import "./Navigator.css";
 
 class Navigator extends Component {
   componentWillMount() {
-    this.setState({menuDisplay: "none", showMenu: false});
+    this.setState({ menuDisplay: "none" });
   }
-  showMenu() {
+  showMenu(openSideMenu) {
     this.setState({
-      menuDisplay: !this.state.showMenu
-        ? "block"
-        : "none",
-      showMenu: !this.state.showMenu
+      menuDisplay: openSideMenu ? "block" : "none"
     });
   }
   render() {
@@ -23,55 +20,70 @@ class Navigator extends Component {
     };
     return (
       <div>
-        <nav className="navbar navbar-expand-xl navbar-light background" id="mainNav">
+        <nav
+          className="navbar navbar-expand-xl navbar-light background"
+          id="mainNav"
+        >
           <div className="container-fluid background__color">
             <Link to="/">
-              <img src={logo} className="navbar-brand" alt="logo" style={imgStyle}/>
+              <img
+                src={logo}
+                className="navbar-brand"
+                alt="logo"
+                style={imgStyle}
+              />
             </Link>
             <button
               className="navbar-toggler navbar-toggler-right"
               type="button"
-              onClick={this
-              .showMenu
-              .bind(this)}>
-              <i className="fa fa-bars"/>
+              onClick={this.showMenu.bind(this, true)}
+            >
+              <i className="fa fa-bars" />
             </button>
             <div
-              className={`collapse navbar-collapse ${this.state.navButtonsClass}`}
-              id="navbarResponsive">
-              <ul className="navbar-nav ml-auto">{this
-                  .props
-                  .children
-                  .map((child, index) => {
-                    return (
-                      <li className="nav-item" key={index}>
-                        {child}
-                      </li>
-                    )
-                  })}</ul>
+              className={`collapse navbar-collapse ${
+                this.state.navButtonsClass
+              }`}
+              id="navbarResponsive"
+            >
+              <ul className="navbar-nav ml-auto">
+                {this.props.children.map((child, index) => {
+                  return (
+                    <li className="nav-item" key={index}>
+                      {child}
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
           </div>
         </nav>
-        <div className="side-menu-filler"/>
+        <div
+          className="side-menu-filler"
+          style={{
+            display: this.state.menuDisplay
+          }}
+          onClick={this.showMenu.bind(this, false)}
+        />
         <div
           className="side-menu"
           style={{
-          display: this.state.menuDisplay
-        }}>
-          <ul className="side-menu-list">{this
-              .props
-              .children
-              .map((child, index) => {
-                return (
-                  <li className="side-menu-list-item" key={index}>
-                    {child}
-                  </li>
-                )
-              })}</ul>
+            display: this.state.menuDisplay
+          }}
+        >
+          <ul className="side-menu-list">
+            {this.props.children.map((child, index) => {
+              return (
+                <li className="side-menu-list-item" key={index}>
+                  {child}
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </div>
     );
   }
 }
 
-export {Navigator};
+export { Navigator };
