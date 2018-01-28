@@ -1,11 +1,17 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import logo from "../../img/quantumcivilisation - home.png";
 import "./Navigator.css";
 
-class Navigator extends Component {
+class NavigatorComponent extends Component {
   componentWillMount() {
-    this.setState({ menuDisplay: "none" });
+    this.setState({
+      menuDisplay: "none",
+      currentPath: this.props.location.pathname
+    });
+  }
+  componentWillReceiveProps(props) {
+    this.setState({ currentPath: props.location.pathname });
   }
   showMenu(openSideMenu) {
     this.setState({
@@ -49,7 +55,14 @@ class Navigator extends Component {
               <ul className="navbar-nav ml-auto">
                 {this.props.children.map((child, index) => {
                   return (
-                    <li className="nav-item" key={index}>
+                    <li
+                      className={`nav-item ${
+                        child.props.to === this.state.currentPath
+                          ? "nav-item-active"
+                          : ""
+                      }`}
+                      key={index}
+                    >
                       {child}
                     </li>
                   );
@@ -74,7 +87,14 @@ class Navigator extends Component {
           <ul className="side-menu-list">
             {this.props.children.map((child, index) => {
               return (
-                <li className="side-menu-list-item" key={index}>
+                <li
+                  className={`side-menu-list-item ${
+                    child.props.to === this.props.match.path
+                      ? "side-menu-list-item-active"
+                      : ""
+                  }`}
+                  key={index}
+                >
                   {child}
                 </li>
               );
@@ -85,5 +105,5 @@ class Navigator extends Component {
     );
   }
 }
-
+const Navigator = withRouter(NavigatorComponent);
 export { Navigator };

@@ -59,7 +59,8 @@
 }
 
 .side-menu-list-item:hover,
-.side-menu-list-item:active {
+.side-menu-list-item:active,
+.side-menu-list-item-active {
   background-color: #e6ccff;
   border-left: 10px solid #c000ff;
 }
@@ -72,7 +73,6 @@
 
 .navbar-height {
   height: 9vh;
-  display: flex;
 }
 
 .navbar-nav {
@@ -80,7 +80,17 @@
   height: 9vh;
 }
 .nav-item {
-  height: 9vh!important;
-  display: flex!important;
-  align-items: center!important;
+  height: 9vh !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.nav-item-active {
+  border-right: 1px solid lightgray;
+  border-left: 1px solid lightgray;
+  border-bottom: 3px solid #c000ff;
+}
+
+#mainNav{
+  border: 0px!important;
 }
