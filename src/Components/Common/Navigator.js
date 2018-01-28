@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import logo from "../../img/quantumcivilisation.png";
+import logo from "../../img/quantumcivilisation - home.png";
 import "./Navigator.css";
 
 class Navigator extends Component {
@@ -14,8 +14,8 @@ class Navigator extends Component {
   }
   render() {
     const imgStyle = {
-      width: "250px",
-      height: "100px",
+      width: "13vw",
+      height: "9vh",
       cursor: "pointer"
     };
     return (
@@ -43,7 +43,7 @@ class Navigator extends Component {
             <div
               className={`collapse navbar-collapse ${
                 this.state.navButtonsClass
-              }`}
+              } navbar-height`}
               id="navbarResponsive"
             >
               <ul className="navbar-nav ml-auto">

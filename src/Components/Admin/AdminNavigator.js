@@ -1,6 +1,6 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
-import { Navigator, NavLink, NavButton } from "../Common";
+import { withRouter, Link } from "react-router-dom";
+import { Navigator } from "../Common";
 import { AuthService } from "../../Services";
 
 class AdminNav extends React.Component {
@@ -15,10 +15,22 @@ class AdminNav extends React.Component {
   render() {
     return (
       <Navigator>
-        <NavLink text="Posts" link="/admin/posts/" />
-        <NavLink text="About" link="/admin/about/" />
-        <NavLink text="Contact requests" link="/admin/contactrequests/" />
-        <NavButton text="Logout" onClickHandler={this.logout.bind(this)} />
+        <Link className="nav-link" to="/admin/posts/">
+          Posts
+        </Link>
+        <Link className="nav-link" to="/admin/about/">
+          About
+        </Link>
+        <Link className="nav-link" to="/admin/contactrequests/">
+          Contact requests
+        </Link>
+        <a
+          className="nav-link"
+          style={{ cursor: "pointer" }}
+          onClick={this.logout.bind(this)}
+        >
+          Logout
+        </a>
       </Navigator>
     );
   }

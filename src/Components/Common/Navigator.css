@@ -63,3 +63,24 @@
   background-color: #e6ccff;
   border-left: 10px solid #c000ff;
 }
+
+.nav-item:hover,
+.nav-item:active {
+  background-color: #e6ccff;
+  border-bottom: 10px solid #c000ff;
+}
+
+.navbar-height {
+  height: 9vh;
+  display: flex;
+}
+
+.navbar-nav {
+  align-items: center !important;
+  height: 9vh;
+}
+.nav-item {
+  height: 9vh!important;
+  display: flex!important;
+  align-items: center!important;
+}
