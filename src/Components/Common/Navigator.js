@@ -19,11 +19,7 @@ class NavigatorComponent extends Component {
     });
   }
   render() {
-    const imgStyle = {
-      width: "13vw",
-      height: "9vh",
-      cursor: "pointer"
-    };
+
     return (
       <div>
         <nav
@@ -34,9 +30,8 @@ class NavigatorComponent extends Component {
             <Link to="/">
               <img
                 src={logo}
-                className="navbar-brand"
+                className="navbar-brand logo-style"
                 alt="logo"
-                style={imgStyle}
               />
             </Link>
             <button
