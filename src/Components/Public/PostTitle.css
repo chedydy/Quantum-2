@@ -1,7 +1,6 @@
 .title-container {
   display: flex;
   justify-content: flex-start;
-  font-weight: 800;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 36px;
   cursor: pointer;
@@ -16,13 +15,16 @@
   transition-property: color, background-color;
 }
 
-.title-container :hover {
-  background-color: #2098d1;
-  color: white;
+.title-container:hover {
+  /* background-color: #2098d1;
+  color: white; */
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24)!important;
 }
 .title-text {
     display: inherit;
     flex: 9.5;
+    font-size: 28px;
+    padding-left: 15px;
   }
 .title-inline {
   display: inherit;
