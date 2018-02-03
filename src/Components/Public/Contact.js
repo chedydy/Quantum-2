@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import uuid from "uuid/v4";
 import moment from "moment";
-
+import '../Common/Button.css';
 import { app } from "../../firebase/firebase";
 import { Input, Textarea, Container } from "../Common";
 import { PageHeader } from "./PageHeader";
@@ -98,7 +98,7 @@ class Contact extends Component {
               <div className="form-group">
                 <button
                   type="submit"
-                  className="btn btn-primary"
+                  className="btn btn-primary btn-round"
                   id="sendMessageButton"
                 >
                   Send

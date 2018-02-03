@@ -1,13 +1,15 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import Select from "react-select";
 import "react-select/dist/react-select.css";
 import _ from "lodash";
-import { Container, Button } from "../Common";
-import { PostPreviewService, CategoriesService } from "../../Services";
-import { PostsPreviewItem } from "./PostsPreviewItem";
-import { Category } from "./Category";
-import { Title } from "./PostTitle";
+import {Container, Button} from "../Common";
+import {PostPreviewService, CategoriesService} from "../../Services";
+import {PostsPreviewItem} from "./PostsPreviewItem";
+import {Category} from "./Category";
+import {Title} from "./PostTitle";
 import "./PostsPreview.css";
+import image from '../../img/about-bg.jpg';
+import {PageHeader} from './PageHeader';
 
 class Posts extends Component {
   state = {
@@ -38,64 +40,56 @@ class Posts extends Component {
       PostPreviewService.getPreviews(),
       CategoriesService.get(),
       PostPreviewService.getTags()
-    ])
-      .then(values => {
-        let tags = _.map(values[2], (val, id) => {
-          return { label: id, value: id };
-        });
-        let categories = values[1];
-        let mapCategories = JSON.parse(JSON.stringify(categories));
-        _.forEach(mapCategories, (val, id) => {
-          this.mapCategory(val, id, values[0], mapCategories);
-        });
-        let posts = _.map(values[0], val => {
-          return val;
-        });
-        this.setState({
-          posts,
-          categories,
-          tags,
-          mapCategories
-        });
-      })
-      .catch(console.log);
+    ]).then(values => {
+      let tags = _.map(values[2], (val, id) => {
+        return {label: id, value: id};
+      });
+      let categories = values[1];
+      let mapCategories = JSON.parse(JSON.stringify(categories));
+      _.forEach(mapCategories, (val, id) => {
+        this.mapCategory(val, id, values[0], mapCategories);
+      });
+      let posts = _.map(values[0], val => {
+        return val;
+      });
+      this.setState({posts, categories, tags, mapCategories});
+    }).catch(console.log);
   }
 
   handleSelectChange(value) {
-    let filteredPosts =
-      value === ""
-        ? this.state.posts.slice()
-        : PostPreviewService.filterByTags(this.state.posts, value.split(","));
+    let filteredPosts = value === ""
+      ? this
+        .state
+        .posts
+        .slice()
+      : PostPreviewService.filterByTags(this.state.posts, value.split(","));
     filteredPosts = _.keyBy(filteredPosts, "id");
     let mapCategories = JSON.parse(JSON.stringify(this.state.categories));
     _.forEach(mapCategories, (val, id) => {
       this.mapCategory(val, id, filteredPosts, mapCategories);
     });
-    this.setState({
-      selectValue: value,
-      mapCategories
-    });
+    this.setState({selectValue: value, mapCategories});
   }
 
   handleSearchChange(e) {
     const filter = e.target.value;
-    let filteredPosts =
-      filter === ""
-        ? this.state.posts.slice()
-        : PostPreviewService.filterByText(this.state.posts, filter);
+    let filteredPosts = filter === ""
+      ? this
+        .state
+        .posts
+        .slice()
+      : PostPreviewService.filterByText(this.state.posts, filter);
     filteredPosts = _.keyBy(filteredPosts, "id");
     let mapCategories = JSON.parse(JSON.stringify(this.state.categories));
     _.forEach(mapCategories, (val, id) => {
       this.mapCategory(val, id, filteredPosts, mapCategories);
     });
-    this.setState({
-      mapCategories
-    });
+    this.setState({mapCategories});
   }
 
   renderSubCategory(subCategory) {
     if (subCategory.title) {
-      return <Title key={subCategory.title} {...subCategory} />;
+      return <Title key={subCategory.title} {...subCategory}/>;
     }
     const items = _.map(subCategory, (val, id) => {
       if (!val || _.isEmpty(val)) {
@@ -116,16 +110,13 @@ class Posts extends Component {
   renderCategories() {
     const items = _.map(this.state.mapCategories, (val, id) => {
       if (!val || _.isEmpty(val)) {
-        return <div key={id} />;
+        return <div key={id}/>;
       } else {
         const children = this.renderSubCategory(val);
-        if (
-          children == "" ||
-          _.every(children, val => {
-            return val == "";
-          })
-        ) {
-          return <div key={id} />;
+        if (children == "" || _.every(children, val => {
+          return val == "";
+        })) {
+          return <div key={id}/>;
         }
         return (
           <Category key={id} name={id} isFirst>
@@ -138,36 +129,44 @@ class Posts extends Component {
   }
 
   render() {
-    const { tags, selectValue } = this.state;
+    const {tags, selectValue} = this.state;
     return (
-      <Container>
-        <div style={{ display: "flex" }}>
-          <input
-            type="text"
-            className="Select flex-5 search-input"
-            placeholder="Search..."
-            onChange={this.handleSearchChange.bind(this)}
-          />
-          <div className="spacer" />
-          <Select
-            closeOnSelect
-            multi
-            onChange={this.handleSelectChange.bind(this)}
-            options={tags}
-            placeholder="Tags"
-            removeSelected={true}
-            rtl={false}
-            simpleValue
-            value={selectValue}
-            className="flex-5"
-          />
-        </div>
-        <br />
-        {this.renderCategories()}
-        <br />
-      </Container>
+      <div>
+        <PageHeader image={image} title={"Search for posts"}>
+          Posts
+        </PageHeader>
+        <Container>
+          <div style={{
+            display: "flex"
+          }}>
+            <input
+              type="text"
+              className="Select flex-5 search-input"
+              placeholder="Search..."
+              onChange={this
+              .handleSearchChange
+              .bind(this)}/>
+            <div className="spacer"/>
+            <Select
+              closeOnSelect
+              multi
+              onChange={this
+              .handleSelectChange
+              .bind(this)}
+              options={tags}
+              placeholder="Tags"
+              removeSelected={true}
+              rtl={false}
+              simpleValue
+              value={selectValue}
+              className="flex-5"/>
+          </div>
+          <br/> {this.renderCategories()}
+          <br/>
+        </Container>
+      </div>
     );
   }
 }
 
-export { Posts };
+export {Posts};

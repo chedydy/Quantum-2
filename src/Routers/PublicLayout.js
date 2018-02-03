@@ -16,7 +16,7 @@ const PublicLayout = () => {
   return (
     <div>
       <PublicNavigator />
-      <div style={{minHeight:"82vh"}}>
+      <div style={{minHeight:"85vh"}}>
       <Switch>
         <Route path="/about" component={About} exact={true} />
         <Route path="/posts/:id" component={Post} exact={true} />
