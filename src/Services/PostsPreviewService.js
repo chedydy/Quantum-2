@@ -16,19 +16,37 @@ function searchText(object, text) {
   }
 }
 const PostPreviewService = {
-  subscribePreviews: function(callback) {
-    postPreviewRef.orderByChild("publishDate").limitToLast(5).on(
-      "value",
-      snapshot => {
-        const previews = _.map(snapshot.val(), (val, id) => {
-          return { ...val };
+  getPreviewsLimitTo(number) {
+    return new Promise(resolve => {
+      postPreviewRef
+        .orderByChild("publishDate")
+        .limitToLast(number)
+        .once("value")
+        .then(snapshot => {
+          resolve(
+            _.map(snapshot.val(), (val, id) => {
+              return { ...val };
+            })
+          );
         });
-        callback(previews);
-      },
-      error => {
-        console.log(error);
-      }
-    );
+    });
+  },
+  subscribePreviews: function(callback) {
+    postPreviewRef
+      .orderByChild("publishDate")
+      .limitToLast(5)
+      .on(
+        "value",
+        snapshot => {
+          const previews = _.map(snapshot.val(), (val, id) => {
+            return { ...val };
+          });
+          callback(previews);
+        },
+        error => {
+          console.log(error);
+        }
+      );
   },
   subscribePreview: function(id, callback) {
     postPreviewRef.child(id).on(

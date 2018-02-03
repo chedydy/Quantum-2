@@ -7,16 +7,24 @@ import "./PostsPreview.css";
 
 class PostsPreview extends Component {
   state = {
-    posts: []
+    posts: [],
+    postsNr: 5
   };
   setPreviewsState(posts) {
     this.setState({ posts });
   }
 
   componentWillMount() {
-    PostPreviewService.subscribePreviews(this.setPreviewsState.bind(this));
+    PostPreviewService.getPreviewsLimitTo(this.state.postsNr).then(posts =>
+      this.setPreviewsState(posts)
+    );
   }
-
+  increasePostsLimit() {
+    PostPreviewService.getPreviewsLimitTo(this.state.postsNr + 5).then(posts =>
+      this.setPreviewsState(posts)
+    );
+    this.setState({ postsNr: this.state.postsNr + 5 });
+  }
   renderPostsPreview() {
     const items = this.state.posts.map((val, index) => {
       return <PostsPreviewItem postPreview={val} key={val.id} />;
@@ -29,7 +37,12 @@ class PostsPreview extends Component {
       <Container>
         <div className="col-lg-8 col-md-10 mx-auto">
           {this.renderPostsPreview()}
-          <Button style={{ color: "white" }}>Older Posts &rarr;</Button>
+          <Button
+            style={{ color: "white" }}
+            onClick={this.increasePostsLimit.bind(this)}
+          >
+            Older Posts &rarr;
+          </Button>
           <br />
         </div>
       </Container>
