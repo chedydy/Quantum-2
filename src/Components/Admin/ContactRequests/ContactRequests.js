@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import Modal from "react-modal";
 import _ from "lodash";
 import { ContactRequest } from "./ContactRequest";
-import { app } from "../../firebase/firebase";
+import { ContactRequestsService } from "../../../Services";
+
 
 class ContactRequests extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class ContactRequests extends Component {
       loaded: false,
       modalIsOpen: false,
       clickedItem: {},
-      contactRequests:[]
+      contactRequests: []
     };
 
     this.handleClickDetails = this.handleClickDetails.bind(this);
@@ -23,14 +24,9 @@ class ContactRequests extends Component {
   }
 
   componentDidMount() {
-    app.ref("contact_requests/").on("value", result => {
-      this.contactRequests = _(result.val()) //wrap object so that you can chain lodash methods
-        .mapValues((value, id) => _.merge({}, value, { id })) //attach id to object
-        .values() //get the values of the result
-        .value(); //unwrap array of objects
-
+    ContactRequestsService.get().then(values => {
       this.setState(() => {
-        return { loaded: true };
+        return { loaded: true, contactRequests: values };
       });
     });
   }
@@ -111,12 +107,12 @@ class ContactRequests extends Component {
   //   </Modal>
   //   </div>
   // );
-  renderPostsPreview() {
-    const items = this.state.postPreviews.map((val, index) => {
+  renderContactRequests() {
+    const items = this.state.contactRequests.map((val, index) => {
       if (val.id) {
         return (
           <div key={val.id}>
-            <PostsItem postPreview={val} />
+            <ContactRequest contactRequest={val} />
             <hr />
           </div>
         );
@@ -138,21 +134,12 @@ class ContactRequests extends Component {
               border: "2px solid #0085A1"
             }}
           >
-            <div className="col-4 text-left align-self-center">Title</div>
-            <div className="col-2 text-left align-self-center">Author</div>
-            <div className="col-2 text-left align-self-center">
-              Publish Date
-            </div>
-            <div className="col-3 text-left align-self-center" />
+            <div className="col-5 text-left align-self-center">Message</div>
+            <div className="col-2 text-left align-self-center">From</div>
+            <div className="col-2 text-left align-self-center">Send Date</div>
+            <div className="col-2 text-left align-self-center" />
           </div>
-          {this.renderPostsPreview()}
-          <div className="row justify-content-center">
-            <div className="col-3 offset-8 align-self-center">
-              <div className="row">
-                <PostDetails />
-              </div>
-            </div>
-          </div>
+          {this.renderContactRequests()}
         </div>
       </div>
     );

@@ -7,9 +7,9 @@ import {
   EditAbout,
   Posts,
   NewPost,
-  EditPost
+  EditPost,
+  ContactRequests
 } from "../Components/Admin";
-import { ContactRequests } from "../Components/Admin/ContactRequsts";
 
 const AdminLayout = () => {
   return (
