@@ -39,8 +39,8 @@ class Contact extends Component {
       });
   };
 
-  handleChange = (field, e) => {
-    this.setState({ ...this.state, [field]: e.target.value });
+  handleChange = (field, value) => {
+    this.setState({ ...this.state, [field]: value });
   };
 
   render() {

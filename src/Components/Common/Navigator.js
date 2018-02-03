@@ -26,6 +26,7 @@ class NavigatorComponent extends Component {
           className="navbar navbar-expand-xl navbar-light background"
           id="mainNav"
         >
+        
           <div className="container-fluid background__color">
             <Link to="/">
               <img
