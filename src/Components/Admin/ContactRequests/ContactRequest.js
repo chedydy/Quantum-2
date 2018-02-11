@@ -1,8 +1,13 @@
 import React, { Component } from "react";
-import { Modal, LinkButton, Button } from "../../Common";
+import { connect } from "react-redux";
+import { Button } from "../../Common";
+import { ContactRequestActions } from "../../../Actions";
 import "./ContactRequests.css";
 
-class ContactRequest extends Component {
+class ContactRequestClass extends Component {
+  openMessage(){
+    this.props.openMessage(this.props.contactRequest);
+  }
   render() {
     const { contactRequest } = this.props;
     return (
@@ -19,11 +24,20 @@ class ContactRequest extends Component {
           {contactRequest.time}
         </div>
         <div className="col-2 align-self-center">
-          <div className="row" />
+          <div className="row">
+            <Button
+              onClick={this.openMessage.bind(this)}
+              className="fa fa-eye fa-3x preview-button margin"
+            />
+          </div>
         </div>
       </div>
     );
   }
 }
+
+const ContactRequest = connect(null, {
+  openMessage: ContactRequestActions.openMessage
+})(ContactRequestClass);
 
 export { ContactRequest };

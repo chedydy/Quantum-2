@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import _ from "lodash";
 import { connect } from "react-redux";
 import { ContactRequest } from "./ContactRequest";
+import { MessageModal } from "./MessageModal";
 import { ContactRequestActions } from "../../../Actions";
 
 class ContactRequestsClass extends Component {
@@ -14,7 +15,7 @@ class ContactRequestsClass extends Component {
   }
 
   renderContactRequests() {
-    const items = this.props.contactRequests.map((val, index) => {
+    const items = this.props.ContactRequests.map((val, index) => {
       if (val.id) {
         return (
           <div key={val.id}>
@@ -29,6 +30,10 @@ class ContactRequestsClass extends Component {
   render() {
     return (
       <div className="row justify-content-center align-items-center">
+        <MessageModal
+          isOpen={this.props.messageIsOpen}
+          selectedContactRequest={this.props.selectedContactRequest}
+        />
         <div className="col-11">
           <div
             className="row justify-content-center"
@@ -53,7 +58,7 @@ class ContactRequestsClass extends Component {
 }
 
 function mapStateToProps(state) {
-  return { contactRequests: state.ContactRequests.ContactRequests };
+  return { ...state.ContactRequests };
 }
 const ContactRequests = connect(mapStateToProps, {
   get: ContactRequestActions.get

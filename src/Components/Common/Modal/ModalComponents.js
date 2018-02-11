@@ -8,9 +8,6 @@ const ModalHeader = props => {
   return (
     <div className="modal-header">
       {props.title}
-      <button type="button" className="close" onClick={props.onClick}>
-        <span aria-hidden="true">&times;</span>
-      </button>
     </div>
   );
 };
@@ -18,13 +15,7 @@ const ModalHeader = props => {
 const ModalFooter = props => {
   return (
     <div className="modal-footer">
-      <button
-        type="button"
-        className="btn btn-primary"
-        onClick={props.onCloseClick}
-      >
-        Close
-      </button>
+      {props.children}
     </div>
   );
 };
