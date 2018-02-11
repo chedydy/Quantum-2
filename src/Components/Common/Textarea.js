@@ -13,10 +13,9 @@ const Textarea = props => {
           className="form-control"
           placeholder={props.placeholder}
           id={props.id}
-          required
+          required={props.required}
           value={props.value || ""}
           onChange={(e)=>props.onChange(e.target.value)}
-          readOnly={props.readOnly || false}
         />
       </div>
     </div>

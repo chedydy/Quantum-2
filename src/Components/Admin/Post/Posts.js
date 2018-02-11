@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { LinkButton } from "../../Common";
 import { PostsItem } from "./PostsItem";
 import { PostDetails } from "./PostDetails";
 import { PostPreviewService } from "../../../Services";
@@ -16,7 +16,7 @@ class Posts extends Component {
   }
   renderPostsPreview() {
     const items = this.state.postPreviews.map((val, index) => {
-      if(val.id){
+      if (val.id) {
         return (
           <div key={val.id}>
             <PostsItem postPreview={val} />
@@ -24,7 +24,6 @@ class Posts extends Component {
           </div>
         );
       }
-    
     });
     return items;
   }
@@ -53,7 +52,9 @@ class Posts extends Component {
           <div className="row justify-content-center">
             <div className="col-3 offset-8 align-self-center">
               <div className="row">
-                <PostDetails />
+                <LinkButton link={`/admin/posts/new`} >
+                  New Post
+                </LinkButton>
               </div>
             </div>
           </div>

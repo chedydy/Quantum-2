@@ -8,46 +8,20 @@ import {
   PostService,
   CategoriesService
 } from "../../../Services";
+import {} from "../../../Actions";
 import "./EditPost.css";
+import { PostEditorActions } from "../../../Actions";
+import { connect } from "react-redux";
 
-class NewPost extends Component {
-  state = {
-    post: {
-      content: ""
-    },
-    preview: {
-      title: "",
-      subTitle: "",
-      tags: "",
-      category: ""
-    },
-    categories: []
-  };
-
+class NewPostClass extends Component {
   componentWillMount() {
-    CategoriesService.subscribe(this.setCategoriesState.bind(this));
+    this.props.fetchCategories();
     this.onInit();
   }
   onInit() {}
-  setCategoriesState(categories) {
-    this.setState({ categories });
-  }
+
   onSubmit() {
-    Promise.all([
-      PostPreviewService.updatePreview({
-        ...this.state.preview,
-        tags: _.mapKeys(this.state.preview.tags.split(" "))
-      }),
-      PostService.updatePost(this.state.post),
-      CategoriesService.update(
-        this.state.preview.category,
-        this.state.preview.id
-      )
-    ])
-      .then(() => {
-        this.props.history.push("/admin/posts/");
-      })
-      .catch(console.log);
+    this.props.save(this.props.preview, this.props.post);
   }
 
   handleSubmit = e => {
@@ -55,15 +29,6 @@ class NewPost extends Component {
     this.onSubmit();
   };
 
-  updateProps(field, subField, value) {
-    this.setState({
-      ...this.state,
-      [field]: {
-        ...this.state[field],
-        [subField]: value
-      }
-    });
-  }
   render() {
     return (
       <div>
@@ -71,10 +36,10 @@ class NewPost extends Component {
           <div className="col">
             <form onSubmit={this.handleSubmit.bind(this)}>
               <PostForm
-                post={this.state.post}
-                preview={this.state.preview}
-                categories={this.state.categories}
-                updateProps={this.updateProps.bind(this)}
+                post={this.props.post}
+                preview={this.props.preview}
+                categories={this.props.categories}
+                updateProps={this.props.updateProp.bind(this)}
               />
               <br />
               <div className="row justify-content-end col">
@@ -84,8 +49,8 @@ class NewPost extends Component {
                   className="fa fa-eye fa-3x save-button margin"
                 >
                   <PostContent
-                    post={this.state.post}
-                    preview={this.state.preview}
+                    post={this.props.post}
+                    preview={this.props.preview}
                   />
                 </Modal>
                 <SubmitButton className="fa fa-floppy-o fa-3x save-button" />
@@ -97,5 +62,11 @@ class NewPost extends Component {
     );
   }
 }
+function mapStateToProps(state) {
+  return { ...state.PostEditor };
+}
+const NewPost = connect(mapStateToProps, {
+  ...PostEditorActions
+})(NewPostClass);
 
 export { NewPost };
