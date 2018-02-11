@@ -1,0 +1,1 @@
+export const GET_CONTACT_REQUESTS = 'get_contact_requests';

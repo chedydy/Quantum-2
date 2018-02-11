@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import uuid from "uuid/v4";
-import moment from "moment";
-import '../Common/Button.css';
+
+import "../Common/Button.css";
 import { app } from "../../firebase/firebase";
 import { Input, Textarea, Container } from "../Common";
 import { PageHeader } from "./PageHeader";
 import contactImg from "../../img/contact-bg.jpg";
+import { ContactRequestsService } from "../../Services";
 
 class Contact extends Component {
   state = {
@@ -18,25 +18,10 @@ class Contact extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-
-    const name = e.target.elements.name.value;
-    const email = e.target.elements.email.value;
-    const phone = e.target.elements.phone.value;
-    const message = e.target.elements.message.value;
-
-    app
-      .ref("contact_requests/" + uuid())
-      .set({
-        name,
-        email,
-        phone,
-        message,
-        time: moment().format("DD/MM/YYYY HH:mm"),
-        done: false
-      })
-      .then(() => {
-        this.props.history.push("/");
-      });
+    const { name, email, phone, message } = this.state;
+    ContactRequestsService.add({ name, email, phone, message }).then(() => {
+      this.props.history.push("/");
+    });
   };
 
   handleChange = (field, value) => {

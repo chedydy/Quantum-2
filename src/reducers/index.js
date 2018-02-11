@@ -1,4 +1,11 @@
-import todo from './todo';
-import {combineReducers} from 'redux';
+import { combineReducers, createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+import { ContactRequestsReducer } from "./ContactRequestsReducer";
 
-export default combineReducers({todo});
+const rootReducer = combineReducers({
+  ContactRequests: ContactRequestsReducer
+});
+
+const store = createStore(rootReducer, {}, applyMiddleware(thunk));
+
+export default store;

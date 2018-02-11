@@ -1,17 +1,19 @@
 import React, { Component } from "react";
+import { Provider } from "react-redux";
+import store from "./Reducers";
 import AppRouter from "./Routers/AppRouter";
-
 import "./App.css";
 
 class App extends Component {
-  componentWillMount() {
-  }
+  componentWillMount() {}
 
   render() {
     return (
-      <div className="App">
-        <AppRouter />
-      </div>
+      <Provider store={store}>
+        <div className="App">
+          <AppRouter />
+        </div>
+      </Provider>
     );
   }
 }

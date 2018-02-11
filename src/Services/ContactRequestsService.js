@@ -1,4 +1,6 @@
 import _ from "lodash";
+import uuid from "uuid/v4";
+import moment from "moment";
 import { app } from "../firebase/firebase";
 const contactRequestsRef = app.ref().child("contact_requests");
 const ContactRequestsService = {
@@ -10,6 +12,13 @@ const ContactRequestsService = {
         });
         resolve(contatctRequests);
       });
+    });
+  },
+  add(contactRequest) {
+    return contactRequestsRef.child(uuid()).set({
+      ...contactRequest,
+      time: moment().format("DD/MM/YYYY HH:mm"),
+      done: false
     });
   }
 };
