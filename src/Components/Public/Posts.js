@@ -110,13 +110,13 @@ class Posts extends Component {
   renderCategories() {
     const items = _.map(this.state.mapCategories, (val, id) => {
       if (!val || _.isEmpty(val)) {
-        return <div key={id}/>;
+        return;
       } else {
         const children = this.renderSubCategory(val);
         if (children == "" || _.every(children, val => {
           return val == "";
         })) {
-          return <div key={id}/>;
+          return;
         }
         return (
           <Category key={id} name={id} isFirst>
@@ -125,6 +125,21 @@ class Posts extends Component {
         );
       }
     });
+    console.log(items);
+    const itemsAreUndefined = _.every(items, val => {
+      return val === undefined;
+    })
+    if (items.length === 0 || itemsAreUndefined) {
+      return (
+        <div>
+          <br/>
+          <i className="far fa-frown fa-7x"></i>
+          <br />
+          <br />
+          <span style={{fontSize: "25px", fontWeight: "600"}}>No results were found</span>
+        </div>
+      );
+    }
     return items;
   }
 

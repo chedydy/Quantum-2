@@ -3,12 +3,6 @@ import _ from "lodash";
 import { Container, SubmitButton, Modal } from "../../Common";
 import { PostContent } from "../../Public";
 import { PostForm } from "./PostForm";
-import {
-  PostPreviewService,
-  PostService,
-  CategoriesService
-} from "../../../Services";
-import {} from "../../../Actions";
 import "./EditPost.css";
 import { PostEditorActions } from "../../../Actions";
 import { connect } from "react-redux";

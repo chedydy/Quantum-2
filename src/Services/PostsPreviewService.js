@@ -33,8 +33,6 @@ const PostPreviewService = {
   },
   subscribePreviews: function(callback) {
     postPreviewRef
-      .orderByChild("publishDate")
-      .limitToLast(5)
       .on(
         "value",
         snapshot => {

@@ -28,7 +28,7 @@ class About extends Component {
             <br />
             <div className="row justify-content-center">{this.state.image}</div>
             <div className="col">
-              <Textarea rows="20" value={this.state.content} readOnly={true} />
+              <p>{this.state.content}</p>
             </div>
             <br />
             <div className="row justify-content-end col">
