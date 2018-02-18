@@ -2,7 +2,8 @@ import {
   UPDATE_POST_PROP,
   POST_EDITOR_FETCH_CATEGORIES,
   POST_EDITOR_SUBMIT_ERROR,
-  POST_EDITOR_SUBMIT_SUCCESS
+  POST_EDITOR_SUBMIT_SUCCESS,
+  POST_EDITOR_FETCH_SUCCESS
 } from "../Actions";
 
 const INITIAL_STATE = {
@@ -15,6 +16,7 @@ const INITIAL_STATE = {
     tags: "",
     category: ""
   },
+  oldCategory: "",
   categories: [],
   error: ""
 };
@@ -28,6 +30,8 @@ const PostEditorReducer = (state = INITIAL_STATE, action) => {
           [action.payload.subField]: action.payload.value
         }
       };
+    case POST_EDITOR_FETCH_SUCCESS:
+      return { ...state, ...action.payload };
     case POST_EDITOR_FETCH_CATEGORIES:
       return { ...state, categories: action.payload };
     case POST_EDITOR_SUBMIT_ERROR:

@@ -1,31 +1,26 @@
 import React, { Component } from "react";
 import { Modal, LinkButton, Button } from "../../Common";
+import { connect } from "react-redux";
+import { PostsActions } from "../../../Actions";
 import { PostContent } from "../../Public";
-import {
-  PostService,
-  PostPreviewService,
-  CategoriesService
-} from "../../../Services";
 import "./PostItem.css";
 
-class PostsItem extends Component {
+class PostsItemClass extends Component {
   state = {
     post: {
       content: ""
     }
   };
   loadPostDetails() {
-    PostService.getPost(this.props.postPreview.id)
-      .then(post => this.setState({ post }))
-      .catch(console.log);
+    // PostService.getPost(this.props.postPreview.id)
+    //   .then(post => this.setState({ post }))
+    //   .catch(console.log);
   }
   deletePost() {
-    PostService.deletePost(this.props.postPreview.id);
-    PostPreviewService.deletePreview(this.props.postPreview.id);
-    CategoriesService.delete(
-      this.props.postPreview.category,
-      this.props.postPreview.id
-    );
+    this.props.delete({
+      id: this.props.postPreview.id,
+      category: this.props.postPreview.category
+    });
   }
   render() {
     const { postPreview } = this.props;
@@ -66,5 +61,12 @@ class PostsItem extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return { ...state.Posts };
+}
+const PostsItem = connect(mapStateToProps, {
+  delete: PostsActions.delete
+})(PostsItemClass);
 
 export { PostsItem };

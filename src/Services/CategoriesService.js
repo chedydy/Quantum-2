@@ -41,7 +41,7 @@ const CategoriesService = {
       [id]: true
     });
   },
-  update({oldCategory, category, id}) {
+  update({ oldCategory, category, id }) {
     const oldCategoryNode = oldCategory.replace("-", "/");
     const categoryNode = category.replace("-", "/");
     categoriesRef.child(`${oldCategoryNode}/${id}`).remove();
@@ -51,7 +51,7 @@ const CategoriesService = {
   },
   delete(category, id) {
     const categoryNode = category.replace("-", "/");
-    categoriesRef.child(`${categoryNode}/${id}`).remove();
+    return categoriesRef.child(`${categoryNode}/${id}`).remove();
   }
 };
 

@@ -4,47 +4,35 @@ import {
   PostService,
   CategoriesService
 } from "../../../Services";
+import { PostEditorActions } from "../../../Actions";
+import { connect } from "react-redux";
 import "./EditPost.css";
 
-import { NewPost } from "./NewPost";
+import { NewPostClass } from "./NewPost";
 
-class EditPost extends NewPost {
+class EditPostClass extends NewPostClass {
   onInit() {
     var id = this.props.match.params.id;
-    Promise.all([
-      PostPreviewService.getPreview(id),
-      PostService.getPost(id)
-    ]).then(values => {
-      let tags = "";
-      _.forEach(values[0].tags, (val, key) => {
-        tags = `${tags} ${val}`;
-      });
-      tags = tags.trim();
-      this.setState({
-        preview: { ...values[0], tags },
-        post: values[1],
-        oldCategory: values[0].category
-      });
-    });
+    this.props.get(id);
   }
 
   onSubmit() {
-    Promise.all([
-      PostPreviewService.updatePreview({
-        ...this.state.preview,
-        tags: _.mapKeys(this.state.preview.tags.split(" "))
-      }),
-      PostService.updatePost(this.state.post),
-      CategoriesService.update({
-        oldCategory: this.state.oldCategory,
-        category: this.state.preview.category,
-        id: this.state.preview.id
+    this.props
+      .update({
+        preview: this.props.preview,
+        post: this.props.post,
+        oldCategory: this.props.oldCategory
       })
-    ])
       .then(() => {
         this.props.history.push("/admin/posts/");
-      })
-      .catch(console.log);
+      });
   }
 }
+function mapStateToProps(state) {
+  return { ...state.PostEditor };
+}
+const EditPost = connect(mapStateToProps, {
+  ...PostEditorActions
+})(EditPostClass);
+
 export { EditPost };

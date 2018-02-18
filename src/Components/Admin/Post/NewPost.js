@@ -15,7 +15,9 @@ class NewPostClass extends Component {
   onInit() {}
 
   onSubmit() {
-    this.props.save(this.props.preview, this.props.post);
+    this.props.save(this.props.preview, this.props.post).then(() => {
+      this.props.history.push("/admin/posts");
+    });
   }
 
   handleSubmit = e => {
@@ -63,4 +65,4 @@ const NewPost = connect(mapStateToProps, {
   ...PostEditorActions
 })(NewPostClass);
 
-export { NewPost };
+export { NewPost,NewPostClass };

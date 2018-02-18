@@ -1,21 +1,15 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { LinkButton } from "../../Common";
 import { PostsItem } from "./PostsItem";
-import { PostDetails } from "./PostDetails";
-import { PostPreviewService } from "../../../Services";
+import { PostsActions } from "../../../Actions";
 import "./PostItem.css";
-class Posts extends Component {
-  state = {
-    postPreviews: []
-  };
-  setPreviesState(postPreviews) {
-    this.setState({ postPreviews });
-  }
+class PostsClass extends Component {
   componentWillMount() {
-    PostPreviewService.subscribePreviews(this.setPreviesState.bind(this));
+    this.props.get();
   }
   renderPostsPreview() {
-    const items = this.state.postPreviews.map((val, index) => {
+    const items = this.props.previews.map((val, index) => {
       if (val.id) {
         return (
           <div key={val.id}>
@@ -52,9 +46,7 @@ class Posts extends Component {
           <div className="row justify-content-center">
             <div className="col-3 offset-8 align-self-center">
               <div className="row">
-                <LinkButton link={`/admin/posts/new`} >
-                  New Post
-                </LinkButton>
+                <LinkButton link={`/admin/posts/new`}>New Post</LinkButton>
               </div>
             </div>
           </div>
@@ -63,5 +55,12 @@ class Posts extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return { ...state.Posts };
+}
+const Posts = connect(mapStateToProps, {
+  get: PostsActions.get
+})(PostsClass);
 
 export { Posts };

@@ -125,7 +125,6 @@ class Posts extends Component {
         );
       }
     });
-    console.log(items);
     const itemsAreUndefined = _.every(items, val => {
       return val === undefined;
     })
