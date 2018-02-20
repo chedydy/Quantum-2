@@ -6,7 +6,8 @@ import {
   POST_EDITOR_FETCH_CATEGORIES,
   POST_EDITOR_SUBMIT_SUCCESS,
   POST_EDITOR_SUBMIT_ERROR,
-  POST_EDITOR_FETCH_SUCCESS
+  POST_EDITOR_FETCH_SUCCESS,
+  CHANGE_PREVIEW_VISIBILITY
 } from "./types";
 import {
   PostPreviewService,
@@ -16,6 +17,9 @@ import {
 } from "../Services";
 //import { ContactRequestsService } from "../Services";
 const PostEditorActions = {
+  togglePreview() {
+    return { type: CHANGE_PREVIEW_VISIBILITY };
+  },
   updateProp(field, subField, value) {
     return {
       type: UPDATE_POST_PROP,

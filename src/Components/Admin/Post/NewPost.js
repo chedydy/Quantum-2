@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import _ from "lodash";
-import { Container, SubmitButton, Modal } from "../../Common";
+import { Container, SubmitButton, Modal, Button } from "../../Common";
 import { PostContent } from "../../Public";
 import { PostForm } from "./PostForm";
 import "./EditPost.css";
@@ -19,7 +19,9 @@ class NewPostClass extends Component {
       this.props.history.push("/admin/posts");
     });
   }
-
+  showPreview() {
+    this.props.togglePreview();
+  }
   handleSubmit = e => {
     e.preventDefault();
     this.onSubmit();
@@ -27,8 +29,10 @@ class NewPostClass extends Component {
 
   render() {
     return (
-      <div>
-        <Container>
+      <div
+        className={this.props.showPreview ? "preview-container" : "container"}
+      >
+        <div className={`justify-content-center ${this.props.showPreview?'editor':''}`}>
           <div className="col">
             <form onSubmit={this.handleSubmit.bind(this)}>
               <PostForm
@@ -39,21 +43,21 @@ class NewPostClass extends Component {
               />
               <br />
               <div className="row justify-content-end col">
-                <Modal
-                  title="Preview Post"
-                  appElement="#root"
-                  className="fa fa-eye fa-3x save-button margin"
-                >
-                  <PostContent
-                    post={this.props.post}
-                    preview={this.props.preview}
-                  />
-                </Modal>
+                <Button
+                  onClick={this.showPreview.bind(this)}
+                  className="fa fa-eye fa-3x preview-button margin"
+                />
                 <SubmitButton className="fa fa-floppy-o fa-3x save-button" />
               </div>
             </form>
           </div>
-        </Container>
+        </div>
+        <div
+          className="preview"
+          style={{ display: this.props.showPreview ? "inline" : "none" }}
+        >
+          <PostContent post={this.props.post} preview={this.props.preview} />
+        </div>
       </div>
     );
   }
@@ -65,4 +69,4 @@ const NewPost = connect(mapStateToProps, {
   ...PostEditorActions
 })(NewPostClass);
 
-export { NewPost,NewPostClass };
+export { NewPost, NewPostClass };
