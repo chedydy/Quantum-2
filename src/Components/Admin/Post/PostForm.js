@@ -33,7 +33,23 @@ class PostForm extends Component {
     ].join("");
     this.props.updateProps("post", "content", newContent);
   }
-  addHeader() {
+  addH1() {
+    var newContent = [
+      this.props.post.content.slice(0, this.state.start),
+      "#",
+      this.props.post.content.slice(this.state.start)
+    ].join("");
+    this.props.updateProps("post", "content", newContent);
+  }
+  addH2() {
+    var newContent = [
+      this.props.post.content.slice(0, this.state.start),
+      "##",
+      this.props.post.content.slice(this.state.start)
+    ].join("");
+    this.props.updateProps("post", "content", newContent);
+  }
+  addH3() {
     var newContent = [
       this.props.post.content.slice(0, this.state.start),
       "###",
@@ -137,14 +153,15 @@ class PostForm extends Component {
           }}
         />
         <div>
-          <button onClick={this.italic.bind(this)} type="button">
-            Italic
+          <button className="fas fa-italic fa-2x save-button" onClick={this.italic.bind(this)} type="button">
           </button>
-          <button onClick={this.bold.bind(this)} type="button">
-            Bold
+          <button className="fas fa-bold fa-2x save-button" onClick={this.bold.bind(this)} type="button">
           </button>
-          <button onClick={this.addHeader.bind(this)} type="button">
-            Add header
+          <button className="fas fa-heading fa-2x save-button" onClick={this.addH1.bind(this)} type="button">1
+          </button>
+          <button className="fas fa-heading fa-2x save-button" onClick={this.addH2.bind(this)} type="button">2
+          </button>
+          <button className="fas fa-heading fa-2x save-button" onClick={this.addH3.bind(this)} type="button">3
           </button>
           <input
             placeholder="Enter url"
@@ -153,8 +170,7 @@ class PostForm extends Component {
             value={this.state.url}
             onChange={e => this.updateState("url", e.target.value)}
           />
-          <button onClick={this.addUrl.bind(this)} type="button">
-            Add link
+          <button className="fas fa-link fa-2x save-button" onClick={this.addUrl.bind(this)} type="button">
           </button>
           <input
             placeholder="Enter image url"
@@ -163,11 +179,9 @@ class PostForm extends Component {
             value={this.state.imageUrl}
             onChange={e => this.updateState("imageUrl", e.target.value)}
           />
-          <button onClick={this.addImageUrl.bind(this)} type="button">
-            Add image
+          <button className="fas fa-images fa-2x save-button" onClick={this.addImageUrl.bind(this)} type="button">
           </button>
-          <button onClick={this.addQuote.bind(this)} type="button">
-            Add quote
+          <button className="fas fa-quote-right fa-2x save-button" onClick={this.addQuote.bind(this)} type="button">
           </button>
         </div>
         <Textarea
