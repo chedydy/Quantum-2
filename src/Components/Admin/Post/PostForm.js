@@ -36,7 +36,7 @@ class PostForm extends Component {
   addHeader() {
     var newContent = [
       this.props.post.content.slice(0, this.state.start),
-      "###",
+      "### ",
       this.props.post.content.slice(this.state.start)
     ].join("");
     this.props.updateProps("post", "content", newContent);

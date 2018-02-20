@@ -3,7 +3,8 @@ import {
   POST_EDITOR_FETCH_CATEGORIES,
   POST_EDITOR_SUBMIT_ERROR,
   POST_EDITOR_SUBMIT_SUCCESS,
-  POST_EDITOR_FETCH_SUCCESS
+  POST_EDITOR_FETCH_SUCCESS,
+  CHANGE_PREVIEW_VISIBILITY
 } from "../Actions";
 
 const INITIAL_STATE = {
@@ -16,6 +17,7 @@ const INITIAL_STATE = {
     tags: "",
     category: ""
   },
+  showPreview: false,
   oldCategory: "",
   categories: [],
   error: ""
@@ -38,6 +40,8 @@ const PostEditorReducer = (state = INITIAL_STATE, action) => {
       return { ...state, error: action.payload };
     case POST_EDITOR_SUBMIT_SUCCESS:
       return INITIAL_STATE;
+    case CHANGE_PREVIEW_VISIBILITY:
+      return { ...state, showPreview: !state.showPreview };
     default:
       return state;
   }
