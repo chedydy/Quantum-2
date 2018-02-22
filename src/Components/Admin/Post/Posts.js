@@ -4,12 +4,13 @@ import { LinkButton } from "../../Common";
 import { PostsItem } from "./PostsItem";
 import { PostsActions } from "../../../Actions";
 import "./PostItem.css";
+import './Posts.css';
 class PostsClass extends Component {
   componentWillMount() {
     this.props.get();
   }
   renderPostsPreview() {
-    const items = this.props.previews.map((val, index) => {
+    const items = this.props.filteredPreviews.map((val, index) => {
       if (val.id) {
         return (
           <div key={val.id}>
@@ -20,6 +21,9 @@ class PostsClass extends Component {
       }
     });
     return items;
+  }
+  filter(filterText) {
+    this.props.filter(filterText);
   }
   render() {
     return (
@@ -35,12 +39,19 @@ class PostsClass extends Component {
               border: "2px solid #0085A1"
             }}
           >
-            <div className="col-4 text-left align-self-center">Title</div>
-            <div className="col-2 text-left align-self-center">Author</div>
-            <div className="col-2 text-left align-self-center">
+            <div className="col-4 text-left align-self-center header" onClick={()=>this.props.sortBy('title')}>Title</div>
+            <div className="col-2 text-left align-self-center header" onClick={()=>this.props.sortBy('author')}>Author</div>
+            <div className="col-2 text-left align-self-center header" onClick={()=>this.props.sortBy('publishDate')}>
               Publish Date
             </div>
-            <div className="col-3 text-left align-self-center" />
+            <div className="col-3 text-left align-self-center">
+              <input
+                placeholder="Search..."
+                onChange={e => {
+                  this.filter(e.target.value);
+                }}
+              />
+            </div>
           </div>
           {this.renderPostsPreview()}
           <div className="row justify-content-center">
@@ -60,7 +71,9 @@ function mapStateToProps(state) {
   return { ...state.Posts };
 }
 const Posts = connect(mapStateToProps, {
-  get: PostsActions.get
+  get: PostsActions.get,
+  filter:PostsActions.filter,
+  sortBy:PostsActions.sortBy
 })(PostsClass);
 
 export { Posts };

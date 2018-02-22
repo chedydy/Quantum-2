@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Modal, LinkButton, Button } from "../../Common";
+import { LinkButton, Button } from "../../Common";
 import { connect } from "react-redux";
 import { PostsActions } from "../../../Actions";
 import { PostContent } from "../../Public";
@@ -39,14 +39,6 @@ class PostsItemClass extends Component {
         </div>
         <div className="col-3 align-self-center">
           <div className="row">
-            <Modal
-              title="Preview Post"
-              appElement="#root"
-              afterOpen={this.loadPostDetails.bind(this)}
-              className="fa fa-eye fa-3x preview-button margin"
-            >
-              <PostContent post={this.state.post} preview={postPreview} />
-            </Modal>
             <LinkButton
               link={`/admin/posts/edit/${this.props.postPreview.id}`}
               className="fa fa-pencil-square-o fa-3x edit-button margin"

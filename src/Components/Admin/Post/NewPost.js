@@ -32,7 +32,11 @@ class NewPostClass extends Component {
       <div
         className={this.props.showPreview ? "preview-container" : "container"}
       >
-        <div className={`justify-content-center ${this.props.showPreview?'editor':''}`}>
+        <div
+          className={`justify-content-center ${
+            this.props.showPreview ? "editor" : ""
+          }`}
+        >
           <div className="col">
             <form onSubmit={this.handleSubmit.bind(this)}>
               <PostForm

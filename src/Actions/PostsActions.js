@@ -1,4 +1,9 @@
-import { POSTS_FETCH_SUCCESS,POSTS_REMOVE_SUCCESS } from "./types";
+import {
+  POSTS_FETCH_SUCCESS,
+  POSTS_REMOVE_SUCCESS,
+  POSTS_FILTER,
+  POSTS_SORT_BY
+} from "./types";
 import {
   PostService,
   PostPreviewService,
@@ -18,6 +23,12 @@ const PostsActions = {
     ]).then(() => {
       dispatch({ type: POSTS_REMOVE_SUCCESS });
     });
+  },
+  filter(text) {
+    return { type: POSTS_FILTER, payload: text };
+  },
+  sortBy(field) {
+    return { type: POSTS_SORT_BY, payload: field };
   }
 };
 
