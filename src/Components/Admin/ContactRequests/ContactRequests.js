@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import _ from "lodash";
 import { connect } from "react-redux";
 import { ContactRequest } from "./ContactRequest";
 import { MessageModal } from "./MessageModal";
@@ -55,9 +54,10 @@ class ContactRequestsClass extends Component {
             <div className="col-2 text-left align-self-center header" onClick={()=>this.props.sortBy('time')}>
               Send Date
             </div>
-            <div className="col-2 text-left align-self-center">
+            <div className="col-2 text-left align-self-center search-header">
               <input
                 placeholder="Search..."
+                className='search'
                 onChange={e => {
                   this.filter(e.target.value);
                 }}

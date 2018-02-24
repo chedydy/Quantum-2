@@ -1,27 +1,37 @@
-.edit-button:hover { 
-    text-decoration: unset!important;
+.edit-button:hover {
+  text-decoration: unset !important;
 }
 
 .preview-button {
-    border: 0 !important;
-    background: transparent !important;
-    cursor: pointer !important;
+  border: 0 !important;
+  background: transparent !important;
+  cursor: pointer !important;
 }
 
-.preview-button:hover { 
-    color: #0085A1 !important;
+.preview-button:hover {
+  color: #0085a1 !important;
 }
 
 .preview-button:focus {
-    outline: 0 !important;
+  outline: 0 !important;
 }
 .margin {
-    margin-right: 20px !important;
+  margin-right: 20px !important;
 }
 
-.header{
-    cursor: pointer;
+.header {
+  cursor: pointer;
 }
-.header:hover{
-    text-decoration: underline;
+.header:hover {
+  text-decoration: underline;
+}
+
+.search {
+  border: 0;
+  outline: 0;
+  margin: 0;
+}
+
+.search-header {
+  padding-left: 0px;
 }
