@@ -15,7 +15,7 @@ class ContactRequestsClass extends Component {
   }
 
   renderContactRequests() {
-    const items = this.props.ContactRequests.map((val, index) => {
+    const items = this.props.FilteredContactRequests.map((val, index) => {
       if (val.id) {
         return (
           <div key={val.id}>
@@ -26,6 +26,9 @@ class ContactRequestsClass extends Component {
       }
     });
     return items;
+  }
+  filter(filterText) {
+    this.props.filter(filterText);
   }
   render() {
     return (
@@ -45,10 +48,21 @@ class ContactRequestsClass extends Component {
               border: "2px solid #0085A1"
             }}
           >
-            <div className="col-5 text-left align-self-center">Message</div>
-            <div className="col-2 text-left align-self-center">From</div>
-            <div className="col-2 text-left align-self-center">Send Date</div>
-            <div className="col-2 text-left align-self-center" />
+            <div className="col-5 text-left align-self-center header" onClick={()=>this.props.sortBy('message')}>
+              Message
+            </div>
+            <div className="col-2 text-left align-self-center header" onClick={()=>this.props.sortBy('name')}>From</div>
+            <div className="col-2 text-left align-self-center header" onClick={()=>this.props.sortBy('time')}>
+              Send Date
+            </div>
+            <div className="col-2 text-left align-self-center">
+              <input
+                placeholder="Search..."
+                onChange={e => {
+                  this.filter(e.target.value);
+                }}
+              />
+            </div>
           </div>
           {this.renderContactRequests()}
         </div>
@@ -61,7 +75,9 @@ function mapStateToProps(state) {
   return { ...state.ContactRequests };
 }
 const ContactRequests = connect(mapStateToProps, {
-  get: ContactRequestActions.get
+  get: ContactRequestActions.get,
+  filter: ContactRequestActions.filter,
+  sortBy:ContactRequestActions.sortBy
 })(ContactRequestsClass);
 
 export { ContactRequests };
