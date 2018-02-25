@@ -55,6 +55,7 @@ class ContactRequestsClass extends Component {
               Send Date
             </div>
             <div className="col-2 text-left align-self-center search-header">
+            <i className="fas fa-search"></i>
               <input
                 placeholder="Search..."
                 className='search'
