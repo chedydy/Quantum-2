@@ -15,7 +15,6 @@ import {
   CategoriesService,
   AuthService
 } from "../Services";
-//import { ContactRequestsService } from "../Services";
 const PostEditorActions = {
   togglePreview() {
     return { type: CHANGE_PREVIEW_VISIBILITY };
@@ -54,8 +53,7 @@ const PostEditorActions = {
         PostService.updatePost({
           ...post,
           id
-        }),
-        CategoriesService.add(preview.category, id)
+        })
       ])
         .then(() => {
           dispatch({ type: POST_EDITOR_SUBMIT_SUCCESS });

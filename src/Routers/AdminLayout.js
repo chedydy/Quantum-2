@@ -8,7 +8,8 @@ import {
   Posts,
   NewPost,
   EditPost,
-  ContactRequests
+  ContactRequests,
+  Categories
 } from "../Components/Admin";
 
 const AdminLayout = () => {
@@ -37,6 +38,11 @@ const AdminLayout = () => {
         <PrivateRoute
           path="/admin/contactrequests/"
           component={ContactRequests}
+          exact={true}
+        />
+        <PrivateRoute
+          path="/admin/categories/"
+          component={Categories}
           exact={true}
         />
       </Switch>

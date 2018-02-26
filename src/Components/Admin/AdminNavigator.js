@@ -18,6 +18,9 @@ class AdminNav extends React.Component {
         <Link className="nav-link" to="/admin/posts/">
           Posts
         </Link>
+        <Link className="nav-link" to="/admin/categories/">
+          Categories
+        </Link>
         <Link className="nav-link" to="/admin/about/">
           About
         </Link>

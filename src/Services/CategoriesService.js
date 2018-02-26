@@ -25,6 +25,17 @@ const CategoriesService = {
       }
     );
   },
+  subscribeRaw(callback) {
+    categoriesRef.on(
+      "value",
+      snapshot => {
+        callback(snapshot.val());
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  },
   get() {
     return new Promise((resolve, reject) => {
       categoriesRef
@@ -36,9 +47,9 @@ const CategoriesService = {
         .catch(reject);
     });
   },
-  add(category, id) {
-    categoriesRef.child(category.replace("-", "/")).update({
-      [id]: true
+  add(category, path) {
+    categoriesRef.child(path.replace("-", "/")).update({
+      [category]: true
     });
   },
   update({ oldCategory, category, id }) {
@@ -49,9 +60,9 @@ const CategoriesService = {
       [id]: true
     });
   },
-  delete(category, id) {
-    const categoryNode = category.replace("-", "/");
-    return categoriesRef.child(`${categoryNode}/${id}`).remove();
+  delete(categoryPath) {
+    const categoryNode = categoryPath.replace("-", "/");
+    return categoriesRef.child(categoryNode).remove();
   }
 };
 
