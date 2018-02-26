@@ -27,7 +27,7 @@ class EditAbout extends Component {
   }
 
   handleSubmit = e => {
-    e.preventDefault();
+    // e.preventDefault();
     AboutService.setAbout({ ...this.state }).then(() => {
       this.props.history.push("/admin/about");
     });
@@ -38,7 +38,7 @@ class EditAbout extends Component {
   };
 
   handleImageChange = e => {
-    e.preventDefault();
+    // e.preventDefault();
     let reader = new FileReader();
     let image = e.target.files[0];
     reader.onloadend = () => {

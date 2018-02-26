@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { AboutContent } from "./AboutContent";
 import { AboutService } from "../../Services";
+
 class About extends Component {
   state = {
     title: "",
