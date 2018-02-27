@@ -46,6 +46,9 @@ class Category extends Component {
                   />
                 </div>
                 <div className="category-text">{this.props.name}</div>
+                <div className="add-button">
+                  Add Subcategory
+                </div>
               </div>
             </div>
             {this.state.expanded ? this.props.children : ""}
