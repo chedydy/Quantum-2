@@ -28,13 +28,12 @@
   border-radius: 3px;
 }
 
-.category-button-wrapper:hover,
 .add-button:hover {
   background-color: #f3e6ff;
   color: #0085a1;
 }
 
-.category-text {
+.category-input {
   display: inherit;
   flex: 9.5;
   font-size: 28px;
@@ -46,8 +45,8 @@
   flex: 1;
 }
 
-.category-button-wrapper {
-  display: inherit;
+.category-input-wrapper {
+  display: flex;
   flex: 9;
 }
 

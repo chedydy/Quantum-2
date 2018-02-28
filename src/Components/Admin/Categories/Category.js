@@ -1,12 +1,11 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { CategoriesActions } from "../../../Actions";
 import "./Category.css";
-class Category extends Component {
+class CategoryClass extends Component {
   state = {
     expanded: false
   };
-  addCategory() {
-    console.log('adagua')
-  }
   render() {
     return (
       <div className="category-entire-boss-container">
@@ -27,27 +26,35 @@ class Category extends Component {
               paddingLeft: this.props.isFirst ? 0 : 21
             }}
           >
-            <div
-              onClick={() => {
-                this.props.isEmpty
-                  ? this.addCategory()
-                  : this.setState({
+            <div className="category-container-admin">
+              <div className="category-inline">
+                <div
+                  className="category-button-wrapper"
+                  onClick={() => {
+                    this.setState({
                       expanded: !this.state.expanded
                     });
-              }}
-              className="category-container"
-            >
-              <div className="category-inline">
-                <div className="expand-button">
-                  <i
-                    className={`fa fa-${
-                      this.state.expanded ? "minus" : "plus"
-                    }`}
-                  />
+                  }}
+                >
+                  <div className="expand-button">
+                    <i
+                      className={`fa fa-${
+                        this.state.expanded
+                          ? "angle-double-down"
+                          : "angle-double-right"
+                      }`}
+                    />
+                  </div>
+                  <div className="category-text">{this.props.name}</div>
                 </div>
-                <div className="category-text">{this.props.name}</div>
-                <div className="add-button">
-                  Add Subcategory
+                <div
+                  className="add-button"
+                  onClick={() => {
+                    this.props.new(this.props.parent);
+                    this.setState({ expanded: true });
+                  }}
+                >
+                  <i className={`fa fa-plus`} />
                 </div>
               </div>
             </div>
@@ -58,5 +65,9 @@ class Category extends Component {
     );
   }
 }
+
+const Category = connect(null, {
+  new: CategoriesActions.new
+})(CategoryClass);
 
 export { Category };

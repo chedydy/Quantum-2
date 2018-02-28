@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import "./Category.css";
-class Category extends Component {
-  state = {
-    expanded: false
-  };
+import { connect } from "react-redux";
+import { Input } from "../../Common";
+import { CategoriesActions } from "../../../Actions";
+import "./NewCategory.css";
+class NewCategoryClass extends Component {
   render() {
     return (
       <div className="category-entire-boss-container">
@@ -24,26 +24,39 @@ class Category extends Component {
               paddingLeft: this.props.isFirst ? 0 : 21
             }}
           >
-            <div
-              onClick={() => {
-                this.setState({
-                  expanded: !this.state.expanded
-                });
-              }}
-              className="category-container"
-            >
+            <div className="category-container-admin">
               <div className="category-inline">
-                <div className="expand-button">
-                  <i
-                    className={`fa fa-${
-                      this.state.expanded ? "minus" : "plus"
-                    }`}
+                <div className="category-input-wrapper">
+                  <input
+                    type="text"
+                    className="category-input"
+                    onChange={event =>
+                      this.props.edit(
+                        event.target.value,
+                        this.props.parent
+                      )
+                    }
+                    value={this.props.name}
                   />
                 </div>
-                <div className="category-text">{this.props.name}</div>
+                <div
+                  className="add-button"
+                  onClick={() => {
+                    this.props.save(this.props.name,this.props.parent);
+                  }}
+                >
+                  <i className={`fa fa-save`} />
+                </div>
+                <div
+                  className="add-button"
+                  onClick={() => {
+                    this.props.cancel(this.props.parent);
+                  }}
+                >
+                  <i className={`fa fa-ban`} />
+                </div>
               </div>
             </div>
-            {this.state.expanded ? this.props.children : ""}
           </div>
         </div>
       </div>
@@ -51,4 +64,11 @@ class Category extends Component {
   }
 }
 
-export { Category };
+const NewCategory = connect(null, {
+  new: CategoriesActions.new,
+  save: CategoriesActions.save,
+  cancel: CategoriesActions.cancel,
+  edit: CategoriesActions.edit
+})(NewCategoryClass);
+
+export { NewCategory };

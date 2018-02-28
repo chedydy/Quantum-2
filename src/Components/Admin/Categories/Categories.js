@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import _ from "lodash";
 import { Container } from "../../Common";
 import { Category } from "./Category";
+import { NewCategory } from "./NewCategory";
 import { CategoriesActions } from "../../../Actions";
 
 class CategoriesClass extends Component {
@@ -72,21 +73,35 @@ class CategoriesClass extends Component {
   //   });
   //   return items;
   // }
-  createCategories(categories) {
+  createCategories(categories, isFirst, parent) {
     return _.map(categories, (val, key) => {
-      if (val === true) {
-        return <Category key={key} name={key} isEmpty/>;
+      if (key === 'Placeholder') {
+        return (
+          <NewCategory
+            key={key}
+            name={val}
+            isFirst={isFirst}
+            parent={`${parent} ${key}`}
+          />
+        );
       }
       return (
-        <Category key={key} name={key}>
-          {this.createCategories(val)}
+        <Category
+          key={key}
+          name={key}
+          isFirst={isFirst}
+          parent={`${parent} ${key}`}
+        >
+          {val === true
+            ? ""
+            : this.createCategories(val, false, `${parent} ${key}`)}
         </Category>
       );
     });
   }
   renderCategories() {
     const { categories } = this.props;
-    const items = this.createCategories(categories);
+    const items = this.createCategories(categories, true, "");
     return items;
     // const items = _.map(this.state.mapCategories, (val, id) => {
     //   if (!val || _.isEmpty(val)) {
