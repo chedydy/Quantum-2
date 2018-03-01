@@ -31,10 +31,7 @@ class NewCategoryClass extends Component {
                     type="text"
                     className="category-input"
                     onChange={event =>
-                      this.props.edit(
-                        event.target.value,
-                        this.props.parent
-                      )
+                      this.props.edit(event.target.value, this.props.parent)
                     }
                     value={this.props.name}
                   />
@@ -42,7 +39,7 @@ class NewCategoryClass extends Component {
                 <div
                   className="add-button"
                   onClick={() => {
-                    this.props.save(this.props.name,this.props.parent);
+                    this.props.save(this.props.name, this.props.parent);
                   }}
                 >
                   <i className={`fa fa-save`} />

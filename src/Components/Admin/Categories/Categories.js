@@ -4,23 +4,10 @@ import _ from "lodash";
 import { Container } from "../../Common";
 import { Category } from "./Category";
 import { NewCategory } from "./NewCategory";
+import { AlertModal } from "./AlertModal";
 import { CategoriesActions } from "../../../Actions";
 
 class CategoriesClass extends Component {
-  // mapCategory(value, id, previews, categories) {
-  //   if (value !== true) {
-  //     _.forEach(value, (val, key) => {
-  //       this.mapCategory(val, key, previews, value);
-  //     });
-  //   } else if (value === true) {
-  //     if (!previews[id]) {
-  //       delete categories[id];
-  //       return;
-  //     }
-  //     categories[id] = previews[id];
-  //   }
-  // }
-
   componentWillMount() {
     this.props.get();
   }
@@ -75,7 +62,7 @@ class CategoriesClass extends Component {
   // }
   createCategories(categories, isFirst, parent) {
     return _.map(categories, (val, key) => {
-      if (key === 'Placeholder') {
+      if (key === "Placeholder") {
         return (
           <NewCategory
             key={key}
@@ -140,6 +127,7 @@ class CategoriesClass extends Component {
   render() {
     return (
       <div>
+        <AlertModal isOpen={this.props.showAlert} />
         <Container>
           <br /> {this.renderCategories()}
           <br />

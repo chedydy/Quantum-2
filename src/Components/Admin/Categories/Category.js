@@ -6,6 +6,10 @@ class CategoryClass extends Component {
   state = {
     expanded: false
   };
+  tagAndShowAlert() {
+    this.props.tagCategory(this.props.parent, this.props.name);
+    this.props.toggleAlert();
+  }
   render() {
     return (
       <div className="category-entire-boss-container">
@@ -56,6 +60,16 @@ class CategoryClass extends Component {
                 >
                   <i className={`fa fa-plus`} />
                 </div>
+                <div
+                  className="add-button"
+                  onClick={() => {
+                    this.props.children
+                      ? this.tagAndShowAlert()
+                      : this.props.delete(this.props.parent, this.props.name);
+                  }}
+                >
+                  <i className={`fa fa-ban`} />
+                </div>
               </div>
             </div>
             {this.state.expanded ? this.props.children : ""}
@@ -67,7 +81,10 @@ class CategoryClass extends Component {
 }
 
 const Category = connect(null, {
-  new: CategoriesActions.new
+  new: CategoriesActions.new,
+  delete: CategoriesActions.delete,
+  toggleAlert: CategoriesActions.toggleAlert,
+  tagCategory: CategoriesActions.tagCategory
 })(CategoryClass);
 
 export { Category };

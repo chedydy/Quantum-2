@@ -2,12 +2,20 @@ import {
   CATEGORIES_GET,
   CATEGORIES_NEW,
   CATEGORIES_EDIT,
-  CATEGORIES_SAVE
+  CATEGORIES_SAVE,
+  CATEGORIES_CANCEL,
+  CATEGORIES_DELETE,
+  CATEGORIES_TOGGLE_ALERT,
+  CATEGORIES_DELETE_TAG,
+  CATEGORIES_TAG
 } from "../Actions";
 import _ from "lodash";
 
 const INITIAL_STATE = {
-  categories: {}
+  categories: {},
+  showAlert: false,
+  taggedPath: "",
+  taggedName: ""
 };
 
 const CategoriesReducer = (state = INITIAL_STATE, action) => {
@@ -35,7 +43,6 @@ const CategoriesReducer = (state = INITIAL_STATE, action) => {
       return { ...state, categories: newCategories };
     }
     case CATEGORIES_SAVE: {
-      const { parentPath, value } = action.payload;
       const newCategory = {
         ..._.get(state.categories, action.payload.parentPath),
         [action.payload.value]: true
@@ -43,6 +50,42 @@ const CategoriesReducer = (state = INITIAL_STATE, action) => {
       delete newCategory["Placeholder"];
       const newCategories = {
         ..._.set(state.categories, action.payload.parentPath, newCategory)
+      };
+      return { ...state, categories: newCategories };
+    }
+    case CATEGORIES_CANCEL: {
+      const newCategory = {
+        ..._.get(state.categories, action.payload)
+      };
+      delete newCategory["Placeholder"];
+      const newCategories = {
+        ..._.set(state.categories, action.payload, newCategory)
+      };
+      return { ...state, categories: newCategories };
+    }
+    case CATEGORIES_DELETE: {
+      const newCategory = _.get(state.categories, action.payload.path);
+      delete newCategory[action.payload.name];
+      const newCategories = {
+        ..._.set(state.categories, action.payload.path, newCategory)
+      };
+      return { ...state, categories: newCategories };
+    }
+    case CATEGORIES_TOGGLE_ALERT: {
+      return { ...state, showAlert: !state.showAlert };
+    }
+    case CATEGORIES_TAG: {
+      return {
+        ...state,
+        taggedName: action.payload.name,
+        taggedPath: action.payload.path
+      };
+    }
+    case CATEGORIES_DELETE_TAG: {
+      const newCategory = _.get(state.categories, state.taggedPath);
+      delete newCategory[state.taggedName];
+      const newCategories = {
+        ..._.set(state.categories, state.taggedPath, newCategory)
       };
       return { ...state, categories: newCategories };
     }
