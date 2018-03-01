@@ -27,12 +27,18 @@ const CategoriesReducer = (state = INITIAL_STATE, action) => {
       };
     }
     case CATEGORIES_NEW: {
-      const newCategories = {
-        ..._.set(state.categories, action.payload, {
-          ..._.get(state.categories, action.payload),
-          Placeholder: "Placeholder"
-        })
-      };
+      const newCategories =
+        action.payload === "root"
+          ? {
+              ...state.categories,
+              Placeholder: "Placeholder"
+            }
+          : {
+              ..._.set(state.categories, action.payload, {
+                ..._.get(state.categories, action.payload),
+                Placeholder: "Placeholder"
+              })
+            };
       return { ...state, categories: newCategories };
     }
     case CATEGORIES_EDIT: {
@@ -44,31 +50,47 @@ const CategoriesReducer = (state = INITIAL_STATE, action) => {
     }
     case CATEGORIES_SAVE: {
       const newCategory = {
-        ..._.get(state.categories, action.payload.parentPath),
+        ...(action.payload.parentPath === ""
+          ? state.categories
+          : _.get(state.categories, action.payload.parentPath)),
         [action.payload.value]: true
       };
       delete newCategory["Placeholder"];
-      const newCategories = {
-        ..._.set(state.categories, action.payload.parentPath, newCategory)
-      };
+      const newCategories =
+        action.payload.parentPath === ""
+          ? newCategory
+          : {
+              ..._.set(state.categories, action.payload.parentPath, newCategory)
+            };
       return { ...state, categories: newCategories };
     }
     case CATEGORIES_CANCEL: {
-      const newCategory = {
-        ..._.get(state.categories, action.payload)
-      };
+      const newCategory ={
+        ...action.payload === ""
+          ? state.categories
+          : _.get(state.categories, action.payload)}
       delete newCategory["Placeholder"];
-      const newCategories = {
-        ..._.set(state.categories, action.payload, newCategory)
-      };
+      const newCategories =
+        action.payload === ""
+          ? newCategory
+          : {
+              ..._.set(state.categories, action.payload, newCategory)
+            };
       return { ...state, categories: newCategories };
     }
     case CATEGORIES_DELETE: {
-      const newCategory = _.get(state.categories, action.payload.path);
-      delete newCategory[action.payload.name];
-      const newCategories = {
-        ..._.set(state.categories, action.payload.path, newCategory)
+      const newCategory = {
+        ...(action.payload.path === ""
+          ? state.categories
+          : _.get(state.categories, action.payload.path))
       };
+      delete newCategory[action.payload.name];
+      const newCategories =
+        action.payload.path === ""
+          ? newCategory
+          : {
+              ..._.set(state.categories, action.payload.path, newCategory)
+            };
       return { ...state, categories: newCategories };
     }
     case CATEGORIES_TOGGLE_ALERT: {
@@ -82,11 +104,17 @@ const CategoriesReducer = (state = INITIAL_STATE, action) => {
       };
     }
     case CATEGORIES_DELETE_TAG: {
-      const newCategory = _.get(state.categories, state.taggedPath);
+      const newCategory =
+        state.taggedPath === ""
+          ? state.categories
+          : _.get(state.categories, state.taggedPath);
       delete newCategory[state.taggedName];
-      const newCategories = {
-        ..._.set(state.categories, state.taggedPath, newCategory)
-      };
+      const newCategories =
+        state.taggedPath === ""
+          ? newCategory
+          : {
+              ..._.set(state.categories, state.taggedPath, newCategory)
+            };
       return { ...state, categories: newCategories };
     }
     default:

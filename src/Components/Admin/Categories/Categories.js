@@ -129,6 +129,12 @@ class CategoriesClass extends Component {
       <div>
         <AlertModal isOpen={this.props.showAlert} />
         <Container>
+          <button
+            className="btn btn-primary"
+            onClick={() => this.props.new("root")}
+          >
+            Add Category
+          </button>
           <br /> {this.renderCategories()}
           <br />
         </Container>
@@ -141,7 +147,8 @@ function mapStateToProps(state) {
   return { ...state.Categories };
 }
 const Categories = connect(mapStateToProps, {
-  get: CategoriesActions.get
+  get: CategoriesActions.get,
+  new: CategoriesActions.new
 })(CategoriesClass);
 
 export { Categories };
