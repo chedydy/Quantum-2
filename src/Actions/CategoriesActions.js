@@ -7,7 +7,8 @@ import {
   CATEGORIES_DELETE,
   CATEGORIES_TOGGLE_ALERT,
   CATEGORIES_TAG,
-  CATEGORIES_DELETE_TAG
+  CATEGORIES_DELETE_TAG,
+  CATEGORIES_UPDATE
 } from "./types";
 import { CategoriesService } from "../Services";
 const CategoriesActions = {
@@ -79,6 +80,10 @@ const CategoriesActions = {
   },
   deleteTagged() {
     return { type: CATEGORIES_DELETE_TAG };
+  },
+  update(categories) {
+    CategoriesService.update(categories);
+    return { type: CATEGORIES_UPDATE };
   }
 };
 

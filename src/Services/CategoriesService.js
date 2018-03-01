@@ -63,6 +63,9 @@ const CategoriesService = {
   delete(categoryPath) {
     const categoryNode = categoryPath.replace("-", "/");
     return categoriesRef.child(categoryNode).remove();
+  },
+  update(categories) {
+    return categoriesRef.update(categories);
   }
 };
 
