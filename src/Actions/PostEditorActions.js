@@ -72,12 +72,7 @@ const PostEditorActions = {
           ...preview,
           tags: _.mapKeys(preview.tags.split(" "))
         }),
-        PostService.updatePost(post),
-        CategoriesService.update({
-          oldCategory: oldCategory,
-          category: preview.category,
-          id: preview.id
-        })
+        PostService.updatePost(post)
       ]).then(() => {
         dispatch({ type: POST_EDITOR_SUBMIT_SUCCESS });
         resolve();

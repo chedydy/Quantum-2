@@ -50,8 +50,7 @@ class CategoriesClass extends Component {
       <div>
         <AlertModal isOpen={this.props.showAlert} />
         <Container>
-          
-        <br />
+          <br />
           <button
             className="btn btn-primary"
             onClick={() => this.props.new("root")}

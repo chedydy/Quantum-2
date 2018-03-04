@@ -32,19 +32,18 @@ const PostPreviewService = {
     });
   },
   subscribePreviews: function(callback) {
-    postPreviewRef
-      .on(
-        "value",
-        snapshot => {
-          const previews = _.map(snapshot.val(), (val, id) => {
-            return { ...val };
-          });
-          callback(previews);
-        },
-        error => {
-          console.log(error);
-        }
-      );
+    postPreviewRef.on(
+      "value",
+      snapshot => {
+        const previews = _.map(snapshot.val(), (val, id) => {
+          return { ...val };
+        });
+        callback(previews);
+      },
+      error => {
+        console.log(error);
+      }
+    );
   },
   subscribePreview: function(id, callback) {
     postPreviewRef.child(id).on(
@@ -97,7 +96,10 @@ const PostPreviewService = {
   getTags: function() {
     return new Promise((resolve, reject) => {
       tagsRef.once("value", function(snapshot) {
-        resolve(snapshot.val());
+        const tags = _.map(snapshot.val(), (val, id) => {
+          return { label: id, value: id };
+        });
+        resolve(tags);
       });
     });
   },

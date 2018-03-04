@@ -3,3 +3,4 @@ export * from "./ContactRequestsActions";
 export * from "./PostEditorActions";
 export * from "./PostsActions";
 export * from './CategoriesActions'
+export * from './PostsPublicActions'

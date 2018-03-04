@@ -10,6 +10,7 @@ import { ContactRequestsReducer } from "./ContactRequestsReducer";
 import { PostEditorReducer } from "./PostEditorReducer";
 import { PostsReducer } from "./PostsReducer";
 import { CategoriesReducer } from "./CategoriesReducer";
+import { PostsPublicReducer } from "./PostsPublicReducer";
 
 const history = createHistory();
 const middleware = routerMiddleware(history);
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   PostEditor: PostEditorReducer,
   Posts: PostsReducer,
   router: routerReducer,
-  Categories: CategoriesReducer
+  Categories: CategoriesReducer,
+  PostsPublic: PostsPublicReducer
 });
 const store = createStore(rootReducer, {}, applyMiddleware(thunk, middleware));
 

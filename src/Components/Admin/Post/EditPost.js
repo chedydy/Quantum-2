@@ -1,9 +1,3 @@
-import _ from "lodash";
-import {
-  PostPreviewService,
-  PostService,
-  CategoriesService
-} from "../../../Services";
 import { PostEditorActions } from "../../../Actions";
 import { connect } from "react-redux";
 import "./EditPost.css";

@@ -1,4 +1,3 @@
-import _ from "lodash";
 import { POSTS_FETCH_SUCCESS, POSTS_FILTER, POSTS_SORT_BY } from "../Actions";
 import { PostPreviewService } from "../Services";
 const INITIAL_STATE = {

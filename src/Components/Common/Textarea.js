@@ -14,7 +14,10 @@ const Textarea = props => {
           required={props.required}
           value={props.value || ""}
           onChange={e => props.onChange(e.target.value)}
-          onSelect={e => props.onSelect(e.target.selectionStart,e.target.selectionEnd)}
+          onSelect={e => {
+            if (props.onSelect)
+              props.onSelect(e.target.selectionStart, e.target.selectionEnd);
+          }}
         />
       </div>
     </div>

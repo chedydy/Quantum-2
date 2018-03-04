@@ -1,6 +1,6 @@
 import React from "react";
-import {NavLink, Navigator} from "../Common";
-import {Link} from "react-router-dom";
+import { Navigator } from "../Common";
+import { Link } from "react-router-dom";
 const PublicNavigator = props => {
   return (
     <Navigator>
@@ -20,4 +20,4 @@ const PublicNavigator = props => {
   );
 };
 
-export {PublicNavigator};
+export { PublicNavigator };

@@ -35,6 +35,7 @@ const PostEditorReducer = (state = INITIAL_STATE, action) => {
     case POST_EDITOR_FETCH_SUCCESS:
       return { ...state, ...action.payload };
     case POST_EDITOR_FETCH_CATEGORIES:
+    
       return { ...state, categories: action.payload };
     case POST_EDITOR_SUBMIT_ERROR:
       return { ...state, error: action.payload };
