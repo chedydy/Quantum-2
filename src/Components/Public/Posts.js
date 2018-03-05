@@ -3,13 +3,11 @@ import Select from "react-select";
 import "react-select/dist/react-select.css";
 import _ from "lodash";
 import { connect } from "react-redux";
-import { Container, Button } from "../Common";
-import { PostPreviewService, CategoriesService } from "../../Services";
-import { PostsPreviewItem } from "./PostsPreviewItem";
+import { Container } from "../Common";
 import { Category } from "./Category";
 import { Title } from "./PostTitle";
 import "./PostsPreview.css";
-import image from "../../img/about-bg.jpg";
+import image from '../../img/about-bg.jpg';
 import { PageHeader } from "./PageHeader";
 import { PostsPublicActions } from "../../Actions";
 
@@ -61,7 +59,6 @@ class PostsClass extends Component {
     return items;
   }
   render() {
-    const { selectValue } = this.state;
     return (
       <div>
         <PageHeader image={image} title={"Search for posts"}>

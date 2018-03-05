@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: quantum
+spec:
+  selector:
+    matchLabels:
+      app: quantum
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: quantum
+    spec:
+      containers:
+      # - env:
+      #   - name: SAP_HOST     
+      #     valueFrom:
+      #       configMapKeyRef:
+      #           name: quantum
+      #           key: SAP_HOST
+      #   - name: PORT     
+      #     valueFrom:
+      #       configMapKeyRef:
+      #           name: quantum
+      #           key: PORT  
+        name: quantum
+        image: radu/quantum:v3
+        ports:
+        - containerPort: 80

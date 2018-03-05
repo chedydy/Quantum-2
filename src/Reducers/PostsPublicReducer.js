@@ -28,7 +28,7 @@ const PostsPublicReducer = (state = INITIAL_STATE, action) => {
       let selectedTags = state.selectedTags;
       let filteredPreviews =
         filterText === ""
-          ? state.previews.slice()
+          ? action.payload.slice()
           : PostPreviewService.filterByText(action.payload, filterText);
       filteredPreviews =
         selectedTags.length === 0
@@ -138,22 +138,6 @@ const PostsPublicReducer = (state = INITIAL_STATE, action) => {
         selectedTags
       };
     }
-    // case POSTS_FILTER: {
-    //   let filteredPreviews =
-    //     action.payload === ""
-    //       ? state.previews.slice()
-    //       : PostPreviewService.filterByText(state.previews, action.payload);
-    //   if (state.sorted) {
-    //     filteredPreviews.sort((a, b) => {
-    //       return sort(a, b, state.sortField, state.sortDirection);
-    //     });
-    //   }
-    //   return {
-    //     ...state,
-    //     filteredPreviews,
-    //     filterText: action.payload
-    //   };
-    // }
     default:
       return state;
   }
