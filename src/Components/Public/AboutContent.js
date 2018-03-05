@@ -3,7 +3,7 @@ import ReactMarkdown from "react-markdown";
 import { PageHeader } from "./PageHeader";
 import { Container } from "../Common";
 import contact1 from "../../img/blue_space_nebula.jpg";
-import AboutCSS from "./AboutContent.css";
+import "./AboutContent.css";
 
 class AboutContent extends Component {
   // state = {   visible: false };
@@ -16,7 +16,7 @@ class AboutContent extends Component {
   render() {
     const {about} = this.props;
     return (
-      <div>
+      <div className="myheader">
         <PageHeader image={about.imageUrl} title={"About Me"}>
           {about.title}
         </PageHeader>
