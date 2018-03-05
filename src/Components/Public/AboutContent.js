@@ -4,6 +4,7 @@ import { PageHeader } from "./PageHeader";
 import { Container } from "../Common";
 import contact1 from "../../img/blue_space_nebula.jpg";
 import "./AboutContent.css";
+import "./AboutContent.scss";
 
 class AboutContent extends Component {
   // state = {   visible: false };
