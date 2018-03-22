@@ -1,0 +1,19 @@
+.posts-container {
+  display: flex;
+  flex-direction: row;
+}
+.categories {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding-left: 0px;
+}
+.posts {
+  flex: 5;
+  border-left: 2px solid lightgray;
+  display: flex;
+}
+
+header.masthead {
+  margin-bottom: 0px;
+}

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 import "../Common/Button.css";
-import { app } from "../../firebase/firebase";
 import { Input, Textarea, Container } from "../Common";
 import { PageHeader } from "./PageHeader";
 import contactImg from "../../img/contact-bg.jpg";

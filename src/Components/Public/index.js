@@ -9,3 +9,4 @@ export * from "./Footer"
 export * from "./Post"
 export * from "./PostContent"
 export * from './Posts'
+export * from './Posts-New'

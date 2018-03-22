@@ -4,7 +4,9 @@ import {
   POSTS_PUBLIC_CATEGORIES_GET,
   POSTS_PUBLIC_FILTER_BY_TEXT,
   POSTS_PUBLIC_FILTER_BY_TAGS,
-  POSTS_PUBLIC_FETCH_TAGS
+  POSTS_PUBLIC_FETCH_TAGS,
+  POSTS_PUBLIC_SELECT_CATEGORY,
+  POSTS_PUBLIC_UNSELECT_CATEGORY
 } from "../Actions";
 import { PostPreviewService } from "../Services";
 const INITIAL_STATE = {
@@ -13,9 +15,10 @@ const INITIAL_STATE = {
   filterText: "",
   selectedTags: [],
   tags: [],
-  model: {}
+  model: {},
+  selectedCategoryPath: ""
 };
-function createState() {}
+
 const PostsPublicReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case POSTS_PUBLIC_FETCH_TAGS: {
@@ -138,6 +141,17 @@ const PostsPublicReducer = (state = INITIAL_STATE, action) => {
         selectedTags
       };
     }
+    case POSTS_PUBLIC_SELECT_CATEGORY:
+      return { ...state, selectedCategoryPath: action.payload };
+    case POSTS_PUBLIC_UNSELECT_CATEGORY:
+      // const newPath = state.selectedCategoryPath.lastIndexOf(action.payload);
+      // console.log(newPath);
+      return {
+        ...state,
+        selectedCategoryPath: state.selectedCategoryPath.split(
+          action.payload
+        )[0]
+      };
     default:
       return state;
   }

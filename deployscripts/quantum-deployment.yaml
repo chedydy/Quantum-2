@@ -3,9 +3,6 @@ kind: Deployment
 metadata:
   name: quantum
 spec:
-  selector:
-    matchLabels:
-      app: quantum
   replicas: 1
   template:
     metadata:
@@ -13,18 +10,11 @@ spec:
         app: quantum
     spec:
       containers:
-      # - env:
-      #   - name: SAP_HOST     
-      #     valueFrom:
-      #       configMapKeyRef:
-      #           name: quantum
-      #           key: SAP_HOST
-      #   - name: PORT     
-      #     valueFrom:
-      #       configMapKeyRef:
-      #           name: quantum
-      #           key: PORT  
+        - env:
+          - name: PORT
+            value: "8080"
         name: quantum
         image: radu/quantum:v3
         ports:
-        - containerPort: 80
+        - name: nodejs-port
+          containerPort: 80

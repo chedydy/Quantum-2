@@ -1,0 +1,97 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+body {
+  font-family: "Roboto";
+}
+div,
+div * {
+  box-sizing: border-box;
+}
+
+.box {
+  position: relative;
+  margin: 5px;
+  width: 300px;
+  height: 300px;
+  border: 0.6em solid #2b2c33;
+}
+.box--half {
+  height: 147.5px;
+}
+.box:after,
+.box:before {
+  z-index: 13;
+  content: " ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0px;
+  height: 100%;
+  background-color: #2b2c33;
+  transition: all 0.7s ease;
+}
+.box:before {
+  z-index: 12;
+  background-color: #2196f3;
+}
+.box.reverse--transition:after {
+  left: 100%;
+}
+.box.reverse--transition:before {
+  left: 100%;
+}
+.box .position {
+  z-index: 15;
+  position: absolute;
+  left: 1em;
+  bottom: 1em;
+}
+.box .position--right {
+  right: 1em;
+  left: auto;
+}
+.box .position--right .header {
+  text-align: right;
+}
+.box .position .header {
+  margin: 0.6em 0;
+}
+.box .position .header .title {
+  font-weight: bold;
+  font-size: 1.8em;
+  color: #2b2c33;
+  transition: all 1s ease;
+}
+.box .position .button {
+  padding: 0.3em 0.7em;
+  background-color: #2b2c33;
+  border: 0;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.3em;
+  cursor: pointer;
+  transition: all 0.7s ease;
+}
+.box:hover:after {
+  width: 100%;
+  transition: all 0.7s ease;
+  transition-delay: 0.1s;
+}
+.box:hover:before {
+  width: 100%;
+  transition: all 0.6s ease;
+}
+.box:hover .position .title {
+  color: #fff;
+  transition: all 0.4s ease;
+}
+.box:hover .position .button {
+  background-color: #fff;
+  color: #2b2c33;
+  transition: all 0.4s ease;
+}
+.box:hover.reverse--transition:after {
+  left: 0%;
+}
+.box:hover.reverse--transition:before {
+  left: 0%;
+}

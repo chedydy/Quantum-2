@@ -6,6 +6,7 @@ import {
   Home,
   PublicNavigator,
   PostsPreview,
+  PostsNew,
   Footer,
   Post,
   Posts
@@ -20,7 +21,8 @@ const PublicLayout = () => {
       <Switch>
         <Route path="/about" component={About} exact={true} />
         <Route path="/posts/:id" component={Post} exact={true} />
-        <Route path="/posts" component={Posts} exact={true} />
+        {/* <Route path="/posts" component={Posts} exact={true} /> */}
+        <Route path="/posts" component={PostsNew} exact={true} />
         <Route path="/contact" component={Contact} exact={true} />
         <Route path="/" component={Home} exact={true} />
         <Route component={NotFoundPage} exact={true} />

@@ -3,13 +3,11 @@ import {
   POSTS_PUBLIC_FETCH,
   POSTS_PUBLIC_CATEGORIES_GET,
   POSTS_PUBLIC_FILTER_BY_TEXT,
-  POSTS_PUBLIC_FETCH_TAGS
+  POSTS_PUBLIC_FETCH_TAGS,
+  POSTS_PUBLIC_SELECT_CATEGORY,
+  POSTS_PUBLIC_UNSELECT_CATEGORY
 } from "./types";
-import {
-  PostService,
-  PostPreviewService,
-  CategoriesService
-} from "../Services";
+import { PostPreviewService, CategoriesService } from "../Services";
 const PostsPublicActions = {
   get: () => dispatch => {
     PostPreviewService.subscribePreviews(previews => {
@@ -20,6 +18,12 @@ const PostsPublicActions = {
     CategoriesService.subscribeRaw(categories => {
       dispatch({ type: POSTS_PUBLIC_CATEGORIES_GET, payload: categories });
     });
+  },
+  selectCategory(categoryPath) {
+    return { type: POSTS_PUBLIC_SELECT_CATEGORY, payload: categoryPath };
+  },
+  unSelectCategory(category) {
+    return { type: POSTS_PUBLIC_UNSELECT_CATEGORY, payload: category };
   },
   getTags: () => dispatch => {
     PostPreviewService.getTags().then(tags => {
