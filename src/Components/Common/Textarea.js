@@ -1,4 +1,5 @@
 import React from "react";
+import "./Button.css";
 
 const Textarea = props => {
   return (
@@ -8,7 +9,7 @@ const Textarea = props => {
         <textarea
           rows={props.rows || "5"}
           style={{ zIndex: "unset" }}
-          className="form-control"
+          className="form-control new-input"
           placeholder={props.placeholder}
           id={props.id}
           required={props.required}

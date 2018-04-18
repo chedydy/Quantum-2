@@ -1,3 +1,20 @@
 .btn-round {
     border-radius: 3px;
 }
+
+.color-p {
+    color:bisque;
+}
+
+.new-input {
+    font-size: 1.5em!important;
+      position: relative!important;
+      z-index: 1!important;
+      resize: none!important;
+      border-radius: 3px!important;
+      background: white!important;
+      -webkit-box-shadow: none !important;
+      box-shadow: none !important;
+      font-family: "arial"!important;
+      padding: 3%!important;
+  }

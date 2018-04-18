@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-
 import "../Common/Button.css";
 import { Input, Textarea, Container } from "../Common";
 import { PageHeader } from "./PageHeader";
-import contactImg from "../../img/contact-bg.jpg";
+import contactImg from "../../img/image_quantum.jpg";
 import { ContactRequestsService } from "../../Services";
 
 class Contact extends Component {
@@ -30,14 +29,14 @@ class Contact extends Component {
   render() {
     return (
       <div>
-        <PageHeader image={contactImg} title={"Contact Me"}>
-          Have questions? I have answers (maybe).
+        <PageHeader image={contactImg} title={"Contact Us"}>
+          Iy you have any questions regarding our NGO, do not hesitate to tell us.
         </PageHeader>
         <Container>
-          <div className="col">
+          <div className="col color-p">
             <p>
-              Want to get in touch with me? Fill out the form below to send me a
-              message and I will try to get back to you within 24 hours!
+              Want to get in touch with us? Fill out the form below to send us a
+              message and we will try to get back to you within 24 hours!
             </p>
             <form
               name="sentMessage"
