@@ -4,13 +4,13 @@ const categoriesRef = app.ref().child("categories");
 function mapCategory(categories) {
   return _.map(categories, (category, key) => {
     if (category === true) {
-      return [key];
+      return [`/${key}`];
     }
     const subsArray = mapCategory(category);
     const subs = _.map(subsArray, val => {
-      return `${key}-${val}`;
+      return `/${key}${val}`;
     });
-    return [key].concat(subs);
+    return [`/${key}`].concat(subs);
   });
 }
 const CategoriesService = {
@@ -52,14 +52,6 @@ const CategoriesService = {
   add(category, path) {
     categoriesRef.child(path.replace("-", "/")).update({
       [category]: true
-    });
-  },
-  update({ oldCategory, category, id }) {
-    const oldCategoryNode = oldCategory.replace("-", "/");
-    const categoryNode = category.replace("-", "/");
-    categoriesRef.child(`${oldCategoryNode}/${id}`).remove();
-    categoriesRef.child(categoryNode).update({
-      [id]: true
     });
   },
   delete(categoryPath) {

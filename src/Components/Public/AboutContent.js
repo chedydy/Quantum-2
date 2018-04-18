@@ -35,7 +35,7 @@ class AboutContent extends Component {
           <div className="wrap-contacts">
             <div className="container-avatar">
               <img src={about.imageUrl} alt="Avatar" className="image" />
-              <div className="overlay">
+              <div className="overlay-reverse">
                 <div className="text">Hello World</div>
               </div>
             </div>
@@ -49,7 +49,7 @@ class AboutContent extends Component {
             <br />
             <div className="container-avatar">
               <img src={about.imageUrl} alt="Avatar" className="image" />
-              <div className="overlay">
+              <div className="overlay-reverse">
                 <div className="text">Hello World</div>
               </div>
             </div>

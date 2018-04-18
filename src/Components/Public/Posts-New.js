@@ -87,7 +87,10 @@ class PostsClass extends Component {
     });
   }
   renderPosts() {
-    return <PostPreviewItem />;
+    const posts = _.map(this.props.filteredPreviews, (value, key) => {
+      return <PostPreviewItem post={value} key={key} />;
+    });
+    return posts;
   }
   render() {
     return (

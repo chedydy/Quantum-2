@@ -16,7 +16,8 @@ const INITIAL_STATE = {
   selectedTags: [],
   tags: [],
   model: {},
-  selectedCategoryPath: ""
+  selectedCategoryPath: "/",
+  filteredPreviews: ["", "", "", ",", ",", ",", ","]
 };
 
 const PostsPublicReducer = (state = INITIAL_STATE, action) => {
@@ -47,10 +48,15 @@ const PostsPublicReducer = (state = INITIAL_STATE, action) => {
           ..._.set(model, path, currentContent)
         };
       });
+      const previews = action.payload;
+      filteredPreviews = _.filter(previews, preview => {
+        return preview.category.includes(state.selectedCategoryPath);
+      });
       return {
         ...state,
-        previews: action.payload,
-        model
+        previews,
+        model,
+        filteredPreviews
       };
     }
     case POSTS_PUBLIC_CATEGORIES_GET: {
@@ -141,17 +147,30 @@ const PostsPublicReducer = (state = INITIAL_STATE, action) => {
         selectedTags
       };
     }
-    case POSTS_PUBLIC_SELECT_CATEGORY:
-      return { ...state, selectedCategoryPath: action.payload };
-    case POSTS_PUBLIC_UNSELECT_CATEGORY:
-      // const newPath = state.selectedCategoryPath.lastIndexOf(action.payload);
-      // console.log(newPath);
+    case POSTS_PUBLIC_SELECT_CATEGORY: {
+      const selectedCategoryPath = action.payload;
+      const filteredPreviews = _.filter(state.previews, preview => {
+        return preview.category.includes(selectedCategoryPath);
+      });
       return {
         ...state,
-        selectedCategoryPath: state.selectedCategoryPath.split(
-          action.payload
-        )[0]
+        selectedCategoryPath,
+        filteredPreviews
       };
+    }
+    case POSTS_PUBLIC_UNSELECT_CATEGORY: {
+      const selectedCategoryPath = state.selectedCategoryPath.split(
+        action.payload
+      )[0];
+      const filteredPreviews = _.filter(state.previews, preview => {
+        return preview.category.includes(selectedCategoryPath);
+      });
+      return {
+        ...state,
+        selectedCategoryPath,
+        filteredPreviews
+      };
+    }
     default:
       return state;
   }
