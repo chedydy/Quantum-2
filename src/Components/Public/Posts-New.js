@@ -8,7 +8,7 @@ import { Category } from "./Category";
 import { Title } from "./PostTitle";
 import { CategoriesNew } from "./Categories-New";
 import "./PostsPreview.css";
-import image from "../../img/about-bg.jpg";
+import image from "../../img/quantum3jpg.jpg";
 import { PageHeader } from "./PageHeader";
 import { PostsPublicActions } from "../../Actions";
 import { PostPreviewItem } from "./PostPreviewItem-New";
