@@ -1,15 +1,14 @@
 import React from "react";
-import "./Button.css";
+import "./Textarea.css";
 
 const Textarea = props => {
   return (
-    <div className="control-group">
-      <div className="form-group floating-label-form-group controls">
-        <label>{props.label}</label>
+    <div className="">
+      <div className="">
         <textarea
           rows={props.rows || "5"}
           style={{ zIndex: "unset" }}
-          className="form-control new-input"
+          className=""
           placeholder={props.placeholder}
           id={props.id}
           required={props.required}

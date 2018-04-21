@@ -28,7 +28,7 @@ class NavigatorComponent extends Component {
         >
         
           <div className="container-fluid background__color">
-            <Link to="/">
+            <Link to="/" className='logo-button'>
               <img
                 src={logo}
                 className="navbar-brand logo-style"
