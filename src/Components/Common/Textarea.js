@@ -3,12 +3,11 @@ import "./Textarea.css";
 
 const Textarea = props => {
   return (
-    <div className="">
-      <div className="">
+    <div className="textarea">
         <textarea
           rows={props.rows || "5"}
           style={{ zIndex: "unset" }}
-          className=""
+          className="textarea-input"
           placeholder={props.placeholder}
           id={props.id}
           required={props.required}
@@ -19,7 +18,6 @@ const Textarea = props => {
               props.onSelect(e.target.selectionStart, e.target.selectionEnd);
           }}
         />
-      </div>
     </div>
   );
 };
