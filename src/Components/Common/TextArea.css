@@ -1,10 +1,20 @@
-.textarea-view {
-    width: 100%;
-    height: 150px;
-    padding: 12px 20px;
-    box-sizing: border-box;
-    border: 2px solid rgb(167, 49, 49);
-    border-radius: 4px;
-    background-color: #f8f8f8;
-    resize: none;
-}
+.textarea {
+    margin-bottom: 1em;
+    flex-direction: row;
+    display: flex;
+    margin-top: 1em;
+    border-radius: 5px;
+    background-color: #f0f8ff;
+  }
+  .textarea-input {
+    background: inherit;
+    flex: 1;
+    border-radius: inherit;
+    padding-left: 1em;
+    border: 0px;
+  }
+  .texarea-input:focus {
+    outline: 0;
+  }
+
+  

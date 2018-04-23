@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../Common/Button.css";
-import { Input, Textarea, Container } from "../Common";
+import { Input, Textarea, Container, IconInput } from "../Common";
 import { PageHeader } from "./PageHeader";
 import contactImg from "../../img/image_quantum.jpg";
 import { ContactRequestsService } from "../../Services";
@@ -30,7 +30,11 @@ class Contact extends Component {
     return (
       <div>
         <PageHeader image={contactImg} title={"Contact Us"}>
+<<<<<<< HEAD
           Iy you have any questions regarding our NGO, do not hesitate to tell
+=======
+          If you have any questions regarding our NGO, do not hesitate to tell
+>>>>>>> 8e09ea5bfb34b8726995e6281ff61c989760409c
           us.
         </PageHeader>
         <Container>
@@ -45,28 +49,35 @@ class Contact extends Component {
               noValidate
               onSubmit={this.handleSubmit}
             >
-              <Input
+              <IconInput
                 id="name"
                 placeholder="Name"
                 label="Name"
                 type="text"
+                faIcon="fa-user"
                 value={this.state.name}
                 onChange={this.handleChange.bind(this, "name")}
               />
+<<<<<<< HEAD
 
               <Input
+=======
+              <IconInput
+>>>>>>> 8e09ea5bfb34b8726995e6281ff61c989760409c
                 id="email"
                 placeholder="Email Address"
                 label="Email Address"
                 type="email"
+                faIcon="fa-envelope"
                 value={this.state.email}
                 onChange={this.handleChange.bind(this, "email")}
               />
-              <Input
+              <IconInput
                 id="phone"
                 placeholder="Phone Number"
                 label="Phone Number"
                 type="tel"
+                faIcon="fa-phone"
                 value={this.state.phone}
                 onChange={this.handleChange.bind(this, "phone")}
               />

@@ -1,0 +1,23 @@
+.iconInput {
+  margin-bottom: 1em;
+  flex-direction: row;
+  display: flex;
+  margin-top: 1em;
+  border-radius: 5px;
+  background-color: #f0f8ff;
+}
+.iconInput-input {
+  background: inherit;
+  flex: 1;
+  border-radius: inherit;
+  padding-left: 1em;
+  border: 0px;
+}
+.iconInput-input:focus {
+  outline: 0;
+}
+
+.iconInput-icon {
+  padding: 7px;
+  padding-left: 15px;
+}
