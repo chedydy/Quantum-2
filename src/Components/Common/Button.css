@@ -1,20 +1,33 @@
 .btn-round {
-    border-radius: 3px;
+  border-radius: 3px;
 }
 
 .color-p {
-    color:bisque;
+  color: bisque;
 }
 
 .new-input {
-    font-size: 1.5em!important;
-      position: relative!important;
-      z-index: 1!important;
-      resize: none!important;
-      border-radius: 3px!important;
-      background: white!important;
-      -webkit-box-shadow: none !important;
-      box-shadow: none !important;
-      font-family: "arial"!important;
-      padding: 2%!important;
-  }
+  font-size: 1.5em !important;
+  position: relative !important;
+  z-index: 1 !important;
+  resize: none !important;
+  border-radius: 3px !important;
+  background: white !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  font-family: "arial" !important;
+  padding: 2% !important;
+}
+.inputWithIcon input[type-text] {
+  padding-left: 40px;
+}
+
+.inputWithIcon {
+  position: relative;
+}
+
+.inputWithIon i {
+    position: absolute;
+    left: 0;
+    top: 8px;
+}

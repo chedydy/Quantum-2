@@ -30,7 +30,8 @@ class Contact extends Component {
     return (
       <div>
         <PageHeader image={contactImg} title={"Contact Us"}>
-          Iy you have any questions regarding our NGO, do not hesitate to tell us.
+          Iy you have any questions regarding our NGO, do not hesitate to tell
+          us.
         </PageHeader>
         <Container>
           <div className="col color-p">
@@ -52,6 +53,7 @@ class Contact extends Component {
                 value={this.state.name}
                 onChange={this.handleChange.bind(this, "name")}
               />
+
               <Input
                 id="email"
                 placeholder="Email Address"

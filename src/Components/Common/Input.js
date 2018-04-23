@@ -11,8 +11,9 @@ const Input = props => {
           placeholder={props.placeholder}
           id={props.id}
           value={props.value || ""}
-          onChange={(event)=>props.onChange(event.target.value)}
+          onChange={event => props.onChange(event.target.value)}
         />
+        <i className="fa fa-user fa-lg" aria-hidden="true" />
         <p className="help-block text-danger" />
       </div>
     </div>
