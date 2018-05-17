@@ -7,7 +7,8 @@ import {
   POST_EDITOR_SUBMIT_SUCCESS,
   POST_EDITOR_SUBMIT_ERROR,
   POST_EDITOR_FETCH_SUCCESS,
-  CHANGE_PREVIEW_VISIBILITY
+  CHANGE_PREVIEW_VISIBILITY,
+  POST_EDITOR_SELECT_CATEGORY
 } from "./types";
 import {
   PostPreviewService,
@@ -65,7 +66,7 @@ const PostEditorActions = {
         });
     });
   },
-  update: ({ preview, post, oldCategory }) => dispatch => {
+  update: ({ preview, post }) => dispatch => {
     return new Promise(resolve => {
       Promise.all([
         PostPreviewService.updatePreview({
@@ -82,22 +83,46 @@ const PostEditorActions = {
   get: id => dispatch => {
     Promise.all([
       PostPreviewService.getPreview(id),
-      PostService.getPost(id)
+      PostService.getPost(id),
+      CategoriesService.get()
     ]).then(values => {
       let tags = "";
       _.forEach(values[0].tags, (val, key) => {
         tags = `${tags} ${val}`;
       });
       tags = tags.trim();
+      const categories = values[2];
+      const post = values[1];
+      const preview = { ...values[0], tags };
+      const payload = {
+        preview,
+        post,
+        selectedCategory: null,
+        subCategories: []
+      };
+      if (categories[preview.category]) {
+        payload.selectedCategory = {
+          label: preview.category,
+          value: categories[preview.category]
+        };
+        payload.subCategories = categories[preview.category];
+      }
       dispatch({
         type: POST_EDITOR_FETCH_SUCCESS,
-        payload: {
-          preview: { ...values[0], tags },
-          post: values[1],
-          oldCategory: values[0].category
-        }
+        payload
       });
     });
+  },
+  selectCategory: category => {
+    const selected = { selected: category };
+    if (category) {
+      selected.category = category.label;
+      selected.subCategories = category.value;
+    }
+    return {
+      type: POST_EDITOR_SELECT_CATEGORY,
+      payload: selected
+    };
   }
 };
 

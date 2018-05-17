@@ -4,12 +4,12 @@ import { Container, SubmitButton, Modal, Button } from "../../Common";
 import { PostContent } from "../../Public";
 import { PostForm } from "./PostForm";
 import "./EditPost.css";
-import { PostEditorActions } from "../../../Actions";
+import { PostEditorActions, CategoriesActions } from "../../../Actions";
 import { connect } from "react-redux";
 
 class NewPostClass extends Component {
   componentWillMount() {
-    this.props.fetchCategories();
+    this.props.subscribeCategories();
     this.onInit();
   }
   onInit() {}
@@ -43,7 +43,10 @@ class NewPostClass extends Component {
                 post={this.props.post}
                 preview={this.props.preview}
                 categories={this.props.categories}
+                subCategories={this.props.subCategories}
+                selectedCategory={this.props.selectedCategory}
                 updateProps={this.props.updateProp.bind(this)}
+                selectCategories={this.props.selectCategory.bind(this)}
               />
               <br />
               <div className="row justify-content-end col">
@@ -67,10 +70,14 @@ class NewPostClass extends Component {
   }
 }
 function mapStateToProps(state) {
-  return { ...state.PostEditor };
+  return {
+    ...state.PostEditor,
+    categories: state.Categories.categories
+  };
 }
 const NewPost = connect(mapStateToProps, {
-  ...PostEditorActions
+  ...PostEditorActions,
+  subscribeCategories: CategoriesActions.subscribe
 })(NewPostClass);
 
 export { NewPost, NewPostClass };

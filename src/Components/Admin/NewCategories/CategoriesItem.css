@@ -1,0 +1,24 @@
+.edit-button:hover {
+  text-decoration: unset !important;
+}
+
+.preview-button {
+  border: 0 !important;
+  background: transparent !important;
+  cursor: pointer !important;
+}
+
+.preview-button:hover {
+  color: #0085a1 !important;
+}
+
+.preview-button:focus {
+  outline: 0 !important;
+}
+.margin {
+  margin-right: 20px !important;
+}
+
+.categoryForm {
+  font-size: xx-large;
+}

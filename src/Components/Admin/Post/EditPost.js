@@ -1,5 +1,5 @@
-import { PostEditorActions } from "../../../Actions";
 import { connect } from "react-redux";
+import { PostEditorActions, CategoriesActions } from "../../../Actions";
 import "./EditPost.css";
 
 import { NewPostClass } from "./NewPost";
@@ -23,10 +23,14 @@ class EditPostClass extends NewPostClass {
   }
 }
 function mapStateToProps(state) {
-  return { ...state.PostEditor };
+  return {
+    ...state.PostEditor,
+    categories: state.Categories.categories
+  };
 }
 const EditPost = connect(mapStateToProps, {
-  ...PostEditorActions
+  ...PostEditorActions,
+  subscribeCategories: CategoriesActions.subscribe
 })(EditPostClass);
 
 export { EditPost };

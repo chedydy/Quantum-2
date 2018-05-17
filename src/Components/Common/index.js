@@ -12,3 +12,4 @@ export * from "./SubmitButton";
 export * from "./Modal";
 export * from "./SelectInput";
 export * from "./IconInput";
+export * from "./ActionIconInput";
