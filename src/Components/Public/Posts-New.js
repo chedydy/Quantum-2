@@ -10,7 +10,7 @@ import { CategoriesNew } from "./Categories-New";
 import "./PostsPreview.css";
 import image from "../../img/quantum3.jpg";
 import { PageHeader } from "./PageHeader";
-import { PostsPublicActions } from "../../Actions";
+import { PostsPublicActions, CategoriesActions } from "../../Actions";
 import { PostPreviewItem } from "./PostPreviewItem-New";
 import "./Posts-New.css";
 
@@ -18,7 +18,7 @@ class PostsClass extends Component {
   componentWillMount() {
     this.props.get();
     this.props.getTags();
-    this.props.getCategories();
+    this.props.subscribeCategories();
   }
 
   handleSelectChange(value) {
@@ -63,27 +63,32 @@ class PostsClass extends Component {
   //     return items;
   //   }
 
-  renderCategories(categories, parentPath) {
-    return _.map(categories, (value, key) => {
-      const categoryPath = `${parentPath}${key}/`;
-      const showChildren = this.props.selectedCategoryPath.includes(
-        categoryPath
-      );
-      return (
-        <CategoriesNew
-          key={key}
-          name={key}
-          showChildren={showChildren}
-          onClick={() =>
-            showChildren
-              ? this.props.unSelectCategory(key)
-              : this.props.selectCategory(categoryPath)
-          }
-          categoryPath={categoryPath}
-        >
-          {this.renderCategories(value, categoryPath)}
-        </CategoriesNew>
-      );
+  // renderCategories(categories, parentPath) {
+  //   return _.map(categories, (value, key) => {
+  //     const categoryPath = `${parentPath}${key}/`;
+  //     const showChildren = this.props.selectedCategoryPath.includes(
+  //       categoryPath
+  //     );
+  //     return (
+  //       <CategoriesNew
+  //         key={key}
+  //         name={key}
+  //         showChildren={showChildren}
+  //         onClick={() =>
+  //           showChildren
+  //             ? this.props.unSelectCategory(key)
+  //             : this.props.selectCategory(categoryPath)
+  //         }
+  //         categoryPath={categoryPath}
+  //       >
+  //         {this.renderCategories(value, categoryPath)}
+  //       </CategoriesNew>
+  //     );
+  //   });
+  // }
+  renderCategories() {
+    return _.map(this.props.categories, (subCategories, category) => {
+      return <div>{category}</div>;
     });
   }
   renderPosts() {
@@ -99,9 +104,9 @@ class PostsClass extends Component {
           Posts
         </PageHeader>
         <div className="posts-container">
-          <ul className="categories">
-            {this.renderCategories(this.props.categories, "/")}
-          </ul>
+          <div className="categories">
+            {this.renderCategories(this.props.categories)}
+          </div>
           <div className="posts">{this.renderPosts()}</div>
         </div>
         {/* <Container>
@@ -140,7 +145,8 @@ class PostsClass extends Component {
 
 function mapStateToProps(state) {
   return {
-    ...state.PostsPublic
+    ...state.PostsPublic,
+    categories: state.Categories.categories
   };
 }
 const PostsNew = connect(mapStateToProps, {
@@ -148,7 +154,7 @@ const PostsNew = connect(mapStateToProps, {
   filter: PostsPublicActions.filter,
   filterByTags: PostsPublicActions.filterByTags,
   getTags: PostsPublicActions.getTags,
-  getCategories: PostsPublicActions.getCategories,
+  subscribeCategories: CategoriesActions.subscribe,
   selectCategory: PostsPublicActions.selectCategory,
   unSelectCategory: PostsPublicActions.unSelectCategory
 })(PostsClass);

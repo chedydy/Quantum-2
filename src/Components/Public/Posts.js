@@ -90,7 +90,7 @@ class PostsClass extends Component {
               className="flex-5"
             />
           </div>
-          <br /> {this.renderCategories()}
+          {/* <br /> {this.renderCategories()} */}
           <br />
         </Container>
       </div>

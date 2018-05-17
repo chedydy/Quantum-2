@@ -12,7 +12,6 @@ import {
   CATEGORIES_NEW
 } from "./types";
 import { CategoriesService } from "../Services";
-import { push } from "react-router-redux";
 const CategoriesActions = {
   subscribe: () => dispatch => {
     CategoriesService.subscribe(categories => {
