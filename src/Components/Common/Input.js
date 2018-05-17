@@ -11,7 +11,7 @@ const Input = props => {
           placeholder={props.placeholder}
           id={props.id}
           value={props.value || ""}
-          onChange={(event)=>props.onChange(event.target.value)}
+          onChange={event => props.onChange(event.target.value)}
         />
         <p className="help-block text-danger" />
       </div>
