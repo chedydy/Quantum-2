@@ -462,5 +462,8 @@ ul.navbar-nav.ml-auto {
 }
 
 .nav-link {
-  color: #777777 !important;
+  color: #333333 !important;
+  display: block;
+  padding: 3rem 2em;
+  font-size: initial;
 }

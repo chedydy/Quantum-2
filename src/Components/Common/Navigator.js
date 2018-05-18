@@ -19,21 +19,15 @@ class NavigatorComponent extends Component {
     });
   }
   render() {
-
     return (
       <div>
         <nav
           className="navbar navbar-expand-xl navbar-light background"
           id="mainNav"
         >
-        
           <div className="container-fluid background__color">
-            <Link to="/" className='logo-button'>
-              <img
-                src={logo}
-                className="navbar-brand logo-style"
-                alt="logo"
-              />
+            <Link to="/" className="logo-button">
+              <img src={logo} className="navbar-brand logo-style" alt="logo" />
             </Link>
             <button
               className="navbar-toggler navbar-toggler-right"
@@ -43,11 +37,14 @@ class NavigatorComponent extends Component {
               <i className="fa fa-bars" />
             </button>
             <div
-              className={`collapse navbar-collapse ${
+              className={`collapse navbar-collapse hamburger${
                 this.state.navButtonsClass
               } navbar-height`}
               id="navbarResponsive"
             >
+              <div className="hamburger-box">
+                <div className="hamburger-inner" />
+              </div>
               <ul className="navbar-nav ml-auto">
                 {this.props.children.map((child, index) => {
                   return (
@@ -85,7 +82,7 @@ class NavigatorComponent extends Component {
               return (
                 <li
                   className={`side-menu-list-item ${
-                    child.props.to ===  this.state.currentPath
+                    child.props.to === this.state.currentPath
                       ? "side-menu-list-item-active"
                       : ""
                   }`}

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import ReactMarkdown from "react-markdown";
 import { PageHeader } from "./PageHeader";
 import { Container } from "../Common";
+import { Modal } from "../Common";
+
 // import CoverImg from "../../img/coverpic.png";
 // import contact1 from "../../img/blue_space_nebula.jpg";
 import "./AboutContent.css";
@@ -11,7 +13,25 @@ import "./AboutContent.css";
 class AboutContent extends Component {
   // state = {   visible: false };
   state = {
-    display: false
+    display: false,
+    model: {
+      aboutText: "",
+      authors: [
+        {
+          name: "Victor Jivanescu",
+          about: "This is Victor. He is shaorma cu detatoate."
+        },
+        {
+          name: "Nutas Vancea Pop Andrei",
+          about: "This is Nutas. He is a mantra cover maker."
+        },
+        { name: "Todor Ramona", about: "This is Ramona. She is lupitz." },
+        {
+          name: "Diana Maria Panta",
+          about: "This is Diana. She is in wonderland"
+        }
+      ]
+    }
   };
   onShow() {
     this.setState({ display: !this.state.display });
@@ -25,6 +45,14 @@ class AboutContent extends Component {
         </PageHeader>
 
         <Container>
+          {/* <Modal
+          title="About Me"
+          appElement="#root"
+          className="fa fa-eye fa-3x preview-button margin"
+          isOpen
+        >
+          uite ca merge
+        </Modal> */}
           <div
             style={{
               textAlign: "justify"
