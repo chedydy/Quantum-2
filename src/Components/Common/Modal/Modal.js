@@ -42,15 +42,26 @@ class Modal extends Component {
 
 class AboutContentDetails extends Modal {
   renderFooterButtons() {
-  return (<button onClick={this.props.close}>Close</button>);
-  }
-  renderTitle() {
-    return (<div className="aboutContentDetails-header">{this.props.name}
+    return (
+      <div onClick={this.props.close}>
+        <button className="btn-round btn btn-primary">Close</button>
       </div>
     );
   }
+  renderTitle() {
+    return <div className="aboutContentDetails-header">{this.props.name}</div>;
+  }
   renderBody() {
-    return this.props.children;
+    return (
+      <div className="aboutContentDetails-div">
+        <div className="aboutContentDetails-body">{this.props.children}</div>
+        <img
+          className="aboutContentDetails-body-img"
+          src={this.props.image}
+          alt="Pic"
+        />
+      </div>
+    );
   }
 }
 export { Modal, AboutContentDetails };

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import aboutImg from "../../../img/caru 1.1.png";
-import contactImg from "../../../img/caru1.2.jpg";
+import aboutImg from "../../../img/caru1v2.png";
+import contactImg from "../../../img/Caru2.png";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import CarouselButton from "./CarouselButton";
 import "./Carousel.css";

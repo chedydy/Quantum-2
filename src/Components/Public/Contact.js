@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "../Common/Button.css";
 import { Textarea, Container, IconInput } from "../Common";
 import { PageHeader } from "./PageHeader";
-import contactImg from "../../img/image_quantum.jpg";
+import contactImg from "../../img/ContactUS.png";
 import { ContactRequestsService } from "../../Services";
 
 class Contact extends Component {
@@ -29,9 +29,9 @@ class Contact extends Component {
   render() {
     return (
       <div>
-        <PageHeader image={contactImg} title={"Contact Us"}>
-          If you have any questions regarding our NGO, do not hesitate to tell
-          us.
+        <PageHeader image={contactImg} title={""}>
+          {/* If you have any questions regarding our NGO, do not hesitate to tell
+          us. */}
         </PageHeader>
         <Container>
           <div className="col color-p">

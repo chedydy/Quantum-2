@@ -15,4 +15,27 @@
 .modal-footer {
   min-height: 10vh;
 }
-
+.aboutContentDetails-header {
+  color: #343a40;
+  padding: 1%;
+  font-weight: 600;
+}
+.aboutContentDetails-body {
+  padding: 5%;
+  color: #343a40;
+  letter-spacing: 0.01em;
+  overflow-y: initial !important;
+}
+.aboutContentDetails-body-img {
+  width: 30em;
+  align-self: center;
+  padding: 2%;
+  padding: 8px;
+  border: 1px solid #343a40;
+  background-color: white;
+  border-radius: 3px;
+}
+.aboutContentDetails-div {
+  display: flex;
+  flex-direction: column-reverse;
+}
