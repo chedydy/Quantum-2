@@ -9,7 +9,7 @@ import createHistory from "history/createBrowserHistory";
 import { ContactRequestsReducer } from "./ContactRequestsReducer";
 import { PostEditorReducer } from "./PostEditorReducer";
 import { PostsReducer } from "./PostsReducer";
-import { CategoriesReducer } from "./CategoriesReducer";
+import { CategoriesReducer } from "./NewCategoriesReducer";
 import { PostsPublicReducer } from "./PostsPublicReducer";
 
 const history = createHistory();

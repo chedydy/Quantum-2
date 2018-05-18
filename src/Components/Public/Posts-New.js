@@ -4,13 +4,16 @@ import "react-select/dist/react-select.css";
 import _ from "lodash";
 import { connect } from "react-redux";
 import { Container } from "../Common";
-import { Category } from "./Category";
+// import { Category } from "./Category";
 import { Title } from "./PostTitle";
 import { CategoriesNew } from "./Categories-New";
+import { Category } from "./NewCategory";
+import { SubCategory } from "./SubCategory";
+import { CategoryBackButton } from "./CategoryBackButton";
 import "./PostsPreview.css";
 import image from "../../img/quantum3.jpg";
 import { PageHeader } from "./PageHeader";
-import { PostsPublicActions } from "../../Actions";
+import { PostsPublicActions, CategoriesActions } from "../../Actions";
 import { PostPreviewItem } from "./PostPreviewItem-New";
 import "./Posts-New.css";
 
@@ -18,7 +21,7 @@ class PostsClass extends Component {
   componentWillMount() {
     this.props.get();
     this.props.getTags();
-    this.props.getCategories();
+    this.props.subscribeCategories();
   }
 
   handleSelectChange(value) {
@@ -63,27 +66,40 @@ class PostsClass extends Component {
   //     return items;
   //   }
 
-  renderCategories(categories, parentPath) {
-    return _.map(categories, (value, key) => {
-      const categoryPath = `${parentPath}${key}/`;
-      const showChildren = this.props.selectedCategoryPath.includes(
-        categoryPath
-      );
-      return (
-        <CategoriesNew
-          key={key}
-          name={key}
-          showChildren={showChildren}
-          onClick={() =>
-            showChildren
-              ? this.props.unSelectCategory(key)
-              : this.props.selectCategory(categoryPath)
-          }
-          categoryPath={categoryPath}
-        >
-          {this.renderCategories(value, categoryPath)}
-        </CategoriesNew>
-      );
+  // renderCategories(categories, parentPath) {
+  //   return _.map(categories, (value, key) => {
+  //     const categoryPath = `${parentPath}${key}/`;
+  //     const showChildren = this.props.selectedCategoryPath.includes(
+  //       categoryPath
+  //     );
+  //     return (
+  //       <CategoriesNew
+  //         key={key}
+  //         name={key}
+  //         showChildren={showChildren}
+  //         onClick={() =>
+  //           showChildren
+  //             ? this.props.unSelectCategory(key)
+  //             : this.props.selectCategory(categoryPath)
+  //         }
+  //         categoryPath={categoryPath}
+  //       >
+  //         {this.renderCategories(value, categoryPath)}
+  //       </CategoriesNew>
+  //     );
+  //   });
+  // }
+  renderSubCategories() {
+    const categories = [<CategoryBackButton />];
+    return categories.concat(
+      _.map(this.props.subCategories, subCategory => {
+        return <SubCategory name={subCategory} key={subCategory} />;
+      })
+    );
+  }
+  renderCategories() {
+    return _.map(this.props.categories, (subCategories, category) => {
+      return <Category name={category} key={category} />;
     });
   }
   renderPosts() {
@@ -99,9 +115,11 @@ class PostsClass extends Component {
           Posts
         </PageHeader>
         <div className="posts-container">
-          <ul className="categories">
-            {this.renderCategories(this.props.categories, "/")}
-          </ul>
+          {this.props.subCategories.length === 0 ? (
+            <div className="categories">{this.renderCategories()}</div>
+          ) : (
+            <div className="categories">{this.renderSubCategories()}</div>
+          )}
           <div className="posts">{this.renderPosts()}</div>
         </div>
         {/* <Container>
@@ -140,7 +158,8 @@ class PostsClass extends Component {
 
 function mapStateToProps(state) {
   return {
-    ...state.PostsPublic
+    ...state.PostsPublic,
+    categories: state.Categories.categories
   };
 }
 const PostsNew = connect(mapStateToProps, {
@@ -148,7 +167,7 @@ const PostsNew = connect(mapStateToProps, {
   filter: PostsPublicActions.filter,
   filterByTags: PostsPublicActions.filterByTags,
   getTags: PostsPublicActions.getTags,
-  getCategories: PostsPublicActions.getCategories,
+  subscribeCategories: CategoriesActions.subscribe,
   selectCategory: PostsPublicActions.selectCategory,
   unSelectCategory: PostsPublicActions.unSelectCategory
 })(PostsClass);

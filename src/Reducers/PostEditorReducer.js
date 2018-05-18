@@ -4,7 +4,8 @@ import {
   POST_EDITOR_SUBMIT_ERROR,
   POST_EDITOR_SUBMIT_SUCCESS,
   POST_EDITOR_FETCH_SUCCESS,
-  CHANGE_PREVIEW_VISIBILITY
+  CHANGE_PREVIEW_VISIBILITY,
+  POST_EDITOR_SELECT_CATEGORY
 } from "../Actions";
 
 const INITIAL_STATE = {
@@ -15,11 +16,13 @@ const INITIAL_STATE = {
     title: "",
     subTitle: "",
     tags: "",
-    category: ""
+    category: "",
+    subCategory: ""
   },
   showPreview: false,
-  oldCategory: "",
   categories: [],
+  subCategories: [],
+  selectedCategory: null,
   error: ""
 };
 const PostEditorReducer = (state = INITIAL_STATE, action) => {
@@ -42,6 +45,14 @@ const PostEditorReducer = (state = INITIAL_STATE, action) => {
       return INITIAL_STATE;
     case CHANGE_PREVIEW_VISIBILITY:
       return { ...state, showPreview: !state.showPreview };
+    case POST_EDITOR_SELECT_CATEGORY: {
+      return {
+        ...state,
+        subCategories: action.payload.subCategories,
+        preview: { ...state.preview, category: action.payload.category },
+        selectedCategory: action.payload.selected
+      };
+    }
     default:
       return state;
   }

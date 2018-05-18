@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../Common/Button.css";
-import { Input, Textarea, Container, IconInput } from "../Common";
+import { Textarea, Container, IconInput } from "../Common";
 import { PageHeader } from "./PageHeader";
 import contactImg from "../../img/image_quantum.jpg";
 import { ContactRequestsService } from "../../Services";
@@ -23,7 +23,7 @@ class Contact extends Component {
   };
 
   handleChange = (field, value) => {
-    this.setState({ ...this.state, [field]: value });
+    this.setState({ [field]: value });
   };
 
   render() {

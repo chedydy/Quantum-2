@@ -8,7 +8,7 @@ import {
   CATEGORIES_TOGGLE_ALERT,
   CATEGORIES_DELETE_TAG,
   CATEGORIES_TAG,
-  CATEGORIES_UPDATE
+  CATEGORIES_UPDATE,
 } from "../Actions";
 import _ from "lodash";
 

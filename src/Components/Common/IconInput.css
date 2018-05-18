@@ -21,3 +21,8 @@
   padding: 7px;
   padding-left: 15px;
 }
+
+.iconInput-clickable:hover {
+  color: #0085a1 !important;
+  cursor: pointer;
+}

@@ -1,10 +1,10 @@
 import React from "react";
-
+import _ from "lodash";
 const SelectInput = props => {
-  const options = props.options.map((val, index) => {
+  const options = _.map(props.options, (val, index) => {
     return (
-      <option key={val} value={val}>
-        {val}
+      <option key={index} value={val}>
+        {index}
       </option>
     );
   });
@@ -15,7 +15,14 @@ const SelectInput = props => {
           className="form-control"
           id={props.id}
           value={props.value || ""}
-          onChange={event => props.onChange(event.target.value)}
+          onChange={event => {
+            console.log(
+              event.target.value,
+              event.target.innerText,
+              event.target.key
+            );
+            props.onChange(event.target.value);
+          }}
         >
           <option value="" disabled defaultValue>
             {props.label}

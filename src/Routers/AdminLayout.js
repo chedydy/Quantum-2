@@ -9,7 +9,9 @@ import {
   NewPost,
   EditPost,
   ContactRequests,
-  Categories
+  Categories,
+  EditCategory,
+  NewCategory
 } from "../Components/Admin";
 
 const AdminLayout = () => {
@@ -43,6 +45,16 @@ const AdminLayout = () => {
         <PrivateRoute
           path="/admin/categories/"
           component={Categories}
+          exact={true}
+        />
+        <PrivateRoute
+          path="/admin/categories/new"
+          component={NewCategory}
+          exact={true}
+        />
+        <PrivateRoute
+          path="/admin/categories/edit/:category"
+          component={EditCategory}
           exact={true}
         />
       </Switch>

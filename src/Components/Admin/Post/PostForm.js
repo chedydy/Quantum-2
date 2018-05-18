@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import Select from "react-select";
+import "react-select/dist/react-select.css";
+import _ from "lodash";
 import { Input, Textarea, FileInput, SelectInput } from "../../Common";
 import "./EditPost.css";
 
@@ -104,7 +107,6 @@ class PostForm extends Component {
     return (
       <div>
         <Input
-          id="title"
           placeholder="Title"
           label="Title"
           type="text"
@@ -112,7 +114,6 @@ class PostForm extends Component {
           onChange={value => this.props.updateProps("preview", "title", value)}
         />
         <Input
-          id="subTitle"
           placeholder="Subtitle"
           label="Subtitle"
           type="text"
@@ -122,7 +123,6 @@ class PostForm extends Component {
           }
         />
         <Input
-          id="tags"
           placeholder="Tags"
           label="Tags"
           type="text"
@@ -131,18 +131,35 @@ class PostForm extends Component {
             this.props.updateProps("preview", "tags", value);
           }}
         />
-        <SelectInput
-          id="category"
+        <Select
+          closeOnSelect
+          onChange={selected => {
+            // this.props.updateProps("preview", "category", selected.label);
+            // this.props.selectCategories(selected.value);
+            this.props.selectCategories(selected);
+          }}
+          options={_.map(this.props.categories, (val, index) => {
+            return { label: index, value: val };
+          })}
           placeholder="Category"
-          label="Category"
-          value={this.props.preview.category}
-          options={this.props.categories}
-          onChange={value =>
-            this.props.updateProps("preview", "category", value)
-          }
+          value={this.props.selectedCategory}
+          className="flex-5"
         />
+        <Select
+          closeOnSelect
+          onChange={selected => {
+            this.props.updateProps("preview", "subCategory", selected);
+          }}
+          options={_.map(this.props.subCategories, val => {
+            return { label: val, value: val };
+          })}
+          simpleValue
+          placeholder="Subcategory"
+          value={this.props.preview.subCategory}
+          className="flex-5"
+        />
+
         <FileInput
-          id="image"
           placeholder="Select image"
           label="Image"
           type="file"
@@ -153,15 +170,36 @@ class PostForm extends Component {
           }}
         />
         <div>
-          <button className="fas fa-italic fa-2x save-button" onClick={this.italic.bind(this)} type="button">
+          <button
+            className="fas fa-italic fa-2x save-button"
+            onClick={this.italic.bind(this)}
+            type="button"
+          />
+          <button
+            className="fas fa-bold fa-2x save-button"
+            onClick={this.bold.bind(this)}
+            type="button"
+          />
+          <button
+            className="fas fa-heading fa-2x save-button"
+            onClick={this.addH1.bind(this)}
+            type="button"
+          >
+            1
           </button>
-          <button className="fas fa-bold fa-2x save-button" onClick={this.bold.bind(this)} type="button">
+          <button
+            className="fas fa-heading fa-2x save-button"
+            onClick={this.addH2.bind(this)}
+            type="button"
+          >
+            2
           </button>
-          <button className="fas fa-heading fa-2x save-button" onClick={this.addH1.bind(this)} type="button">1
-          </button>
-          <button className="fas fa-heading fa-2x save-button" onClick={this.addH2.bind(this)} type="button">2
-          </button>
-          <button className="fas fa-heading fa-2x save-button" onClick={this.addH3.bind(this)} type="button">3
+          <button
+            className="fas fa-heading fa-2x save-button"
+            onClick={this.addH3.bind(this)}
+            type="button"
+          >
+            3
           </button>
           <input
             placeholder="Enter url"
@@ -170,8 +208,11 @@ class PostForm extends Component {
             value={this.state.url}
             onChange={e => this.updateState("url", e.target.value)}
           />
-          <button className="fas fa-link fa-2x save-button" onClick={this.addUrl.bind(this)} type="button">
-          </button>
+          <button
+            className="fas fa-link fa-2x save-button"
+            onClick={this.addUrl.bind(this)}
+            type="button"
+          />
           <input
             placeholder="Enter image url"
             label="Image url"
@@ -179,10 +220,16 @@ class PostForm extends Component {
             value={this.state.imageUrl}
             onChange={e => this.updateState("imageUrl", e.target.value)}
           />
-          <button className="fas fa-images fa-2x save-button" onClick={this.addImageUrl.bind(this)} type="button">
-          </button>
-          <button className="fas fa-quote-right fa-2x save-button" onClick={this.addQuote.bind(this)} type="button">
-          </button>
+          <button
+            className="fas fa-images fa-2x save-button"
+            onClick={this.addImageUrl.bind(this)}
+            type="button"
+          />
+          <button
+            className="fas fa-quote-right fa-2x save-button"
+            onClick={this.addQuote.bind(this)}
+            type="button"
+          />
         </div>
         <Textarea
           id="content"
