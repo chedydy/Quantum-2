@@ -3,7 +3,7 @@ import ReactMarkdown from "react-markdown";
 import { PageHeader } from "./PageHeader";
 import { Container } from "../Common";
 import { AboutContentDetails } from "../Common";
-import aboutImg from "../../img/Aboutus.png";
+import aboutImg from "../../img/giphy2.gif";
 import "./AboutContent.css";
 
 class AboutContent extends Component {
