@@ -5,7 +5,9 @@ import {
   POSTS_PUBLIC_FILTER_BY_TEXT,
   POSTS_PUBLIC_FETCH_TAGS,
   POSTS_PUBLIC_SELECT_CATEGORY,
-  POSTS_PUBLIC_UNSELECT_CATEGORY
+  POSTS_PUBLIC_UNSELECT_CATEGORY,
+  POSTS_PUBLIC_GO_BACK,
+  POSTS_PUBLIC_SELECT_SUBCATEGORY
 } from "./types";
 import { PostPreviewService, CategoriesService } from "../Services";
 const PostsPublicActions = {
@@ -19,8 +21,14 @@ const PostsPublicActions = {
       dispatch({ type: POSTS_PUBLIC_CATEGORIES_GET, payload: categories });
     });
   },
-  selectCategory(categoryPath) {
-    return { type: POSTS_PUBLIC_SELECT_CATEGORY, payload: categoryPath };
+  selectCategory(category) {
+    return { type: POSTS_PUBLIC_SELECT_CATEGORY, payload: category };
+  },
+  selectSubCategory(subCategory) {
+    return { type: POSTS_PUBLIC_SELECT_SUBCATEGORY, payload: subCategory };
+  },
+  goBack(){
+    return {type:POSTS_PUBLIC_GO_BACK}
   },
   unSelectCategory(category) {
     return { type: POSTS_PUBLIC_UNSELECT_CATEGORY, payload: category };

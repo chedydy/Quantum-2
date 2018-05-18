@@ -9,13 +9,15 @@ import {
   CATEGORIES_EDIT_SUBCATEGORY,
   CATEGORIES_EDIT_NAME,
   CATEGORIES_GET_ONE,
-  CATEGORIES_NEW
+  CATEGORIES_NEW,
+  POSTS_PUBLIC_CATEGORIES_GET
 } from "./types";
 import { CategoriesService } from "../Services";
 const CategoriesActions = {
   subscribe: () => dispatch => {
     CategoriesService.subscribe(categories => {
       dispatch({ type: CATEGORIES_GET, payload: categories });
+      dispatch({ type: POSTS_PUBLIC_CATEGORIES_GET, payload: categories });
     });
   },
   get: category => dispatch => {

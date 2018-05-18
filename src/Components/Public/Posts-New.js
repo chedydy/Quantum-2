@@ -4,9 +4,12 @@ import "react-select/dist/react-select.css";
 import _ from "lodash";
 import { connect } from "react-redux";
 import { Container } from "../Common";
-import { Category } from "./Category";
+// import { Category } from "./Category";
 import { Title } from "./PostTitle";
 import { CategoriesNew } from "./Categories-New";
+import { Category } from "./NewCategory";
+import { SubCategory } from "./SubCategory";
+import { CategoryBackButton } from "./CategoryBackButton";
 import "./PostsPreview.css";
 import image from "../../img/quantum3.jpg";
 import { PageHeader } from "./PageHeader";
@@ -86,9 +89,17 @@ class PostsClass extends Component {
   //     );
   //   });
   // }
+  renderSubCategories() {
+    const categories = [<CategoryBackButton />];
+    return categories.concat(
+      _.map(this.props.subCategories, subCategory => {
+        return <SubCategory name={subCategory} key={subCategory} />;
+      })
+    );
+  }
   renderCategories() {
     return _.map(this.props.categories, (subCategories, category) => {
-      return <div>{category}</div>;
+      return <Category name={category} key={category} />;
     });
   }
   renderPosts() {
@@ -104,9 +115,11 @@ class PostsClass extends Component {
           Posts
         </PageHeader>
         <div className="posts-container">
-          <div className="categories">
-            {this.renderCategories(this.props.categories)}
-          </div>
+          {this.props.subCategories.length === 0 ? (
+            <div className="categories">{this.renderCategories()}</div>
+          ) : (
+            <div className="categories">{this.renderSubCategories()}</div>
+          )}
           <div className="posts">{this.renderPosts()}</div>
         </div>
         {/* <Container>
