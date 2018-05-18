@@ -87,4 +87,18 @@ class Modal extends Component {
     );
   }
 }
-export { Modal };
+
+class AboutContentDetails extends Modal {
+  renderFooterButtons() {
+  return (<button onClick={this.props.close}>Close</button>);
+  }
+  renderTitle() {
+    return (<div className="aboutContentDetails-header">{this.props.name}
+      </div>
+    );
+  }
+  renderBody() {
+    return this.props.children;
+  }
+}
+export { Modal, AboutContentDetails };

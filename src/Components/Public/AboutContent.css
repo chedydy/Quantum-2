@@ -1,7 +1,9 @@
 .text-aspect {
   text-align: left !important;
 }
-
+.modal-design {
+  color: black;
+}
 .img-style {
   align-self: flex-end;
   border-radius: 50%;

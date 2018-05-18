@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ReactMarkdown from "react-markdown";
 import { PageHeader } from "./PageHeader";
 import { Container } from "../Common";
-import { Modal } from "../Common";
+import { AboutContentDetails } from "../Common";
 
 // import CoverImg from "../../img/coverpic.png";
 // import contact1 from "../../img/blue_space_nebula.jpg";
@@ -14,6 +14,12 @@ class AboutContent extends Component {
   // state = {   visible: false };
   state = {
     display: false,
+    selected: {
+      name: "Victor Jivanescu",
+      about: `My undergraduate years at Oxford studying philosophy, politics and economics, coupled with my work in strategy consulting in London have thought me much about the structure of the world we are living in and provided me a clear career and life path…. or so I thought. 
+      After having a number of revealing experiences I learned that there is much more to our world than structure and material development. Thus, I came in touch with the world great contemplative traditions and started to undergo rigorous practice by embarking on a journey in Nepal and the Himalayas. All these expriences led me on a mission to share the amazing insights I discovered with the rest of humanity. If we are to truly develop our world, we need to take in to account both our inner and outer growth and have wise answers to our questions of ultimate concern. 
+      `
+    },
     model: {
       aboutText: "",
       authors: [
@@ -27,7 +33,7 @@ class AboutContent extends Component {
         },
         { name: "Todor Ramona", about: "This is Ramona. She is lupitz." },
         {
-          name: "Diana Maria Panta",
+          name: "Panta Diana Maria",
           about: "This is Diana. She is in wonderland"
         }
       ]
@@ -36,6 +42,7 @@ class AboutContent extends Component {
   onShow() {
     this.setState({ display: !this.state.display });
   }
+
   render() {
     const { about } = this.props;
     return (
@@ -45,14 +52,18 @@ class AboutContent extends Component {
         </PageHeader>
 
         <Container>
-          {/* <Modal
-          title="About Me"
-          appElement="#root"
-          className="fa fa-eye fa-3x preview-button margin"
-          isOpen
-        >
-          uite ca merge
-        </Modal> */}
+          <AboutContentDetails
+            title="About Me"
+            appElement="#root"
+            className="fa fa-eye fa-3x preview-button margin modal-design"
+            isOpen={this.state.display}
+            name={this.state.selected.name}
+            close={() => {
+              this.setState({ display: false });
+            }}
+          >
+            {this.state.selected.about}
+          </AboutContentDetails>
           <div
             style={{
               textAlign: "justify"
@@ -64,28 +75,32 @@ class AboutContent extends Component {
             <div className="container-avatar">
               <img src={about.imageUrl} alt="Avatar" className="image" />
               <div className="overlay-reverse">
-                <div className="text">Hello World</div>
+                <div className="text">{this.state.model.authors[0].name}</div>
+                <a onClick={this.onShow.bind(this)}>Show More</a>
               </div>
             </div>
             <br />
             <div className="container-avatar">
               <img src={about.imageUrl} alt="Avatar" className="image" />
               <div className="overlay">
-                <div className="text">Hello World</div>
+                <div className="text">{this.state.model.authors[1].name}</div>
+                <a onClick={this.onShow.bind(this)}>Show More</a>
               </div>
             </div>
             <br />
             <div className="container-avatar">
               <img src={about.imageUrl} alt="Avatar" className="image" />
               <div className="overlay-reverse">
-                <div className="text">Hello World</div>
+                <div className="text">{this.state.model.authors[2].name}</div>
+                <a onClick={this.onShow.bind(this)}>Show More</a>
               </div>
             </div>
             <br />
             <div className="container-avatar">
               <img src={about.imageUrl} alt="Avatar" className="image" />
               <div className="overlay">
-                <div className="text">Hello World</div>
+                <div className="text">{this.state.model.authors[3].name}</div>
+                <a onClick={this.onShow.bind(this)}>Show More</a>
               </div>
             </div>
           </div>
