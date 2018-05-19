@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Select from "react-select";
 import "react-select/dist/react-select.css";
 import _ from "lodash";
-import { Input, Textarea, FileInput, SelectInput } from "../../Common";
+import { Input, Textarea, FileInput } from "../../Common";
 import "./EditPost.css";
 
 class PostForm extends Component {
@@ -134,8 +134,6 @@ class PostForm extends Component {
         <Select
           closeOnSelect
           onChange={selected => {
-            // this.props.updateProps("preview", "category", selected.label);
-            // this.props.selectCategories(selected.value);
             this.props.selectCategories(selected);
           }}
           options={_.map(this.props.categories, (val, index) => {
@@ -158,7 +156,6 @@ class PostForm extends Component {
           value={this.props.preview.subCategory}
           className="flex-5"
         />
-
         <FileInput
           placeholder="Select image"
           label="Image"

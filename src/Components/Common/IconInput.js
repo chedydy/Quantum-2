@@ -6,6 +6,7 @@ const IconInput = props => {
     <div className="iconInput">
       <i className={`fas ${props.faIcon} fa-2x iconInput-icon`} />
       <input
+        readOnly={props.readOnly}
         type={props.type}
         className="iconInput-input"
         placeholder={props.placeholder}

@@ -11,6 +11,8 @@ import { PostEditorReducer } from "./PostEditorReducer";
 import { PostsReducer } from "./PostsReducer";
 import { CategoriesReducer } from "./NewCategoriesReducer";
 import { PostsPublicReducer } from "./PostsPublicReducer";
+import { AboutReducer } from "./AboutReducer";
+import { AuthorsReducer } from "./AuthorsReducer";
 
 const history = createHistory();
 const middleware = routerMiddleware(history);
@@ -20,7 +22,9 @@ const rootReducer = combineReducers({
   Posts: PostsReducer,
   router: routerReducer,
   Categories: CategoriesReducer,
-  PostsPublic: PostsPublicReducer
+  PostsPublic: PostsPublicReducer,
+  About: AboutReducer,
+  Authors: AuthorsReducer
 });
 const store = createStore(rootReducer, {}, applyMiddleware(thunk, middleware));
 

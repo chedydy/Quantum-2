@@ -4,14 +4,16 @@ import PrivateRoute from "./PrivateRoute";
 import {
   AdminNavigator,
   About,
-  EditAbout,
   Posts,
   NewPost,
   EditPost,
   ContactRequests,
   Categories,
   EditCategory,
-  NewCategory
+  NewCategory,
+  Authors,
+  NewAuthor,
+  EditAuthor
 } from "../Components/Admin";
 
 const AdminLayout = () => {
@@ -33,11 +35,6 @@ const AdminLayout = () => {
         />
         <PrivateRoute path="/admin/about/" component={About} exact={true} />
         <PrivateRoute
-          path="/admin/about/edit/"
-          component={EditAbout}
-          exact={true}
-        />
-        <PrivateRoute
           path="/admin/contactrequests/"
           component={ContactRequests}
           exact={true}
@@ -55,6 +52,17 @@ const AdminLayout = () => {
         <PrivateRoute
           path="/admin/categories/edit/:category"
           component={EditCategory}
+          exact={true}
+        />
+        <PrivateRoute path="/admin/authors" component={Authors} exact={true} />
+        <PrivateRoute
+          path="/admin/authors/new"
+          component={NewAuthor}
+          exact={true}
+        />
+        <PrivateRoute
+          path="/admin/authors/edit/:id"
+          component={EditAuthor}
           exact={true}
         />
       </Switch>

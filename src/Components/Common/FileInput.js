@@ -11,8 +11,9 @@ const FileInput = props => {
           placeholder={props.placeholder}
           id={props.id}
           required={props.required}
+          readOnly={props.readOnly}
           onChange={e => {
-            props.onChange;
+            // props.onChange;
             e.preventDefault();
             let reader = new FileReader();
             let image = e.target.files[0];

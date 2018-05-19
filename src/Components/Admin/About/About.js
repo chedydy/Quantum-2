@@ -1,45 +1,72 @@
 import React, { Component } from "react";
-import { Container, LinkButton, Textarea } from "../../Common";
-import { PreviewAbout } from "./PreviewAbout";
-import {AboutService} from "../../../Services";
+import { connect } from "react-redux";
+import { SubmitButton, Button } from "../../Common";
+import { AboutForm } from "./AboutForm";
+import { AboutActions } from "../../../Actions";
+import "./EditAbout.css";
 
-class About extends Component {
-  state = {
-    title: "",
-    content: "",
-    image: ""
-  };
-  setAbout(about) {
-    this.setState({
-      ...about
-    });
-  }
+class AboutClass extends Component {
   componentWillMount() {
-    AboutService.getAbout(this.setAbout.bind(this));
+    return this.props.get();
   }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.image
+      ? this.props.saveWithImage(
+          {
+            title: this.props.title,
+            content: this.props.content,
+            imageUrl: this.props.imageUrl
+          },
+          this.props.image
+        )
+      : this.props.save({
+          title: this.props.title,
+          content: this.props.content,
+          imageUrl: this.props.imageUrl
+        });
+  };
 
   render() {
     return (
-      <div>
-        <Container>
+      <div className="container">
+        <div className="justify-content-center">
           <div className="col">
-            <br />
-            <h4 className="row justify-content-center">{this.state.title}</h4>
-            <br />
-            <div className="row justify-content-center">{this.state.image}</div>
-            <div className="col">
-              <p>{this.state.content}</p>
-            </div>
-            <br />
-            <div className="row justify-content-end col">
-              <PreviewAbout about={this.state} />
-              <LinkButton link="/admin/about/edit" className="fa fa-pencil-square-o fa-3x edit-button margin"></LinkButton>
-            </div>
+            <form onSubmit={this.handleSubmit.bind(this)}>
+              <AboutForm />
+              <br />
+              {this.props.edit ? (
+                <div className="row justify-content-end col">
+                  <SubmitButton className="fa fa-save fa-3x save-button" />
+                  <Button
+                    onClick={() => this.props.toggleEdit(false)}
+                    className="fa fa-times fa-3x save-button"
+                  />
+                </div>
+              ) : (
+                <div className="row justify-content-end col">
+                  <Button
+                    onClick={() => this.props.toggleEdit(true)}
+                    className="fa fa-edit fa-3x save-button"
+                  />
+                </div>
+              )}
+            </form>
           </div>
-        </Container>
+        </div>
       </div>
     );
   }
 }
+function mapStateToProps(state) {
+  return { ...state.About };
+}
+const About = connect(mapStateToProps, {
+  toggleEdit: AboutActions.edit,
+  save: AboutActions.save,
+  saveWithImage: AboutActions.saveWithImage,
+  get: AboutActions.get
+})(AboutClass);
 
-export { About };
+export { About, AboutClass };

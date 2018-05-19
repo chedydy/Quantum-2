@@ -1,0 +1,35 @@
+.floating-label-form-group {
+  position: sticky !important;
+}
+.textbox-style {
+  align-content: space-around;
+}
+.save-button {
+  border: 0 !important;
+  background: transparent !important;
+  cursor: pointer !important;
+}
+
+.save-button:hover {
+  color: #0085a1 !important;
+}
+
+.save-button:focus {
+  outline: 0 !important;
+}
+.margin {
+  margin-right: 20px !important;
+}
+
+.preview-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.preview {
+  flex: 1;
+}
+
+.editor {
+  flex: 1;
+}

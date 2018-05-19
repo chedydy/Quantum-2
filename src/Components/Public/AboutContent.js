@@ -1,21 +1,16 @@
 import React, { Component } from "react";
 import ReactMarkdown from "react-markdown";
+import { connect } from "react-redux";
+import _ from "lodash";
 import { PageHeader } from "./PageHeader";
 import { Container } from "../Common";
-import { AboutContentDetails } from "../Common";
-import aboutImg from "../../img/Aboutus.png";
+import { AuthorModal } from "./AuthorModal";
+import { AuthorItem } from "./AuthorItem";
+import { AuthorsActions, AboutActions } from "../../Actions";
 import "./AboutContent.css";
 
-class AboutContent extends Component {
-  // state = {   visible: false };
+class AboutContentClass extends Component {
   state = {
-    display: false,
-    selected: {
-      authors: {
-        name: "",
-        about: ``
-      }
-    },
     model: {
       aboutText: "",
       authors: [
@@ -47,185 +42,53 @@ class AboutContent extends Component {
       ]
     }
   };
-  onShow(index) {
-    this.setState({
-      display: !this.state.display,
-      selected: this.state.model.authors[index]
+  componentWillMount() {
+    this.props.getAbout();
+    this.props.getAuthors();
+  }
+  renderAuthors() {
+    return _.map(this.props.authors, (author, id) => {
+      return (
+        <div key={id}>
+          <AuthorItem author={author} />
+          <br />
+        </div>
+      );
     });
   }
-
   render() {
-    const { about } = this.props;
+    // const { about } = this.props;
     return (
       <div className="myheader">
-        <PageHeader image={aboutImg} title={""}>
+        <PageHeader image={this.props.imageUrl} title={""}>
           {/* {about.title} */}
         </PageHeader>
 
         <Container>
-          <AboutContentDetails
-            title="About Me"
-            appElement="#root"
-            isOpen={this.state.display}
-            name={this.state.selected.name}
-            image={about.imageUrl}
-            close={() => {
-              this.setState({ display: false });
-            }}
-          >
-            <p className="text-style">{this.state.selected.about}</p>
-          </AboutContentDetails>
+          <AuthorModal title="About Me" appElement="#root" />
           <div
             style={{
               textAlign: "justify"
             }}
           >
-            <ReactMarkdown source={about.content} />{" "}
+            <ReactMarkdown source={this.props.content} />
           </div>
-          <div className="wrap-contacts">
-            <div className="container-avatar">
-              <img src={about.imageUrl} alt="Avatar" className="image" />
-              <div className="overlay-reverse">
-                <div className="text">{this.state.model.authors[0].name}</div>
-                <a onClick={this.onShow.bind(this, 0)} className="modal-design">
-                  Show More
-                </a>
-              </div>
-            </div>
-            <br />
-            <div className="container-avatar">
-              <img src={about.imageUrl} alt="Avatar" className="image" />
-              <div className="overlay">
-                <div className="text">{this.state.model.authors[1].name}</div>
-                <a onClick={this.onShow.bind(this, 1)} className="modal-design">
-                  Show More
-                </a>
-              </div>
-            </div>
-            <br />
-            <div className="container-avatar">
-              <img src={about.imageUrl} alt="Avatar" className="image" />
-              <div className="overlay-reverse">
-                <div className="text">{this.state.model.authors[2].name}</div>
-                <a onClick={this.onShow.bind(this, 2)} className="modal-design">
-                  Show More
-                </a>
-              </div>
-            </div>
-            <br />
-            <div className="container-avatar">
-              <img src={about.imageUrl} alt="Avatar" className="image" />
-              <div className="overlay">
-                <div className="text">{this.state.model.authors[3].name}</div>
-                <a onClick={this.onShow.bind(this, 3)} className="modal-design">
-                  Show More
-                </a>
-              </div>
-            </div>
-          </div>
+          <div className="wrap-contacts">{this.renderAuthors()}</div>
         </Container>
       </div>
-      /* <div className="row">
-                    <div className="col-1-of-3">
-                       <div className="card">
-                           <div className="card__side card__side--front">
-                                <div className="card__picture card__picture--1">
-                                    &nbsp;
-                                </div>
-                                <h4 className="card__heading">
-                                    <span className="card__heading-span card__heading-span--1">The Sea Explorer</span>
-                                </h4>
-                                <div className="card__details">
-                                    <ul>
-                                        <li>3 day tours</li>
-                                        <li>Up to 30 people</li>
-                                        <li>2 tour guides</li>
-                                        <li>Sleep in cozy hotels</li>
-                                        <li>Difficulty: easy</li>
-                                    </ul>
-                                </div>
-                           </div>
-                           <div className="card__side card__side--back card__side--back-1">
-                                <div className="card__cta">
-                                    <div className="card__price-box">
-                                        <p className="card__price-only">Only</p>
-                                        <p className="card__price-value">$297</p>
-                                    </div>
-                                    <a href="#popup" className="btn btn--white">Book now!</a>
-                                </div>
-                            </div>
-                       </div>
-                    </div>
-
-
-                    <div className="col-1-of-3">
-                        <div className="card">
-                            <div className="card__side card__side--front">
-                                <div className="card__picture card__picture--2">
-                                    &nbsp;
-                                </div>
-                                <h4 className="card__heading">
-                                    <span className="card__heading-span card__heading-span--2">The Forest Hiker</span>
-                                </h4>
-                                <div className="card__details">
-                                    <ul>
-                                        <li>7 day tours</li>
-                                        <li>Up to 40 people</li>
-                                        <li>6 tour guides</li>
-                                        <li>Sleep in provided tents</li>
-                                        <li>Difficulty: medium</li>
-                                    </ul>
-                                </div>
-
-                            </div>
-                            <div className="card__side card__side--back card__side--back-2">
-                                <div className="card__cta">
-                                    <div className="card__price-box">
-                                        <p className="card__price-only">Only</p>
-                                        <p className="card__price-value">$497</p>
-                                    </div>
-                                    <a href="#popup" className="btn btn--white">Book now!</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div className="col-1-of-3">
-                        <div className="card">
-                            <div className="card__side card__side--front">
-                                <div className="card__picture card__picture--3">
-                                    &nbsp;
-                                </div>
-                                <h4 className="card__heading">
-                                    <span className="card__heading-span card__heading-span--3">The Snow Adventurer</span>
-                                </h4>
-                                <div className="card__details">
-                                    <ul>
-                                        <li>5 day tours</li>
-                                        <li>Up to 15 people</li>
-                                        <li>3 tour guides</li>
-                                        <li>Sleep in provided tents</li>
-                                        <li>Difficulty: hard</li>
-                                    </ul>
-                                </div>
-
-                            </div>
-                            <div className="card__side card__side--back card__side--back-3">
-                                <div className="card__cta">
-                                    <div className="card__price-box">
-                                        <p className="card__price-only">Only</p>
-                                        <p className="card__price-value">$897</p>
-                                    </div>
-                                    <a href="#popup" className="btn btn--white">Book now!</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-      </div> }*/
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    ...state.About,
+    authors: state.Authors.authors
+  };
+}
+const AboutContent = connect(mapStateToProps, {
+  getAuthors: AuthorsActions.get,
+  getAbout: AboutActions.get
+})(AboutContentClass);
 
 export { AboutContent };
