@@ -111,8 +111,9 @@ const PostPreviewService = {
     });
   },
   updatePreview: function(preview) {
-    const tags = _.mapKeys(preview.tags);
-    tagsRef.update(tags);
+    // const tags = _.mapKeys(preview.tags);
+    // tagsRef.update(tags);
+    delete preview.tags;
     return postPreviewRef.child(preview.id).set(preview);
   },
   deletePreview: function(id) {
