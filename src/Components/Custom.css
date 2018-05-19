@@ -444,6 +444,8 @@ fieldset[disabled] .btn-primary:hover {
 .btn-lg {
   font-size: 16px;
   padding: 25px 35px;
+  align-self: center;
+  width: 15%;
 }
 
 .btn-default:focus,

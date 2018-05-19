@@ -7,7 +7,7 @@ import { Container } from "../Common";
 import { Category } from "./Category";
 import { Title } from "./PostTitle";
 import "./PostsPreview.css";
-import image from '../../img/quantum3.jpg';
+import image from '../../img/image_quantum.jpg';
 import { PageHeader } from "./PageHeader";
 import { PostsPublicActions } from "../../Actions";
 

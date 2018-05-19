@@ -3,8 +3,13 @@ import ReactMarkdown from "react-markdown";
 import { PageHeader } from "./PageHeader";
 import { Container } from "../Common";
 import { AboutContentDetails } from "../Common";
-import aboutImg from "../../img/giphy2.gif";
+import aboutImg from "../../img/view11.JPG";
 import "./AboutContent.css";
+import Jivanescu from "../../img/Victor.png";
+import Ramo from "../../img/Ramo.png";
+import Diana from "../../img/Diana.png";
+import Andrei from "../../img/Andrei.png";
+import "./AboutReadmore.css";
 
 class AboutContent extends Component {
   // state = {   visible: false };
@@ -20,14 +25,14 @@ class AboutContent extends Component {
       aboutText: "",
       authors: [
         {
-          name: "Victor Jivanescu",
+          name: "Jivanescu Victor",
           about: `My undergraduate years at Oxford studying philosophy, politics and economics, coupled with my work in strategy consulting in London have thought me much about the structure of the world we are living in and provided me a clear career and life path…. or so I thought. 
           \n\rAfter having a number of revealing experiences I learned that there is much more to our world than structure and material development. Thus, I came in touch with the world great contemplative traditions and started to undergo rigorous practice by embarking on a journey in Nepal and the Himalayas.
           \n\rAll these expriences led me on a mission to share the amazing insights I discovered with the rest of humanity. If we are to truly develop our world, we need to take in to account both our inner and outer growth and have wise answers to our questions of ultimate concern. 
         `
         },
         {
-          name: "Nutas Vancea Pop Andrei",
+          name: "Nutas Andrei",
           about: `Since the moment I started school I was highly disappointed at all that the system had to offer because of the lack of a unified transdisciplinary understanding of reality. For many years I chose, as I drowned in a nihilistic state, to give up on the world, to consider it inherently defect, inherently lost, inherently meaningless and to concentrate on hedonistic enjoyment. However, it didn’t matter the number of times I skydived, the number of girls I slept with, or the parties I went to… these didn’t solve anything. They only made it worse leading me into depression.  
           \n\rAfter a transcendental experience in which I reached the non-dual state, I knew that there was only one way out of this, and I decided that instead of continuing to let myself be drowned by the nonsense that surrounded me, I would take upon myself the responsibility of improving all that which is malignant in the world. As I’m aware that this can’t be done alone, I decided that I had to create a platform that can educate and empower people to realize their highest vision so that they may free themselves from the clutches of hedonism, nihilism and ideology that permeate our world. My hope is that if we work together, directing our energy towards the establishment of the transcendental, we will be able to create heaven on earth. 
           `
@@ -58,8 +63,8 @@ class AboutContent extends Component {
     const { about } = this.props;
     return (
       <div className="myheader">
-        <PageHeader image={aboutImg} title={""}>
-          {/* {about.title} */}
+        <PageHeader image={aboutImg} title={"About Quantum Civilisation"}>
+          {about.title}
         </PageHeader>
 
         <Container>
@@ -80,11 +85,22 @@ class AboutContent extends Component {
               textAlign: "justify"
             }}
           >
-            <ReactMarkdown source={about.content} />{" "}
+            <div className="panel-wrapper">
+              <a href="#show" className="show btnbtn" id="show">
+                Show Full Description
+              </a>
+              <a href="#hide" className="hide btnbtn" id="hide">
+                Hide Full Description
+              </a>
+              <div className="panel">
+                <ReactMarkdown source={about.content} />{" "}
+              </div>
+              <div className="fade" />
+            </div>
           </div>
           <div className="wrap-contacts">
             <div className="container-avatar">
-              <img src={about.imageUrl} alt="Avatar" className="image" />
+              <img src={Jivanescu} alt="Avatar" className="image" />
               <div className="overlay-reverse">
                 <div className="text">{this.state.model.authors[0].name}</div>
                 <a onClick={this.onShow.bind(this, 0)} className="modal-design">
@@ -94,7 +110,7 @@ class AboutContent extends Component {
             </div>
             <br />
             <div className="container-avatar">
-              <img src={about.imageUrl} alt="Avatar" className="image" />
+              <img src={Andrei} alt="Avatar" className="image" />
               <div className="overlay">
                 <div className="text">{this.state.model.authors[1].name}</div>
                 <a onClick={this.onShow.bind(this, 1)} className="modal-design">
@@ -104,7 +120,7 @@ class AboutContent extends Component {
             </div>
             <br />
             <div className="container-avatar">
-              <img src={about.imageUrl} alt="Avatar" className="image" />
+              <img src={Ramo} alt="Avatar" className="image" />
               <div className="overlay-reverse">
                 <div className="text">{this.state.model.authors[2].name}</div>
                 <a onClick={this.onShow.bind(this, 2)} className="modal-design">
@@ -114,7 +130,7 @@ class AboutContent extends Component {
             </div>
             <br />
             <div className="container-avatar">
-              <img src={about.imageUrl} alt="Avatar" className="image" />
+              <img src={Diana} alt="Avatar" className="image" />
               <div className="overlay">
                 <div className="text">{this.state.model.authors[3].name}</div>
                 <a onClick={this.onShow.bind(this, 3)} className="modal-design">
