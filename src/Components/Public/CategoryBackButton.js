@@ -3,16 +3,21 @@ import { connect } from "react-redux";
 import { PostsPublicActions } from "../../Actions";
 import "./CategoryBackButton.css";
 
-let CategoryBackButton = ({ goBack }) => {
+let CategoryBackButton = ({ goBack, category }) => {
   return (
     <div className="categoryBackButton" onClick={() => goBack()}>
-      Back
+      Back ({category})
     </div>
   );
 };
 
-CategoryBackButton = connect(null, {
-  goBack: PostsPublicActions.goBack
-})(CategoryBackButton);
+CategoryBackButton = connect(
+  state => {
+    return { category: state.PostsPublic.selectedCategory };
+  },
+  {
+    goBack: PostsPublicActions.goBack
+  }
+)(CategoryBackButton);
 
 export { CategoryBackButton };

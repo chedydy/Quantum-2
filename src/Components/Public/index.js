@@ -5,8 +5,7 @@ export * from "./AboutContent";
 export * from "./Carousel/Carousel";
 export * from "./Home/Home";
 export * from "./PostsPreview";
-export * from "./Footer"
-export * from "./Post"
-export * from "./PostContent"
-export * from './Posts'
-export * from './Posts-New'
+export * from "./Footer";
+export * from "./Post";
+export * from "./PostContent";
+export * from "./Posts";

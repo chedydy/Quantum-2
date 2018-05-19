@@ -4,17 +4,24 @@ import "react-select/dist/react-select.css";
 import _ from "lodash";
 import { connect } from "react-redux";
 import { Container } from "../Common";
-import { Category } from "./Category";
+// import { Category } from "./Category";
 import { Title } from "./PostTitle";
+import { CategoriesNew } from "./Categories-New";
+import { Category } from "./NewCategory";
+import { SubCategory } from "./SubCategory";
+import { CategoryBackButton } from "./CategoryBackButton";
 import "./PostsPreview.css";
-import image from '../../img/view12.JPG';
+import image from "../../img/view13.JPG";
 import { PageHeader } from "./PageHeader";
-import { PostsPublicActions } from "../../Actions";
+import { PostsPublicActions, CategoriesActions } from "../../Actions";
+import { PostPreviewItem } from "./PostPreviewItem";
+import "./Posts.css";
 
 class PostsClass extends Component {
   componentWillMount() {
     this.props.get();
     this.props.getTags();
+    this.props.subscribeCategories();
   }
 
   handleSelectChange(value) {
@@ -39,24 +46,24 @@ class PostsClass extends Component {
       );
     });
   }
-
+  renderSubCategories() {
+    const categories = [<CategoryBackButton key="back" />];
+    return categories.concat(
+      _.map(this.props.subCategories, subCategory => {
+        return <SubCategory name={subCategory} key={subCategory} />;
+      })
+    );
+  }
   renderCategories() {
-    const { model } = this.props;
-    if (_.isEmpty(model)) {
-      return (
-        <div>
-          <br />
-          <i className="far fa-frown fa-7x" />
-          <br />
-          <br />
-          <span style={{ fontSize: "25px", fontWeight: "600" }}>
-            No results were found
-          </span>
-        </div>
-      );
-    }
-    const items = this.createCategories(model, true);
-    return items;
+    return _.map(this.props.categories, (subCategories, category) => {
+      return <Category name={category} key={category} />;
+    });
+  }
+  renderPosts() {
+    const posts = _.map(this.props.filteredPreviews, (value, key) => {
+      return <PostPreviewItem post={value} key={key} />;
+    });
+    return posts;
   }
   render() {
     return (
@@ -64,35 +71,14 @@ class PostsClass extends Component {
         <PageHeader image={image} title={"Search for posts"}>
           Posts
         </PageHeader>
-        <Container>
-          <div
-            style={{
-              display: "flex"
-            }}
-          >
-            <input
-              type="text"
-              className="Select flex-5 search-input"
-              placeholder="Search..."
-              onChange={this.handleSearchChange.bind(this)}
-            />
-            <div className="spacer" />
-            <Select
-              closeOnSelect
-              multi
-              onChange={this.handleSelectChange.bind(this)}
-              options={this.props.tags}
-              placeholder="Tags"
-              removeSelected={true}
-              rtl={false}
-              simpleValue
-              value={this.props.selectedTags}
-              className="flex-5"
-            />
-          </div>
-          {/* <br /> {this.renderCategories()} */}
-          <br />
-        </Container>
+        <div className="posts-container">
+          {this.props.subCategories.length === 0 ? (
+            <div className="categories">{this.renderCategories()}</div>
+          ) : (
+            <div className="categories">{this.renderSubCategories()}</div>
+          )}
+          <div className="posts">{this.renderPosts()}</div>
+        </div>
       </div>
     );
   }
@@ -100,14 +86,18 @@ class PostsClass extends Component {
 
 function mapStateToProps(state) {
   return {
-    ...state.PostsPublic
+    ...state.PostsPublic,
+    categories: state.Categories.categories
   };
 }
 const Posts = connect(mapStateToProps, {
   get: PostsPublicActions.get,
   filter: PostsPublicActions.filter,
   filterByTags: PostsPublicActions.filterByTags,
-  getTags: PostsPublicActions.getTags
+  getTags: PostsPublicActions.getTags,
+  subscribeCategories: CategoriesActions.subscribe,
+  selectCategory: PostsPublicActions.selectCategory,
+  unSelectCategory: PostsPublicActions.unSelectCategory
 })(PostsClass);
 
 export { Posts };

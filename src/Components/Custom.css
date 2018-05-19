@@ -361,13 +361,13 @@ form .form-group:first-child .floating-label-form-group {
 }
 
 footer {
-  padding: 50px 0 65px;
+  /* padding: 50px 0 65px; */
 }
 footer .list-inline {
   margin: 0;
   padding: 0;
   flex: 2 1;
-  padding-top: 3em;
+  /* padding-top: 3em; */
 }
 footer .copyright {
   font-size: 14px;

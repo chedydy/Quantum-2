@@ -20,7 +20,7 @@ class NavigatorComponent extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="navigator">
         <nav
           className="navbar navbar-expand-xl navbar-light background"
           id="mainNav"

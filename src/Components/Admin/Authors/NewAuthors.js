@@ -17,7 +17,6 @@ class NewAuthorClass extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.onSubmit);
     this.onSubmit().then(() => {
       this.props.history.push("/admin/authors/");
     });

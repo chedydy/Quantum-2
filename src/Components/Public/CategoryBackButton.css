@@ -1,5 +1,7 @@
 .categoryBackButton {
   cursor: pointer;
+  margin-top: 1em;
 }
 .categoryBackButton:hover {
+  color: #0085a1;
 }

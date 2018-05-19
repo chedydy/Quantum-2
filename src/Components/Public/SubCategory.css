@@ -1,5 +1,12 @@
 .subCategory {
   cursor: pointer;
+  margin-top: 1em;
+  font-weight: 600;
 }
 .subCategory:hover {
+  color: #0085a1;
+}
+
+.selected {
+  color: #0085a1;
 }

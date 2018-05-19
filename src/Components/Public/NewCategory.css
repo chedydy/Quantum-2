@@ -1,8 +1,8 @@
 .newCategory {
   cursor: pointer;
-
+  margin-top: 1em;
+  font-weight: 600;
 }
 .newCategory:hover {
-  
-  
+  color: #0085a1;
 }
