@@ -1,12 +1,12 @@
 * {box-sizing: border-box;}
 
 /* body {background-color: rgba(0, 0, 255, 0.157); color: #fff;} */
-header {
+/* header {
   background-color: rgba(0,0,0,.5);
   font-size: 1.5em;
   text-align: center;
   padding: 1em;
-}
+} */
 
 .panel-wrapper {
   position: relative;

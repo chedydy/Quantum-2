@@ -366,6 +366,8 @@ footer {
 footer .list-inline {
   margin: 0;
   padding: 0;
+  flex: 2 1;
+  padding-top: 3em;
 }
 footer .copyright {
   font-size: 14px;

@@ -11,7 +11,7 @@ import { Category } from "./NewCategory";
 import { SubCategory } from "./SubCategory";
 import { CategoryBackButton } from "./CategoryBackButton";
 import "./PostsPreview.css";
-import image from "../../img/image_quantum.jpg";
+import image from "../../img/view13.JPG";
 import { PageHeader } from "./PageHeader";
 import { PostsPublicActions, CategoriesActions } from "../../Actions";
 import { PostPreviewItem } from "./PostPreviewItem-New";

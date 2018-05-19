@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "../Common/Button.css";
 import { Textarea, Container, IconInput } from "../Common";
 import { PageHeader } from "./PageHeader";
-import contactImg from "../../img/newcontatus.png";
+import contactImg from "../../img/contactdonepng.png";
 import { ContactRequestsService } from "../../Services";
 
 class Contact extends Component {
