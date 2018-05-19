@@ -6,10 +6,10 @@ import {
   AUTHOR_CLEAR_PHOTO,
   AUTHOR_DELETE,
   AUTHOR_HIDE,
-  AUTHOR_SHOW
+  AUTHOR_SHOW,
+  AUTHOR_SET_IMAGE
 } from "./types";
 import { AuthorsService } from "../Services";
-import { auth } from "../firebase/firebase";
 
 const AuthorsActions = {
   save: author => dispatch => {
@@ -21,8 +21,11 @@ const AuthorsActions = {
     });
   },
   saveWithImage: (author, image) => dispatch => {
-    AuthorsService.setWithImage(author, image).then(() => {
-      dispatch({ type: AUTHOR_SAVE });
+    return new Promise(res => {
+      AuthorsService.setWithImage(author, image).then(() => {
+        dispatch({ type: AUTHOR_SAVE });
+        res();
+      });
     });
   },
   get: () => dispatch => {
@@ -51,6 +54,9 @@ const AuthorsActions = {
   },
   hide: () => {
     return { type: AUTHOR_HIDE };
+  },
+  setImage: image => {
+    return { type: AUTHOR_SET_IMAGE, payload: image };
   }
 };
 

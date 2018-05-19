@@ -366,6 +366,8 @@ footer {
 footer .list-inline {
   margin: 0;
   padding: 0;
+  flex: 2 1;
+  padding-top: 3em;
 }
 footer .copyright {
   font-size: 14px;
@@ -444,6 +446,8 @@ fieldset[disabled] .btn-primary:hover {
 .btn-lg {
   font-size: 16px;
   padding: 25px 35px;
+  align-self: center;
+  width: 15%;
 }
 
 .btn-default:focus,

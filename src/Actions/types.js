@@ -60,3 +60,4 @@ export const AUTHOR_CLEAR_PHOTO = "AUTHOR_CLEAR_PHOTO";
 export const AUTHOR_DELETE = "AUTHOR_DELETE";
 export const AUTHOR_SHOW = "AUTHOR_SHOW";
 export const AUTHOR_HIDE = "AUTHOR_HIDE";
+export const AUTHOR_SET_IMAGE = "AUTHOR_SET_IMAGE";

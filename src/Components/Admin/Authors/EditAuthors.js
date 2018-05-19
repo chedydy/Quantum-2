@@ -8,7 +8,8 @@ class EditAuthorClass extends NewAuthorClass {
   }
 
   onSubmit() {
-    return this.props.image
+    const hasImage = this.props.image;
+    return hasImage
       ? this.props.saveWithImage(this.props.selected, this.props.image)
       : this.props.save(this.props.selected);
   }

@@ -56,7 +56,7 @@
   width: 100%;
   height: auto;
   margin: 4%;
-  padding: 3%;
+  padding: 2%;
   border-radius: 15px;
   background: white;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
@@ -70,7 +70,7 @@
   background-color: rgba(0, 140, 186, 0.5);
   overflow: hidden;
   width: 0;
-  height: 87%;
+  height: 89.5%;
   transition: 0.5s ease;
   margin: 4%;
   border-radius: 15px;
@@ -83,7 +83,7 @@
   background-color: rgba(0, 140, 186, 0.5);
   overflow: hidden;
   width: 0;
-  height: 87%;
+  height: 89.5%;
   transition: 0.5s ease;
   margin: 4%;
   border-radius: 15px;
@@ -110,10 +110,11 @@
 
 .container-avatar {
   position: relative;
-  width: 45%;
+  width: 44%;
   margin: 2%;
 }
 .wrap-contacts {
   display: flex;
   flex-wrap: wrap;
+  
 }

@@ -6,7 +6,8 @@ import {
   AUTHOR_CLEAR_PHOTO,
   AUTHOR_DELETE,
   AUTHOR_SHOW,
-  AUTHOR_HIDE
+  AUTHOR_HIDE,
+  AUTHOR_SET_IMAGE
 } from "../Actions";
 
 const INITIAL_STATE = {
@@ -71,6 +72,9 @@ const AuthorsReducer = (state = INITIAL_STATE, action) => {
     }
     case AUTHOR_HIDE: {
       return { ...state, show: false };
+    }
+    case AUTHOR_SET_IMAGE: {
+      return { ...state, image: action.payload };
     }
     default:
       return state;

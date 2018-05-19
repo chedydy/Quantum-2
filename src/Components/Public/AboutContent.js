@@ -8,6 +8,11 @@ import { AuthorModal } from "./AuthorModal";
 import { AuthorItem } from "./AuthorItem";
 import { AuthorsActions, AboutActions } from "../../Actions";
 import "./AboutContent.css";
+import Jivanescu from "../../img/Victor.png";
+import Ramo from "../../img/Ramo.png";
+import Diana from "../../img/Diana.png";
+import Andrei from "../../img/Andrei.png";
+import "./AboutReadmore.css";
 
 class AboutContentClass extends Component {
   state = {
@@ -15,14 +20,14 @@ class AboutContentClass extends Component {
       aboutText: "",
       authors: [
         {
-          name: "Victor Jivanescu",
+          name: "Jivanescu Victor",
           about: `My undergraduate years at Oxford studying philosophy, politics and economics, coupled with my work in strategy consulting in London have thought me much about the structure of the world we are living in and provided me a clear career and life path…. or so I thought. 
           \n\rAfter having a number of revealing experiences I learned that there is much more to our world than structure and material development. Thus, I came in touch with the world great contemplative traditions and started to undergo rigorous practice by embarking on a journey in Nepal and the Himalayas.
           \n\rAll these expriences led me on a mission to share the amazing insights I discovered with the rest of humanity. If we are to truly develop our world, we need to take in to account both our inner and outer growth and have wise answers to our questions of ultimate concern. 
         `
         },
         {
-          name: "Nutas Vancea Pop Andrei",
+          name: "Nutas Andrei",
           about: `Since the moment I started school I was highly disappointed at all that the system had to offer because of the lack of a unified transdisciplinary understanding of reality. For many years I chose, as I drowned in a nihilistic state, to give up on the world, to consider it inherently defect, inherently lost, inherently meaningless and to concentrate on hedonistic enjoyment. However, it didn’t matter the number of times I skydived, the number of girls I slept with, or the parties I went to… these didn’t solve anything. They only made it worse leading me into depression.  
           \n\rAfter a transcendental experience in which I reached the non-dual state, I knew that there was only one way out of this, and I decided that instead of continuing to let myself be drowned by the nonsense that surrounded me, I would take upon myself the responsibility of improving all that which is malignant in the world. As I’m aware that this can’t be done alone, I decided that I had to create a platform that can educate and empower people to realize their highest vision so that they may free themselves from the clutches of hedonism, nihilism and ideology that permeate our world. My hope is that if we work together, directing our energy towards the establishment of the transcendental, we will be able to create heaven on earth. 
           `
@@ -47,21 +52,21 @@ class AboutContentClass extends Component {
     this.props.getAuthors();
   }
   renderAuthors() {
-    return _.map(this.props.authors, (author, id) => {
-      return (
-        <div key={id}>
-          <AuthorItem author={author} />
-          <br />
-        </div>
-      );
+    const authors = [];
+    _.forEach(this.props.authors, (author, id) => {
+      authors.push(<AuthorItem author={author} key={id} />);
+      authors.push(<br key={`id${id}`} />);
     });
+    return authors;
   }
   render() {
-    // const { about } = this.props;
     return (
       <div className="myheader">
-        <PageHeader image={this.props.imageUrl} title={""}>
-          {/* {about.title} */}
+        <PageHeader
+          image={this.props.imageUrl}
+          title={"About Quantum Civilisation"}
+        >
+          {this.props.title}
         </PageHeader>
 
         <Container>
@@ -71,7 +76,18 @@ class AboutContentClass extends Component {
               textAlign: "justify"
             }}
           >
-            <ReactMarkdown source={this.props.content} />
+            <div className="panel-wrapper">
+              <a href="#show" className="show btnbtn" id="show">
+                Show Full Description
+              </a>
+              <a href="#hide" className="hide btnbtn" id="hide">
+                Hide Full Description
+              </a>
+              <div className="panel">
+                <ReactMarkdown source={this.props.content} />
+              </div>
+              <div className="fade" />
+            </div>
           </div>
           <div className="wrap-contacts">{this.renderAuthors()}</div>
         </Container>

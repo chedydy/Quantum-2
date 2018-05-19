@@ -30,7 +30,7 @@ class AuthorFormClass extends Component {
           type="file"
           fileTypes="image/*"
           onChange={(image, imageUrl) => {
-            this.props.update("image", image);
+            this.props.setImage(image);
             this.props.update("imageUrl", imageUrl);
           }}
           faIcon="fa-file-image"
@@ -58,7 +58,8 @@ function mapStateToProps(state) {
 }
 const AuthorForm = connect(mapStateToProps, {
   update: AuthorsActions.update,
-  clearPhoto: AuthorsActions.clearPhoto
+  clearPhoto: AuthorsActions.clearPhoto,
+  setImage: AuthorsActions.setImage
 })(AuthorFormClass);
 
 export { AuthorForm };
