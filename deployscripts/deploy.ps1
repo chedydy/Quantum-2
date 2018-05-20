@@ -1,5 +1,5 @@
-kubectl delete deployment quantum
-kubectl delete service quantum
+kubectl delete deployment quantumcivilization
+kubectl delete service quantumcivilization-service
 
-kubectl apply -f scripts/quantum-deployment.yaml
-kubectl apply -f scripts/quantum-service.yaml
+kubectl apply -f quantum-deployment.yaml
+kubectl apply -f quantum-service.yaml

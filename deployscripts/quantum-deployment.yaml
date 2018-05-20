@@ -1,20 +1,22 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: quantum
+  name: quantumcivilization
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: quantum
+        app: quantumcivilization
     spec:
       containers:
-        - env:
-          - name: PORT
-            value: "8080"
-        name: quantum
-        image: radu/quantum:v3
+      - name: quantumcivilization
+        image: boco4ever/quantumcivilization:latest
+        env:
+        - name: PORT
+          value: "80"
         ports:
         - name: nodejs-port
           containerPort: 80
+      imagePullSecrets:
+      - name: regcred
