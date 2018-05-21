@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../Common/Button.css";
-import { Textarea, Container, IconInput } from "../Common";
+import { IconTextarea, Container, IconInput } from "../Common";
 import { PageHeader } from "./PageHeader";
 import contactImg from "../../img/contactdonepng.png";
 import { ContactRequestsService } from "../../Services";
@@ -72,12 +72,14 @@ class Contact extends Component {
                 value={this.state.phone}
                 onChange={this.handleChange.bind(this, "phone")}
               />
-              <Textarea
+              <IconTextarea
                 id="message"
                 placeholder="Message"
                 label="Message"
+                faIcon="fa-comment-alt"
                 value={this.state.message}
                 onChange={this.handleChange.bind(this, "message")}
+                
               />
 
               <br />

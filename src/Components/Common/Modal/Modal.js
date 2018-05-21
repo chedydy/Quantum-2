@@ -17,7 +17,6 @@ class Modal extends Component {
   }
   onRequestClose() {}
   render() {
-    const { title, children, className } = this.props;
     return (
       <ReactModal
         isOpen={this.props.isOpen}

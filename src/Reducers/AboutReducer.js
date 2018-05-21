@@ -5,7 +5,6 @@ import {
   ABOUT_CLEAR_PHOTO,
   ABOUT_EDIT
 } from "../Actions";
-import _ from "lodash";
 
 const INITIAL_STATE = {
   title: "",

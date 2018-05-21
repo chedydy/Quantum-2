@@ -5,24 +5,18 @@ import { MessageModal } from "./MessageModal";
 import { ContactRequestActions } from "../../../Actions";
 
 class ContactRequestsClass extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.props.get();
   }
 
   renderContactRequests() {
     const items = this.props.FilteredContactRequests.map((val, index) => {
-      if (val.id) {
-        return (
-          <div key={val.id}>
-            <ContactRequest contactRequest={val} />
-            <hr />
-          </div>
-        );
-      }
+      return (
+        <div key={val.id}>
+          <ContactRequest contactRequest={val} />
+          <hr />
+        </div>
+      );
     });
     return items;
   }
@@ -47,18 +41,29 @@ class ContactRequestsClass extends Component {
               border: "2px solid #0085A1"
             }}
           >
-            <div className="col-5 text-left align-self-center header" onClick={()=>this.props.sortBy('message')}>
+            <div
+              className="col-5 text-left align-self-center header"
+              onClick={() => this.props.sortBy("message")}
+            >
               Message
             </div>
-            <div className="col-2 text-left align-self-center header" onClick={()=>this.props.sortBy('name')}>From</div>
-            <div className="col-2 text-left align-self-center header" onClick={()=>this.props.sortBy('time')}>
+            <div
+              className="col-2 text-left align-self-center header"
+              onClick={() => this.props.sortBy("name")}
+            >
+              From
+            </div>
+            <div
+              className="col-2 text-left align-self-center header"
+              onClick={() => this.props.sortBy("time")}
+            >
               Send Date
             </div>
             <div className="col-2 text-left align-self-center search-header">
-            <i className="fas fa-search"></i>
+              <i className="fas fa-search" />
               <input
                 placeholder="Search..."
-                className='search'
+                className="search"
                 onChange={e => {
                   this.filter(e.target.value);
                 }}
@@ -78,7 +83,7 @@ function mapStateToProps(state) {
 const ContactRequests = connect(mapStateToProps, {
   get: ContactRequestActions.get,
   filter: ContactRequestActions.filter,
-  sortBy:ContactRequestActions.sortBy
+  sortBy: ContactRequestActions.sortBy
 })(ContactRequestsClass);
 
 export { ContactRequests };

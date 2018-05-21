@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import _ from "lodash";
-import { Container, SubmitButton, Modal, Button } from "../../Common";
+import { SubmitButton, Button } from "../../Common";
 import { PostContent } from "../../Public";
 import { PostForm } from "./PostForm";
 import "./EditPost.css";

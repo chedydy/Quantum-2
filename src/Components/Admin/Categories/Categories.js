@@ -1,86 +1,88 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import _ from "lodash";
-import { Container } from "../../Common";
-import { Category } from "./Category";
-import { NewCategory } from "./NewCategory";
-import { AlertModal } from "./AlertModal";
+import { LinkButton } from "../../Common";
+import { CategoryItem } from "./CategoryItem";
 import { CategoriesActions } from "../../../Actions";
-
+import "./CategoriesItem.css";
+import "./Categories.css";
 class CategoriesClass extends Component {
   componentWillMount() {
-    this.props.get();
+    this.props.subscribe();
   }
-
-  createCategories(categories, isFirst, parent) {
-    return _.map(categories, (val, key) => {
-      if (key === "Placeholder") {
-        return (
-          <NewCategory
-            key={key}
-            name={val}
-            isFirst={isFirst}
-            parent={`${parent} ${key}`}
-          />
-        );
-      }
+  renderPostsPreview() {
+    const items = _.map(this.props.filteredCategories, (val, index) => {
       return (
-        <Category
-          key={key}
-          name={key}
-          isFirst={isFirst}
-          parent={`${parent} ${key}`}
-        >
-          {val === true
-            ? ""
-            : this.createCategories(val, false, `${parent} ${key}`)}
-        </Category>
+        <div key={index}>
+          <CategoryItem category={index} />
+          <hr />
+        </div>
       );
     });
-  }
-
-  renderCategories() {
-    const { categories } = this.props;
-    const items = this.createCategories(categories, true, "");
     return items;
   }
-
+  filter(filterText) {
+    this.props.filter(filterText);
+  }
   render() {
     return (
-      <div>
-        <AlertModal isOpen={this.props.showAlert} />
-        <Container>
-          <br />
-          <button
-            className="btn btn-primary"
-            onClick={() => this.props.new("root")}
+      <div className="row justify-content-center align-items-center">
+        <div className="col-11">
+          <div
+            className="row justify-content-center"
+            style={{
+              marginBottom: "30px",
+              marginTop: "30px",
+              fontWeight: "bold",
+              fontSize: "25px",
+              border: "2px solid #0085A1"
+            }}
           >
-            Add Category
-          </button>
-          <br />
-          <br />
-          {this.renderCategories()}
-          <br />
-          <button
-            className="btn btn-primary"
-            onClick={() => this.props.update(this.props.categories)}
-            style={{ display: this.props.edit ? "inline" : "none" }}
-          >
-            Update
-          </button>
-        </Container>
+            <div
+              className="col-4 text-left align-self-center header"
+              //   onClick={() => this.props.sortBy("title")}
+            >
+              Name
+            </div>
+
+            <div className="col-3 text-left align-self-center search-header">
+              <i className="fas fa-search" />
+              <input
+                className="search"
+                placeholder="Search..."
+                onChange={e => {
+                  this.props.filter(e.target.value);
+                }}
+              />
+            </div>
+          </div>
+          {this.renderPostsPreview()}
+          <div className="row justify-content-center">
+            <div className="col-3 offset-8 align-self-center">
+              <div className="row">
+                <LinkButton link={`/admin/categories/new`}>
+                  New Category
+                </LinkButton>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return { ...state.Categories };
+  return {
+    filteredCategories: state.Categories.filteredCategories,
+    filter: state.Categories.filter
+  };
 }
 const Categories = connect(mapStateToProps, {
-  get: CategoriesActions.get,
-  new: CategoriesActions.new,
-  update: CategoriesActions.update
+  subscribe: CategoriesActions.subscribe,
+  filter: CategoriesActions.filter,
+  delete: CategoriesActions.delete,
+  new: CategoriesActions.new
 })(CategoriesClass);
 
 export { Categories };

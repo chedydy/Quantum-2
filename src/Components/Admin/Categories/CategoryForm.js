@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import _ from "lodash";
-import { IconInput, ActionIconInput, Button } from "../../Common";
+import { ActionIconInput } from "../../Common";
 import { connect } from "react-redux";
 import { CategoriesActions } from "../../../Actions";
 import "./EditCategory.css";

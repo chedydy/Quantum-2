@@ -4,15 +4,14 @@ import "./Footer.css";
 const Footer = () => {
   return (
     <footer className="footer-panel">
-      <div style={{ flex: 1 }} />
-      <ul className="list-inline text-center" style={{ flex: 2 }}>
+      <div className='footer-panel-fill' />
+      <ul className="footer-panel-links list-inline text-center" style={{ flex: 2 }}>
         <FooterShareLink
           provider="facebook"
           link="https://www.facebook.com/quantumcivilization/?ref=page_internal"
         />
         <FooterShareLink provider="instagram" link="" />
       </ul>
-
       <span className="footer-text">
         Created by Quantum Civilisation © 2018
       </span>

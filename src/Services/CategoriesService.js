@@ -1,33 +1,8 @@
-import _ from "lodash";
 import { app } from "../firebase/firebase";
 const categoriesRef = app.ref().child("categories");
-function mapCategory(categories) {
-  return _.map(categories, (category, key) => {
-    if (category === true) {
-      return [`/${key}`];
-    }
-    const subsArray = mapCategory(category);
-    const subs = _.map(subsArray, val => {
-      return `/${key}${val}`;
-    });
-    return [`/${key}`].concat(subs);
-  });
-}
+
 const CategoriesService = {
   subscribe(callback) {
-    categoriesRef.on(
-      "value",
-      snapshot => {
-        const categories = mapCategory(snapshot.val());
-        var result = [].concat.apply([], categories);
-        callback(result);
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  },
-  subscribeRaw(callback) {
     categoriesRef.on(
       "value",
       snapshot => {
@@ -49,17 +24,25 @@ const CategoriesService = {
         .catch(reject);
     });
   },
-  add(category, path) {
-    categoriesRef.child(path.replace("-", "/")).update({
-      [category]: true
+  getCategory(category) {
+    return new Promise((resolve, reject) => {
+      categoriesRef
+        .child(category)
+        .once("value")
+        .then(snapshot => {
+          resolve({ subCategories: snapshot.val(), name: category });
+        })
+        .catch(reject);
     });
   },
-  delete(categoryPath) {
-    const categoryNode = categoryPath.replace("-", "/");
-    return categoriesRef.child(categoryNode).remove();
+  add(category) {
+    return categoriesRef.child(category.name).update(category.subCategories);
   },
-  update(categories) {
-    return categoriesRef.update(categories);
+  delete(category) {
+    return categoriesRef.child(category).remove();
+  },
+  update(category) {
+    return categoriesRef.child(category.name).update(category.subCategories);
   }
 };
 

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import _ from "lodash";
 import { IconInput, IconTextarea, ActionFileInput } from "../../Common";
 import { connect } from "react-redux";
 import { AuthorsActions } from "../../../Actions";

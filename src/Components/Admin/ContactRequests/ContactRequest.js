@@ -5,7 +5,7 @@ import { ContactRequestActions } from "../../../Actions";
 import "./ContactRequests.css";
 
 class ContactRequestClass extends Component {
-  openMessage(){
+  openMessage() {
     this.props.openMessage(this.props.contactRequest);
   }
   render() {

@@ -1,12 +1,8 @@
 import React, { Component } from "react";
-import Select from "react-select";
 import "react-select/dist/react-select.css";
 import _ from "lodash";
 import { connect } from "react-redux";
-import { Container } from "../Common";
-// import { Category } from "./Category";
 import { Title } from "./PostTitle";
-import { CategoriesNew } from "./Categories-New";
 import { Category } from "./NewCategory";
 import { SubCategory } from "./SubCategory";
 import { CategoryBackButton } from "./CategoryBackButton";

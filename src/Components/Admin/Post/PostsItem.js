@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { LinkButton, Button } from "../../Common";
 import { connect } from "react-redux";
 import { PostsActions } from "../../../Actions";
-import { PostContent } from "../../Public";
 import "./PostItem.css";
 
 class PostsItemClass extends Component {
@@ -11,11 +10,6 @@ class PostsItemClass extends Component {
       content: ""
     }
   };
-  loadPostDetails() {
-    // PostService.getPost(this.props.postPreview.id)
-    //   .then(post => this.setState({ post }))
-    //   .catch(console.log);
-  }
   deletePost() {
     this.props.delete({
       id: this.props.postPreview.id,

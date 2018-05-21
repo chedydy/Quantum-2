@@ -1,71 +1,45 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Input } from "../../Common";
+import { SubmitButton } from "../../Common";
+import { CategoryForm } from "./CategoryForm";
 import { CategoriesActions } from "../../../Actions";
-import "./NewCategory.css";
+import "./EditCategory.css";
+
 class NewCategoryClass extends Component {
+  onSubmit() {
+    return this.props.add(this.props.selected);
+  }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    this.onSubmit().then(() => {
+      this.props.history.push("/admin/categories/");
+    });
+  };
+
   render() {
     return (
-      <div className="category-entire-boss-container">
-        <div className="category-boss-container">
-          <div
-            style={{
-              flexGrow: this.props.isFirst ? "0" : "0.5",
-              flexShrink: "1",
-              flexBasis: "0%"
-            }}
-          />
-          <div
-            className="category-mini-boss-container"
-            style={{
-              flexGrow: this.props.isFirst ? "1" : "9.5",
-              flexShrink: "1",
-              flexBasis: "0%",
-              paddingLeft: this.props.isFirst ? 0 : 21
-            }}
-          >
-            <div className="category-container-admin">
-              <div className="category-inline">
-                <div className="category-input-wrapper">
-                  <input
-                    type="text"
-                    className="category-input"
-                    onChange={event =>
-                      this.props.edit(event.target.value, this.props.parent)
-                    }
-                    value={this.props.name}
-                  />
-                </div>
-                <div
-                  className="add-button"
-                  onClick={() => {
-                    this.props.save(this.props.name, this.props.parent);
-                  }}
-                >
-                  <i className={`fa fa-save`} />
-                </div>
-                <div
-                  className="add-button"
-                  onClick={() => {
-                    this.props.cancel(this.props.parent);
-                  }}
-                >
-                  <i className={`fa fa-ban`} />
-                </div>
+      <div className="container">
+        <div className="justify-content-center">
+          <div className="col">
+            <form onSubmit={this.handleSubmit.bind(this)}>
+              <CategoryForm />
+              <br />
+              <div className="row justify-content-end col">
+                <SubmitButton className="fa fa-floppy-o fa-3x save-button" />
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>
     );
   }
 }
-
-const NewCategory = connect(null, {
-  new: CategoriesActions.new,
-  save: CategoriesActions.save,
-  cancel: CategoriesActions.cancel,
-  edit: CategoriesActions.edit
+function mapStateToProps(state) {
+  return { selected: state.Categories.selected };
+}
+const NewCategory = connect(mapStateToProps, {
+  add: CategoriesActions.add
 })(NewCategoryClass);
 
-export { NewCategory };
+export { NewCategory, NewCategoryClass };

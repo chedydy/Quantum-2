@@ -8,7 +8,6 @@ import { AuthorModal } from "./AuthorModal";
 import { AuthorItem } from "./AuthorItem";
 import { AuthorsActions, AboutActions } from "../../Actions";
 import "./AboutContent.css";
-import "./AboutReadmore.css";
 
 class AboutContentClass extends Component {
   state = {
@@ -20,50 +19,51 @@ class AboutContentClass extends Component {
   }
   renderAuthors() {
     const authors = [];
+    let index = 0;
     _.forEach(this.props.authors, (author, id) => {
-      authors.push(<AuthorItem author={author} key={id} />);
+      authors.push(
+        <AuthorItem author={author} key={id} isReverse={index % 2 === 0} />
+      );
       authors.push(<br key={`id${id}`} />);
+      index++;
     });
     return authors;
   }
   render() {
     return (
-      <div className="myheader">
+      <div className="aboutContent">
         <PageHeader
           image={this.props.imageUrl}
-          title={"About Quantum Civilisation"}
+          title={"About Quantum Civilization"}
         >
           {this.props.title}
         </PageHeader>
 
         <Container>
           <AuthorModal title="About Me" appElement="#root" />
-          <div className="panel-wrapper">
+          <div className="aboutContent-about-container">
             <div
-              className="panel"
+              className="aboutContent-about"
               style={{ maxHeight: this.state.showMore ? "unset" : "60vh" }}
             >
               <ReactMarkdown source={this.props.content} />
             </div>
-            <div className="fade" />
             <a
               href="#show"
-              className="show btnbtn"
-              id="show"
+              className="aboutContent-show"
               onClick={() => this.setState({ showMore: true })}
             >
               Show Full Description
             </a>
             <a
               href="#hide"
-              className="hide btnbtn"
-              id="hide"
+              className="aboutContent-hide"
               onClick={() => this.setState({ showMore: false })}
             >
               Hide Full Description
             </a>
           </div>
-          <div className="wrap-contacts">{this.renderAuthors()}</div>
+          <div className="aboutContent-authors">{this.renderAuthors()}</div>
         </Container>
       </div>
     );

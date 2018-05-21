@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import _ from "lodash";
 import { Container, Button } from "../Common";
 import { PostPreviewService } from "../../Services";
 import { PostsPreviewItem } from "./PostsPreviewItem";
