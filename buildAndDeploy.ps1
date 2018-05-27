@@ -1,4 +1,6 @@
 
+npm run build
+
 docker login --username=$Env:DOCKER_USER --password=$Env:DOCKER_PASS
 
 docker pull boco4ever/quantumcivilization:latest
