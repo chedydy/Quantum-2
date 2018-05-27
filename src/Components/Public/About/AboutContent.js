@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import ReactMarkdown from "react-markdown";
 import { connect } from "react-redux";
 import _ from "lodash";
-import { PageHeader } from "./PageHeader";
-import { Container } from "../Common";
+import { PageHeader } from "../PageHeader";
+import { Container } from "../../Common";
 import { AuthorModal } from "./AuthorModal";
 import { AuthorItem } from "./AuthorItem";
-import { AuthorsActions, AboutActions } from "../../Actions";
+import { AuthorsActions, AboutActions } from "../../../Actions";
 import "./AboutContent.css";
 
 class AboutContentClass extends Component {

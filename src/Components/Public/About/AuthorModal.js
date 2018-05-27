@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Modal } from "../Common";
-import { AuthorsActions } from "../../Actions";
+import { Modal } from "../../Common";
+import { AuthorsActions } from "../../../Actions";
 import "./AboutContent.css";
 class AuthorModalClass extends Modal {
   renderFooterButtons() {

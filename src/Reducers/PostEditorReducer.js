@@ -17,7 +17,8 @@ const INITIAL_STATE = {
     subTitle: "",
     tags: "",
     category: "",
-    subCategory: ""
+    subCategory: "",
+    previewText: ""
   },
   showPreview: false,
   categories: [],

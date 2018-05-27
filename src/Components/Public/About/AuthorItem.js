@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { AuthorsActions } from "../../Actions";
+import { AuthorsActions } from "../../../Actions";
 import "./AuthorItem.css";
 let AuthorItem = ({ author, show, isReverse }) => {
   return (

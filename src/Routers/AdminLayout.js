@@ -21,7 +21,6 @@ const AdminLayout = () => {
     <div id="AdminLayout">
       <AdminNavigator />
       <Switch>
-        <PrivateRoute path="/admin/" component={Posts} exact={true} />
         <PrivateRoute path="/admin/posts/" component={Posts} exact={true} />
         <PrivateRoute
           path="/admin/posts/new"
@@ -65,6 +64,7 @@ const AdminLayout = () => {
           component={EditAuthor}
           exact={true}
         />
+        <PrivateRoute path="/admin/" component={Posts} exact={true} />
       </Switch>
     </div>
   );

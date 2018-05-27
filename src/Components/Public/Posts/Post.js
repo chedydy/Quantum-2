@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { PostPreviewService, PostService } from "../../Services";
+import { PostPreviewService, PostService } from "../../../Services";
 import { PostContent } from "./PostContent";
 
 class Post extends Component {

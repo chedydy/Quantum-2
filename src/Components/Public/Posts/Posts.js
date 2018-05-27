@@ -3,13 +3,13 @@ import "react-select/dist/react-select.css";
 import _ from "lodash";
 import { connect } from "react-redux";
 import { Title } from "./PostTitle";
-import { Category } from "./NewCategory";
+import { Category } from "./Category";
 import { SubCategory } from "./SubCategory";
 import { CategoryBackButton } from "./CategoryBackButton";
 import "./PostsPreview.css";
-import image from "../../img/view13.JPG";
-import { PageHeader } from "./PageHeader";
-import { PostsPublicActions, CategoriesActions } from "../../Actions";
+import image from "../../../img/view13.JPG";
+import { PageHeader } from "../PageHeader";
+import { PostsPublicActions, CategoriesActions } from "../../../Actions";
 import { PostPreviewItem } from "./PostPreviewItem";
 import "./Posts.css";
 
@@ -63,17 +63,17 @@ class PostsClass extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="posts">
         <PageHeader image={image} title={"Search for posts"}>
           Posts
         </PageHeader>
         <div className="posts-container">
           {this.props.subCategories.length === 0 ? (
-            <div className="categories">{this.renderCategories()}</div>
+            <div className="posts-categories">{this.renderCategories()}</div>
           ) : (
-            <div className="categories">{this.renderSubCategories()}</div>
+            <div className="posts-categories">{this.renderSubCategories()}</div>
           )}
-          <div className="posts">{this.renderPosts()}</div>
+          <div className="posts-list">{this.renderPosts()}</div>
         </div>
       </div>
     );

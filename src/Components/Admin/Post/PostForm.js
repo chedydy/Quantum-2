@@ -229,7 +229,13 @@ class PostForm extends Component {
           />
         </div>
         <Textarea
-          id="content"
+          placeholder="Preview text"
+          label="Preview text"
+          rows="3"
+          value={this.props.preview.previewText}
+          onChange={value => this.props.updateProps("preview", "previewText", value)}
+        />
+        <Textarea
           placeholder="Content"
           label="Content"
           rows="10"

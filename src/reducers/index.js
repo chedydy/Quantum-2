@@ -5,7 +5,7 @@ import createHistory from "history/createBrowserHistory";
 import { ContactRequestsReducer } from "./ContactRequestsReducer";
 import { PostEditorReducer } from "./PostEditorReducer";
 import { PostsReducer } from "./PostsReducer";
-import { CategoriesReducer } from "./NewCategoriesReducer";
+import { CategoriesReducer } from "./CategoriesReducer";
 import { PostsPublicReducer } from "./PostsPublicReducer";
 import { AboutReducer } from "./AboutReducer";
 import { AuthorsReducer } from "./AuthorsReducer";

@@ -12,6 +12,7 @@ spec:
       containers:
       - name: quantumcivilization
         image: boco4ever/quantumcivilization:latest
+        imagePullPolicy: "Always"
         env:
         - name: PORT
           value: "80"

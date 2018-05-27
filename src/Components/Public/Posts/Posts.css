@@ -2,15 +2,14 @@
   display: flex;
   flex-direction: row;
 }
-.categories {
+.posts-categories {
   display: flex;
   flex-direction: column;
   flex: 1;
   padding-left: 0px;
 }
-.posts {
+.posts-list {
   flex: 5;
-  /* border-left: 2px solid lightgray; */
   display: flex;
   flex-wrap: wrap;
 }
@@ -19,7 +18,7 @@ header.masthead {
   margin-bottom: 0px;
 }
 @media only screen and (max-width: 600px) {
-  .categories {
+  .posts-categories {
     display: none;
   }
 }

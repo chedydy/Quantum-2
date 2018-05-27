@@ -1,128 +1,133 @@
 import {
   CATEGORIES_GET,
-  CATEGORIES_NEW,
-  CATEGORIES_EDIT,
-  CATEGORIES_SAVE,
-  CATEGORIES_CANCEL,
   CATEGORIES_DELETE,
-  CATEGORIES_TOGGLE_ALERT,
-  CATEGORIES_DELETE_TAG,
-  CATEGORIES_TAG,
   CATEGORIES_UPDATE,
+  CATEGORIES_ADD,
+  CATEGORIES_FILTER,
+  CATEGORIES_EDIT_REMOVE,
+  CATEGORIES_EDIT_ADD,
+  CATEGORIES_EDIT_SUBCATEGORY,
+  CATEGORIES_EDIT_NAME,
+  CATEGORIES_GET_ONE,
+  CATEGORIES_NEW
 } from "../Actions";
 import _ from "lodash";
 
 const INITIAL_STATE = {
   categories: {},
-  showAlert: false,
-  taggedPath: "",
-  taggedName: "",
-  edit: false
+  filteredCategories: {},
+  filter: "",
+  selected: { name: "", subCategories: [] }
 };
-
+function filterCategories(filter, categories) {
+  return filter === ""
+    ? categories
+    : _.filter(categories, (subCategories, category) => {
+        return _.some(filter.trim().split(" "), word => {
+          return _.some(subCategories, subCategory => {
+            return subCategory.includes(word);
+          });
+        });
+      });
+}
 const CategoriesReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case CATEGORIES_GET: {
+      const filter = state.filter;
+      const categories = action.payload;
+      const filteredCategories = filterCategories(filter, categories);
       return {
         ...state,
-        categories: action.payload
+        categories,
+        filteredCategories
       };
     }
-    case CATEGORIES_NEW: {
-      const newCategories =
-        action.payload === "root"
-          ? {
-              ...state.categories,
-              Placeholder: "Placeholder"
-            }
-          : {
-              ..._.set(state.categories, action.payload, {
-                ..._.get(state.categories, action.payload),
-                Placeholder: "Placeholder"
-              })
-            };
-      return { ...state, categories: newCategories, edit: true };
-    }
-    case CATEGORIES_EDIT: {
-      const { value, parentPath } = action.payload;
-      const newCategories = {
-        ..._.set(state.categories, parentPath, value)
-      };
-      return { ...state, categories: newCategories, edit: true };
-    }
-    case CATEGORIES_SAVE: {
-      const newCategory = {
-        ...(action.payload.parentPath === ""
-          ? state.categories
-          : _.get(state.categories, action.payload.parentPath)),
-        [action.payload.value]: true
-      };
-      delete newCategory["Placeholder"];
-      const newCategories =
-        action.payload.parentPath === ""
-          ? newCategory
-          : {
-              ..._.set(state.categories, action.payload.parentPath, newCategory)
-            };
-      return { ...state, categories: newCategories, edit: true };
-    }
-    case CATEGORIES_CANCEL: {
-      const newCategory = {
-        ...(action.payload === ""
-          ? state.categories
-          : _.get(state.categories, action.payload))
-      };
-      delete newCategory["Placeholder"];
-      const newCategories =
-        action.payload === ""
-          ? newCategory
-          : {
-              ..._.set(state.categories, action.payload, newCategory)
-            };
-      return { ...state, categories: newCategories, edit: true };
-    }
-    case CATEGORIES_DELETE: {
-      const newCategory = {
-        ...(action.payload.path === ""
-          ? state.categories
-          : _.get(state.categories, action.payload.path))
-      };
-      delete newCategory[action.payload.name];
-      const newCategories =
-        action.payload.path === ""
-          ? newCategory
-          : {
-              ..._.set(state.categories, action.payload.path, newCategory)
-            };
-      return { ...state, categories: newCategories, edit: true };
-    }
-    case CATEGORIES_TOGGLE_ALERT: {
-      return { ...state, showAlert: !state.showAlert, edit: true };
-    }
-    case CATEGORIES_TAG: {
+    case CATEGORIES_GET_ONE: {
       return {
         ...state,
-        taggedName: action.payload.name,
-        taggedPath: action.payload.path,
-        edit: true
+        selected: action.payload
       };
     }
-    case CATEGORIES_DELETE_TAG: {
-      const newCategory =
-        state.taggedPath === ""
-          ? state.categories
-          : _.get(state.categories, state.taggedPath);
-      delete newCategory[state.taggedName];
-      const newCategories =
-        state.taggedPath === ""
-          ? newCategory
-          : {
-              ..._.set(state.categories, state.taggedPath, newCategory)
-            };
-      return { ...state, categories: newCategories, edit: true };
+    case CATEGORIES_ADD: {
+      const filter = state.filter;
+      const categories = state.categories;
+      const newCategory = action.payload;
+      categories[newCategory.name] = newCategory.subCategories;
+      const filteredCategories = filterCategories(filter, categories);
+      return {
+        ...state,
+        categories,
+        filteredCategories,
+        selected: INITIAL_STATE.selected
+      };
     }
     case CATEGORIES_UPDATE: {
-      return { ...state, edit: false };
+      const updatedCategory = action.payload;
+      const filter = state.filter;
+      const categories = state.categories;
+      categories[updatedCategory.name] = updatedCategory.subCategories;
+      const filteredCategories = filterCategories(filter, categories);
+      return {
+        ...state,
+        categories,
+        filteredCategories,
+        selected: INITIAL_STATE.selected
+      };
+    }
+    case CATEGORIES_DELETE: {
+      const categories = state.categories;
+      const filteredCategories = state.filteredCategories;
+      delete categories[action.payload];
+      delete filteredCategories[action.payload];
+      return {
+        ...state,
+        categories,
+        filteredCategories
+      };
+    }
+    case CATEGORIES_FILTER: {
+      const filter = action.payload;
+      const categories = state.categories;
+      const filteredCategories = filterCategories(filter, categories);
+      return {
+        ...state,
+        categories,
+        filteredCategories
+      };
+    }
+    case CATEGORIES_EDIT_NAME: {
+      const selected = { ...state.selected, name: action.payload };
+      return { ...state, selected };
+    }
+    case CATEGORIES_EDIT_SUBCATEGORY: {
+      const selected = {
+        ...state.selected,
+        subCategories: [...state.selected.subCategories]
+      };
+      selected.subCategories[action.payload.prop] = action.payload.value;
+      return { ...state, selected };
+    }
+    case CATEGORIES_EDIT_ADD: {
+      const selected = {
+        ...state.selected,
+        subCategories: [...state.selected.subCategories]
+      };
+      selected.subCategories.push("");
+      return { ...state, selected };
+    }
+    case CATEGORIES_EDIT_REMOVE: {
+      const selected = {
+        ...state.selected,
+        subCategories: [...state.selected.subCategories]
+      };
+      selected.subCategories.splice(action.payload, 1);
+      return { ...state, selected };
+    }
+    case CATEGORIES_NEW: {
+      return {
+        ...state,
+        selected: { name: "", subCategories: [] }
+      };
     }
     default:
       return state;

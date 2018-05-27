@@ -8,3 +8,5 @@ docker tag boco4ever/quantumcivilization:latest boco4ever/quantumcivilization:pr
 docker build -t boco4ever/quantumcivilization:latest .
 
 docker push boco4ever/quantumcivilization
+
+kubectl apply -f deployscripts/quantum-deployment.yaml

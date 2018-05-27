@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Container, Button } from "../Common";
-import { PostPreviewService } from "../../Services";
+import { Container, Button } from "../../Common";
+import { PostPreviewService } from "../../../Services";
 import { PostsPreviewItem } from "./PostsPreviewItem";
 import "./PostsPreview.css";
 
