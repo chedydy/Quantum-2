@@ -1,10 +1,10 @@
 import React from "react";
 import PostHeader from "./PostHeader";
 import ReactMarkdown from "react-markdown";
-
+import "./PostContent.css";
 const PostContent = ({ preview, post }) => {
   return (
-    <div>
+    <div className="postContent">
       <PostHeader
         image={post.imageUrl}
         title={preview.title}
@@ -13,13 +13,11 @@ const PostContent = ({ preview, post }) => {
         authorLink={preview.authorLink}
         publishDate={preview.publishDate}
       />
-      <article>
-        <div className="container">
-          <div style={{ textAlign: "justify" }}>
+      <div className="postContent-container">
+          <div className="postContent-content">
             <ReactMarkdown source={post.content} />
           </div>
-        </div>
-      </article>
+      </div>
     </div>
   );
 };

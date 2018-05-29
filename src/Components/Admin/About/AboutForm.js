@@ -17,6 +17,15 @@ class AboutFormClass extends Component {
           readOnly={!this.props.edit}
         />
         <IconTextarea
+          placeholder="Preview"
+          label="Preview"
+          rows="3"
+          value={this.props.preview}
+          onChange={value => this.props.update("preview", value)}
+          faIcon="fa-search-plus"
+          readOnly={!this.props.edit}
+        />
+        <IconTextarea
           placeholder="Content"
           label="Content"
           rows="10"

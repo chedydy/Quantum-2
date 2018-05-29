@@ -12,7 +12,8 @@ const INITIAL_STATE = {
   image: undefined,
   imageUrl: "",
   edit: false,
-  oldImageUrl: ""
+  oldImageUrl: "",
+  preview: ""
 };
 const AboutReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {

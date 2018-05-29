@@ -11,4 +11,6 @@ docker build -t boco4ever/quantumcivilization:latest .
 
 docker push boco4ever/quantumcivilization
 
+kubectl delete -f deployscripts/quantum-deployment.yaml
+
 kubectl apply -f deployscripts/quantum-deployment.yaml

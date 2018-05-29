@@ -8,7 +8,8 @@ import {
   POSTS_PUBLIC_SELECT_CATEGORY,
   POSTS_PUBLIC_UNSELECT_CATEGORY,
   POSTS_PUBLIC_SELECT_SUBCATEGORY,
-  POSTS_PUBLIC_GO_BACK
+  POSTS_PUBLIC_GO_BACK,
+  POSTS_PUBLIC_TOGGLE_CATEGORIES
 } from "../Actions";
 import { PostPreviewService } from "../Services";
 const INITIAL_STATE = {
@@ -17,6 +18,7 @@ const INITIAL_STATE = {
   subCategories: [],
   selectedCategory: "",
   selectedSubCategory: "",
+  showCategories: false,
 
   filterText: "",
   selectedTags: [],
@@ -30,70 +32,12 @@ const PostsPublicReducer = (state = INITIAL_STATE, action) => {
       return { ...state, tags: action.payload };
     }
     case POSTS_PUBLIC_FETCH: {
-      // let categories = state.categories;
-      // let model = {};
-      // let filterText = state.filterText;
-      // let selectedTags = state.selectedTags;
-      // let filteredPreviews =
-      //   filterText === ""
-      //     ? action.payload.slice()
-      //     : PostPreviewService.filterByText(action.payload, filterText);
-      // filteredPreviews =
-      //   selectedTags.length === 0
-      //     ? filteredPreviews.slice()
-      //     : PostPreviewService.filterByTags(filteredPreviews, selectedTags);
-      // _.forEach(filteredPreviews, preview => {
-      //   const path = preview.category.split("-").join(".");
-      //   const currentContent = {
-      //     ..._.get(categories, path),
-      //     [preview.id]: preview
-      //   };
-      //   model = {
-      //     ..._.set(model, path, currentContent)
-      //   };
-      // });
-      // const previews = action.payload;
-      // filteredPreviews = _.filter(previews, preview => {
-      //   return preview.category.includes(state.selectedCategoryPath);
-      // });
-      // return {
-      //   ...state,
-      //   previews,
-      //   model,
-      //   filteredPreviews
-      // };
       const previews = action.payload;
       const filteredPreviews = previews.slice();
       return { ...state, previews, filteredPreviews };
     }
     case POSTS_PUBLIC_CATEGORIES_GET: {
       const categories = action.payload;
-      // let model = {};
-      // let filterText = state.filterText;
-      // let selectedTags = state.selectedTags;
-      // let filteredPreviews =
-      //   filterText === ""
-      //     ? state.previews.slice()
-      //     : PostPreviewService.filterByText(state.previews, filterText);
-      // filteredPreviews =
-      //   selectedTags.length === 0
-      //     ? filteredPreviews.slice()
-      //     : PostPreviewService.filterByTags(filteredPreviews, selectedTags);
-      // _.forEach(filteredPreviews, preview => {
-      //   const path = preview.category.split("-").join(".");
-      //   const currentContent = {
-      //     ..._.get(categories, path),
-      //     [preview.id]: preview
-      //   };
-      //   model = {
-      //     ..._.set(model, path, currentContent)
-      //   };
-      // });
-      // return {
-      //   ...state,
-      //   categories,
-      //   model
-      // };
       return { ...state, categories };
     }
     case POSTS_PUBLIC_FILTER_BY_TEXT: {
@@ -155,17 +99,6 @@ const PostsPublicReducer = (state = INITIAL_STATE, action) => {
         selectedTags
       };
     }
-    // case POSTS_PUBLIC_SELECT_CATEGORY: {
-    //   const selectedCategoryPath = action.payload;
-    //   const filteredPreviews = _.filter(state.previews, preview => {
-    //     return preview.category.includes(selectedCategoryPath);
-    //   });
-    //   return {
-    //     ...state,
-    //     selectedCategoryPath,
-    //     filteredPreviews
-    //   };
-    // }
     case POSTS_PUBLIC_UNSELECT_CATEGORY: {
       const selectedCategoryPath = state.selectedCategoryPath.split(
         action.payload
@@ -215,6 +148,9 @@ const PostsPublicReducer = (state = INITIAL_STATE, action) => {
         filteredPreviews,
         subCategories: []
       };
+    }
+    case POSTS_PUBLIC_TOGGLE_CATEGORIES: {
+      return { ...state, showCategories: action.payload };
     }
     default:
       return state;

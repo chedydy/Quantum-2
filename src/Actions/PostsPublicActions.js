@@ -7,7 +7,8 @@ import {
   POSTS_PUBLIC_SELECT_CATEGORY,
   POSTS_PUBLIC_UNSELECT_CATEGORY,
   POSTS_PUBLIC_GO_BACK,
-  POSTS_PUBLIC_SELECT_SUBCATEGORY
+  POSTS_PUBLIC_SELECT_SUBCATEGORY,
+  POSTS_PUBLIC_TOGGLE_CATEGORIES
 } from "./types";
 import { PostPreviewService, CategoriesService } from "../Services";
 const PostsPublicActions = {
@@ -27,8 +28,11 @@ const PostsPublicActions = {
   selectSubCategory(subCategory) {
     return { type: POSTS_PUBLIC_SELECT_SUBCATEGORY, payload: subCategory };
   },
-  goBack(){
-    return {type:POSTS_PUBLIC_GO_BACK}
+  goBack() {
+    return { type: POSTS_PUBLIC_GO_BACK };
+  },
+  toggleCategories(value) {
+    return { type: POSTS_PUBLIC_TOGGLE_CATEGORIES, payload: value };
   },
   unSelectCategory(category) {
     return { type: POSTS_PUBLIC_UNSELECT_CATEGORY, payload: category };

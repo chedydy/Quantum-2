@@ -12,20 +12,15 @@ class AboutClass extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    const saveData = {
+      title: this.props.title,
+      content: this.props.content,
+      imageUrl: this.props.imageUrl,
+      preview: this.props.preview
+    };
     this.props.image
-      ? this.props.saveWithImage(
-          {
-            title: this.props.title,
-            content: this.props.content,
-            imageUrl: this.props.imageUrl
-          },
-          this.props.image
-        )
-      : this.props.save({
-          title: this.props.title,
-          content: this.props.content,
-          imageUrl: this.props.imageUrl
-        });
+      ? this.props.saveWithImage(saveData, this.props.image)
+      : this.props.save(saveData);
   };
 
   render() {

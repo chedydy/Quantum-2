@@ -10,7 +10,6 @@
   position: relative;
   margin: 2em auto;
   width: 70%;
-  max-height: 54vh;
   overflow: hidden;
   transition: max-height 0.5s ease;
   text-align: left;
@@ -26,22 +25,11 @@
   text-decoration: none;
   color: bisque;
   font-weight: 600;
+  cursor: pointer;
 }
-
-.aboutContent-hide {
-  display: none;
-}
-.aboutContent-show:target {
-  display: none;
-}
-.aboutContent-show:target ~ .hide {
-  display: block;
-}
-.aboutContent-show:target ~ .panel {
-  max-height: unset;
-}
-.aboutContent-show:target ~ .fade {
-  margin-top: 0;
+.aboutContent-show:hover,
+.aboutContent-hide:hover {
+  color: #0085a1;
 }
 
 .aboutContent-authors {
@@ -55,6 +43,5 @@
 
 @media only screen and (max-width: 600px) {
   .aboutContent-about {
-    max-height: 58vh;
   }
 }

@@ -44,24 +44,31 @@ class AboutContentClass extends Component {
           <div className="aboutContent-about-container">
             <div
               className="aboutContent-about"
-              style={{ maxHeight: this.state.showMore ? "unset" : "60vh" }}
+              id={this.state.showMore ? "hide" : "show"}
             >
-              <ReactMarkdown source={this.props.content} />
+              <ReactMarkdown
+                source={
+                  this.state.showMore ? this.props.content : this.props.preview
+                }
+              />
             </div>
-            <a
-              href="#show"
-              className="aboutContent-show"
-              onClick={() => this.setState({ showMore: true })}
-            >
-              Show Full Description
-            </a>
-            <a
-              href="#hide"
-              className="aboutContent-hide"
-              onClick={() => this.setState({ showMore: false })}
-            >
-              Hide Full Description
-            </a>
+            {this.state.showMore ? (
+              <a
+                href="#show"
+                className="aboutContent-hide"
+                onClick={() => this.setState({ showMore: false })}
+              >
+                Hide Full Description
+              </a>
+            ) : (
+              <a
+                href="#show"
+                className="aboutContent-show"
+                onClick={() => this.setState({ showMore: true })}
+              >
+                Show Full Description
+              </a>
+            )}
           </div>
           <div className="aboutContent-authors">{this.renderAuthors()}</div>
         </Container>

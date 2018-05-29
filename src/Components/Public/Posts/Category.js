@@ -5,7 +5,7 @@ import "./Category.css";
 
 let Category = ({ name, selectCategory }) => {
   return (
-    <div className="newCategory" onClick={() => selectCategory(name)}>
+    <div className="category" onClick={() => selectCategory(name)}>
       {name}
     </div>
   );

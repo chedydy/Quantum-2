@@ -1,0 +1,15 @@
+.postContent-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: justify;
+}
+.postContent-content {
+  position: relative;
+  margin: 2em auto;
+  width: 70%;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+  text-align: left;
+}

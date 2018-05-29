@@ -1,0 +1,25 @@
+.categoryTitle {
+  cursor: pointer;
+  margin-top: 1em;
+  font-weight: 600;
+  border-bottom: 1px solid;
+}
+.categoryTitle:hover {
+  color: #0085a1;
+  border-bottom: 0px;
+}
+.categoryTitle-dropdown-button {
+  display: none;
+  background: unset;
+  border: 0;
+  color: white;
+}
+
+@media only screen and (max-width: 600px) {
+  .categoryTitle {
+    border-bottom: 0px solid;
+  }
+  .categoryTitle-dropdown-button {
+    display: inline;
+  }
+}

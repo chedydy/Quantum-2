@@ -1,9 +1,9 @@
 import { app, storage } from "../firebase/firebase";
 const aboutRef = app.ref().child("about");
-function setAbout({ title, content, imageUrl }) {
+function setAbout({ title, content, imageUrl, preview }) {
   return new Promise((resolve, reject) => {
     aboutRef
-      .set({ title, content, imageUrl })
+      .set({ title, content, imageUrl, preview })
       .then(values => {
         resolve();
       })

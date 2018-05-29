@@ -7,6 +7,14 @@
   flex-direction: column;
   flex: 1;
   padding-left: 0px;
+  margin-left: 1em;
+}
+.posts-categories-items {
+  display: flex;
+  flex-direction: column;
+}
+.posts-categories-items-mobile {
+  display: none;
 }
 .posts-list {
   flex: 5;
@@ -18,7 +26,14 @@ header.masthead {
   margin-bottom: 0px;
 }
 @media only screen and (max-width: 600px) {
-  .posts-categories {
+  .posts-container {
+    flex-direction: column;
+  }
+  .posts-categories-items {
     display: none;
+  }
+  .posts-categories-items-mobile {
+    display: flex;
+    flex-direction: column;
   }
 }
