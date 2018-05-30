@@ -10,7 +10,7 @@ const Footer = () => {
           provider="facebook"
           link="https://www.facebook.com/quantumcivilization/?ref=page_internal"
         />
-        <FooterShareLink provider="instagram" link="" />
+        <FooterShareLink provider="instagram" link="https://www.instagram.com/quantumcivilization/" />
       </ul>
       <span className="footer-text">
         Created by Quantum Civilisation © 2018
