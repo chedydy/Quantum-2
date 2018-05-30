@@ -15,9 +15,9 @@ spec:
         imagePullPolicy: "Always"
         env:
         - name: PORT
-          value: "80"
+          value: "3000"
         ports:
         - name: nodejs-port
-          containerPort: 80
+          containerPort: 3000
       imagePullSecrets:
       - name: regcred

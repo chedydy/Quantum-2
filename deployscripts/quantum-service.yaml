@@ -5,15 +5,9 @@ metadata:
 spec:
   selector:
     app: quantumcivilization
-  # type: LoadBalancer
-  # loadBalancerIP:
   ports:
   - port: 80
     name: http
     targetPort: nodejs-port
     protocol: TCP
-  # - port: 443
-  #   name: https
-  #   targetPort: nodejs-port
-  #   protocol: TCP
   
