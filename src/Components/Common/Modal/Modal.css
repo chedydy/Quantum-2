@@ -7,7 +7,7 @@
   max-height: 70vh;
 }
 .modal-content {
-  min-width: 60vw;
+  min-width: 94vw;
 }
 .modal-header {
   min-height: 7vh;
@@ -38,4 +38,10 @@
 .aboutContentDetails-div {
   display: flex;
   flex-direction: column-reverse;
+}
+
+@media only screen and (max-width: 600px) {
+  .aboutContentDetails-body-img {
+    width: 18em;
+  }
 }
