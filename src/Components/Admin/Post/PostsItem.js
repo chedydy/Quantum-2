@@ -35,7 +35,7 @@ class PostsItemClass extends Component {
           <div className="row">
             <LinkButton
               link={`/admin/posts/edit/${this.props.postPreview.id}`}
-              className="fa fa-pencil-square-o fa-3x edit-button margin"
+              className="fa fa-edit fa-3x edit-button margin"
             />
             <Button
               onClick={this.deletePost.bind(this)}

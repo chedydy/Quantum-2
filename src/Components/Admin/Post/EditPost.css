@@ -8,6 +8,8 @@
   border: 0 !important;
   background: transparent !important;
   cursor: pointer !important;
+  color: white;
+  margin-right: 20px;
 }
 
 .save-button:hover {

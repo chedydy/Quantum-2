@@ -14,7 +14,7 @@ class CategoryItemClass extends Component {
           <div className="row">
             <LinkButton
               link={`/admin/categories/edit/${category}`}
-              className="fa fa-pencil-square-o fa-3x edit-button margin"
+              className="fa fa-edit fa-3x edit-button margin"
             />
             <Button
               onClick={() => this.props.delete(category)}

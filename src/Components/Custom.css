@@ -28,7 +28,7 @@ h6 {
 }
 
 a {
-  color: #333333;
+  color: white;
   -webkit-transition: all 0.2s;
   -moz-transition: all 0.2s;
   transition: all 0.2s;
@@ -256,6 +256,7 @@ header.masthead .post-heading .meta a {
 @media only screen and (min-width: 768px) {
   header.masthead .post-heading h1 {
     font-size: 55px;
+    padding: 6%;
   }
   header.masthead .post-heading .subheading {
     font-size: 30px;

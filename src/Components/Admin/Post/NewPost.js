@@ -53,7 +53,7 @@ class NewPostClass extends Component {
                   onClick={this.showPreview.bind(this)}
                   className="fa fa-eye fa-3x preview-button margin"
                 />
-                <SubmitButton className="fa fa-floppy-o fa-3x save-button" />
+                <SubmitButton className="fa fa-save fa-3x save-button" />
               </div>
             </form>
           </div>

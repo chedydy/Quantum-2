@@ -8,8 +8,8 @@
 
 .aboutContent-about {
   position: relative;
-  margin: 2em auto;
-  width: 70%;
+  margin: 1em auto;
+  width: 90%;
   overflow: hidden;
   transition: max-height 0.5s ease;
   text-align: left;

@@ -31,7 +31,7 @@ class NewAuthorClass extends Component {
               <AuthorForm />
               <br />
               <div className="row justify-content-end col">
-                <SubmitButton className="fa fa-floppy-o fa-3x save-button" />
+                <SubmitButton className="fa fa-save fa-3x save-button" />
               </div>
             </form>
           </div>

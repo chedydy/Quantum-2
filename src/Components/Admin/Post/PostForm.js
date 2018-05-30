@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Select from "react-select";
 import "react-select/dist/react-select.css";
 import _ from "lodash";
-import { Input, Textarea, FileInput } from "../../Common";
+import { Input, IconInput, Textarea, FileInput } from "../../Common";
 import "./EditPost.css";
 
 class PostForm extends Component {
@@ -106,14 +106,15 @@ class PostForm extends Component {
   render() {
     return (
       <div>
-        <Input
+        <IconInput
           placeholder="Title"
           label="Title"
           type="text"
           value={this.props.preview.title}
           onChange={value => this.props.updateProps("preview", "title", value)}
+          faIcon="fa-angle-double-down"
         />
-        <Input
+        <IconInput
           placeholder="Subtitle"
           label="Subtitle"
           type="text"
@@ -121,8 +122,9 @@ class PostForm extends Component {
           onChange={value =>
             this.props.updateProps("preview", "subTitle", value)
           }
+          faIcon="fa-angle-double-down"
         />
-        <Input
+        <IconInput
           placeholder="Tags"
           label="Tags"
           type="text"
@@ -130,6 +132,7 @@ class PostForm extends Component {
           onChange={value => {
             this.props.updateProps("preview", "tags", value);
           }}
+          faIcon="fa-history"
         />
         <Select
           closeOnSelect
@@ -233,7 +236,9 @@ class PostForm extends Component {
           label="Preview text"
           rows="3"
           value={this.props.preview.previewText}
-          onChange={value => this.props.updateProps("preview", "previewText", value)}
+          onChange={value =>
+            this.props.updateProps("preview", "previewText", value)
+          }
         />
         <Textarea
           placeholder="Content"
