@@ -5,35 +5,35 @@ const postsStorageRef = storage.child("posts");
 const PostService = {
   getPost: function(id) {
     return new Promise((resolve, reject) => {
-      Promise.all([
-        postsRef.child(id).once("value"),
-        postsStorageRef
-          .child(`${id}.jpg`)
-          .getDownloadURL()
-          .catch(function(err) {
-            console.error("err", err);
-          })
-      ])
-        .then(values => {
-          const post = values[0].val();
-          resolve({
-            ...post,
-            imageUrl: values[1]
-          });
+      postsRef
+        .child(id)
+        .once("value")
+        .then(post => {
+          resolve(post.val());
         })
         .catch(err => {
           console.log(err);
         });
     });
   },
-  updatePost: function({ id, content, image }) {
+  save: function(post) {
     return new Promise((resolve, reject) => {
-      Promise.all([
-        postsRef.child(id).set({ content, id }),
-        image ? postsStorageRef.child(`${id}.jpg`).put(image) : undefined
-      ])
-        .then(values => {
+      postsRef
+        .child(post.id)
+        .set(post)
+        .then(() => {
           resolve();
+        })
+        .catch(reject);
+    });
+  },
+  saveImage: function(id, image) {
+    return new Promise((resolve, reject) => {
+      postsStorageRef
+        .child(`${id}.jpg`)
+        .put(image)
+        .then(result => {
+          resolve(result.downloadURL);
         })
         .catch(reject);
     });

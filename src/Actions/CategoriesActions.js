@@ -1,89 +1,69 @@
 import {
   CATEGORIES_GET,
-  CATEGORIES_NEW,
-  CATEGORIES_EDIT,
-  CATEGORIES_SAVE,
-  CATEGORIES_CANCEL,
   CATEGORIES_DELETE,
-  CATEGORIES_TOGGLE_ALERT,
-  CATEGORIES_TAG,
-  CATEGORIES_DELETE_TAG,
-  CATEGORIES_UPDATE
+  CATEGORIES_UPDATE,
+  CATEGORIES_ADD,
+  CATEGORIES_FILTER,
+  CATEGORIES_EDIT_REMOVE,
+  CATEGORIES_EDIT_ADD,
+  CATEGORIES_EDIT_SUBCATEGORY,
+  CATEGORIES_EDIT_NAME,
+  CATEGORIES_GET_ONE,
+  CATEGORIES_NEW,
+  POSTS_PUBLIC_CATEGORIES_GET
 } from "./types";
 import { CategoriesService } from "../Services";
 const CategoriesActions = {
-  get: () => dispatch => {
-    CategoriesService.subscribeRaw(categories => {
+  subscribe: () => dispatch => {
+    CategoriesService.subscribe(categories => {
       dispatch({ type: CATEGORIES_GET, payload: categories });
+      dispatch({ type: POSTS_PUBLIC_CATEGORIES_GET, payload: categories });
     });
   },
-  new(parent) {
-    const parentPath = parent
-      .trim()
-      .split(" ")
-      .join(".");
-    return { type: CATEGORIES_NEW, payload: parentPath };
+  get: category => dispatch => {
+    CategoriesService.getCategory(category).then(res => {
+      dispatch({ type: CATEGORIES_GET_ONE, payload: res });
+    });
   },
-  edit(value, path) {
-    const parentPath = path
-      .trim()
-      .split(" ")
-      .join(".");
-    return { type: CATEGORIES_EDIT, payload: { value, parentPath } };
+  add: category => dispatch => {
+    return new Promise(res => {
+      CategoriesService.save(category).then(() => {
+        dispatch({ type: CATEGORIES_ADD, payload: category });
+        res();
+      });
+    });
   },
-  save(value, path) {
-    const parentPath = path
-      .split(" ")
-      .reverse()
-      .join(" ")
-      .replace("Placeholder", "")
-      .split(" ")
-      .reverse()
-      .join(" ")
-      .trim()
-      .split(" ")
-      .join(".");
-    return { type: CATEGORIES_SAVE, payload: { value, parentPath } };
+  update: category => dispatch => {
+    return new Promise(res => {
+      CategoriesService.save(category).then(() => {
+        dispatch({ type: CATEGORIES_UPDATE, payload: category });
+        res();
+      });
+    });
   },
-  cancel(path) {
-    const parentPath = path
-      .split(" ")
-      .reverse()
-      .join(" ")
-      .replace("Placeholder", "")
-      .split(" ")
-      .reverse()
-      .join(" ")
-      .trim()
-      .split(" ")
-      .join(".");
-    return { type: CATEGORIES_CANCEL, payload: parentPath };
+
+  delete: category => dispatch => {
+    CategoriesService.delete(category).then(() => {
+      dispatch({ type: CATEGORIES_DELETE, payload: category });
+    });
   },
-  delete(path, name) {
-    const parentPath = path
-      .replace(name, "")
-      .trim()
-      .split(" ")
-      .join(".");
-    return { type: CATEGORIES_DELETE, payload: { path: parentPath, name } };
+  filter(text) {
+    return { type: CATEGORIES_FILTER, payload: text };
   },
-  toggleAlert() {
-    return { type: CATEGORIES_TOGGLE_ALERT };
+  removeSubcategory(index) {
+    return { type: CATEGORIES_EDIT_REMOVE, payload: index };
   },
-  tagCategory(path, name) {
-    const parentPath = path
-      .replace(name, "")
-      .trim()
-      .split(" ")
-      .join(".");
-    return { type: CATEGORIES_TAG, payload: { path: parentPath, name } };
+  editSubcategory(prop, value) {
+    return { type: CATEGORIES_EDIT_SUBCATEGORY, payload: { prop, value } };
   },
-  deleteTagged() {
-    return { type: CATEGORIES_DELETE_TAG };
+  addSubcategory() {
+    return { type: CATEGORIES_EDIT_ADD };
   },
-  update(categories) {
-    CategoriesService.update(categories);
-    return { type: CATEGORIES_UPDATE };
+  editName(name) {
+    return { type: CATEGORIES_EDIT_NAME, payload: name };
+  },
+  new() {
+    return { type: CATEGORIES_NEW };
   }
 };
 

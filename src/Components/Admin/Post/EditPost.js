@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { PostEditorActions, CategoriesActions } from "../../../Actions";
+import { PostEditorActions } from "../../../Actions";
 import "./EditPost.css";
 
 import { NewPostClass } from "./NewPost";
@@ -9,28 +9,29 @@ class EditPostClass extends NewPostClass {
     var id = this.props.match.params.id;
     this.props.get(id);
   }
-
   onSubmit() {
-    this.props
-      .update({
-        preview: this.props.preview,
-        post: this.props.post,
-        oldCategory: this.props.oldCategory
-      })
-      .then(() => {
-        this.props.history.push("/admin/posts/");
-      });
+    const { preview, post } = this.props.selected;
+    const promise = this.props.image
+      ? this.props.saveWithImage(preview, post, this.props.image)
+      : this.props.save(preview, post);
+    promise.then(() => {
+      this.props.history.push("/admin/posts");
+    });
   }
 }
+
 function mapStateToProps(state) {
   return {
-    ...state.PostEditor,
-    categories: state.Categories.categories
+    image: state.PostEditor.image,
+    showPreview: state.PostEditor.showPreview,
+    selected: state.PostEditor.selected
   };
 }
 const EditPost = connect(mapStateToProps, {
-  ...PostEditorActions,
-  subscribeCategories: CategoriesActions.subscribe
+  get: PostEditorActions.get,
+  save: PostEditorActions.save,
+  saveWithImage: PostEditorActions.saveWithImage,
+  togglePreview: PostEditorActions.togglePreview
 })(EditPostClass);
 
 export { EditPost };

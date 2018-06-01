@@ -2,11 +2,16 @@ import React, { Component } from "react";
 import Select from "react-select";
 import "react-select/dist/react-select.css";
 import _ from "lodash";
-import { Input, IconInput, Textarea, FileInput } from "../../Common";
+import { connect } from "react-redux";
+import { IconInput, IconTextarea, ActionFileInput } from "../../Common";
+import { PostEditorActions, CategoriesActions } from "../../../Actions";
 import "./EditPost.css";
 
-class PostForm extends Component {
+class PostFormClass extends Component {
   state = { start: 0, end: 0, url: "", imageUrl: "" };
+  componentWillMount() {
+    this.props.subscribeCategories();
+  }
   updateState(field, value) {
     this.setState({ [field]: value });
   }
@@ -21,7 +26,7 @@ class PostForm extends Component {
       textWithQuote,
       this.props.post.content.slice(this.state.end)
     ].join("");
-    this.props.updateProps("post", "content", newContent);
+    this.props.updateProp("post", "content", newContent);
   }
   bold() {
     const text = this.props.post.content.slice(
@@ -34,7 +39,7 @@ class PostForm extends Component {
       textWithQuote,
       this.props.post.content.slice(this.state.end)
     ].join("");
-    this.props.updateProps("post", "content", newContent);
+    this.props.updateProp("post", "content", newContent);
   }
   addH1() {
     var newContent = [
@@ -42,7 +47,7 @@ class PostForm extends Component {
       "#",
       this.props.post.content.slice(this.state.start)
     ].join("");
-    this.props.updateProps("post", "content", newContent);
+    this.props.updateProp("post", "content", newContent);
   }
   addH2() {
     var newContent = [
@@ -50,7 +55,7 @@ class PostForm extends Component {
       "##",
       this.props.post.content.slice(this.state.start)
     ].join("");
-    this.props.updateProps("post", "content", newContent);
+    this.props.updateProp("post", "content", newContent);
   }
   addH3() {
     var newContent = [
@@ -58,7 +63,7 @@ class PostForm extends Component {
       "### ",
       this.props.post.content.slice(this.state.start)
     ].join("");
-    this.props.updateProps("post", "content", newContent);
+    this.props.updateProp("post", "content", newContent);
   }
   addImageUrl() {
     const text = this.props.post.content.slice(
@@ -71,7 +76,7 @@ class PostForm extends Component {
       textWithUrl,
       this.props.post.content.slice(this.state.end)
     ].join("");
-    this.props.updateProps("post", "content", newContent);
+    this.props.updateProp("post", "content", newContent);
   }
   addUrl() {
     const text = this.props.post.content.slice(
@@ -84,7 +89,7 @@ class PostForm extends Component {
       textWithUrl,
       this.props.post.content.slice(this.state.end)
     ].join("");
-    this.props.updateProps("post", "content", newContent);
+    this.props.updateProp("post", "content", newContent);
   }
   addQuote() {
     const text = this.props.post.content.slice(
@@ -97,7 +102,7 @@ class PostForm extends Component {
       textWithQuote,
       this.props.post.content.slice(this.state.end)
     ].join("");
-    this.props.updateProps("post", "content", newContent);
+    this.props.updateProp("post", "content", newContent);
   }
   onSelectContent(start, end) {
     this.setState({ start, end });
@@ -105,22 +110,22 @@ class PostForm extends Component {
 
   render() {
     return (
-      <div>
+      <div className="postForm color-p">
         <IconInput
           placeholder="Title"
           label="Title"
           type="text"
-          value={this.props.preview.title}
-          onChange={value => this.props.updateProps("preview", "title", value)}
+          value={this.props.selected.preview.title}
+          onChange={value => this.props.updateProp("preview", "title", value)}
           faIcon="fa-angle-double-down"
         />
         <IconInput
           placeholder="Subtitle"
           label="Subtitle"
           type="text"
-          value={this.props.preview.subTitle}
+          value={this.props.selected.preview.subTitle}
           onChange={value =>
-            this.props.updateProps("preview", "subTitle", value)
+            this.props.updateProp("preview", "subTitle", value)
           }
           faIcon="fa-angle-double-down"
         />
@@ -128,16 +133,16 @@ class PostForm extends Component {
           placeholder="Tags"
           label="Tags"
           type="text"
-          value={this.props.preview.tags}
+          value={this.props.selected.preview.tags}
           onChange={value => {
-            this.props.updateProps("preview", "tags", value);
+            this.props.updateProp("preview", "tags", value);
           }}
           faIcon="fa-history"
         />
         <Select
           closeOnSelect
           onChange={selected => {
-            this.props.selectCategories(selected);
+            this.props.selectCategory(selected);
           }}
           options={_.map(this.props.categories, (val, index) => {
             return { label: index, value: val };
@@ -149,24 +154,30 @@ class PostForm extends Component {
         <Select
           closeOnSelect
           onChange={selected => {
-            this.props.updateProps("preview", "subCategory", selected);
+            this.props.updateProp("preview", "subCategory", selected);
           }}
           options={_.map(this.props.subCategories, val => {
             return { label: val, value: val };
           })}
           simpleValue
           placeholder="Subcategory"
-          value={this.props.preview.subCategory}
+          value={this.props.selected.preview.subCategory}
           className="flex-5"
         />
-        <FileInput
+        <ActionFileInput
           placeholder="Select image"
           label="Image"
           type="file"
           fileTypes="image/*"
           onChange={(image, imageUrl) => {
-            this.props.updateProps("post", "image", image);
-            this.props.updateProps("post", "imageUrl", imageUrl);
+            this.props.setImage(image);
+            this.props.updateProp("post", "imageUrl", imageUrl);
+          }}
+          faIcon="fa-file-image"
+          faActionIcon="fa-times"
+          action={e => {
+            e.value = null;
+            this.props.clearPhoto();
           }}
         />
         <div>
@@ -231,27 +242,44 @@ class PostForm extends Component {
             type="button"
           />
         </div>
-        <Textarea
+        <IconTextarea
           placeholder="Preview text"
           label="Preview text"
           rows="3"
-          value={this.props.preview.previewText}
+          value={this.props.selected.preview.previewText}
           onChange={value =>
-            this.props.updateProps("preview", "previewText", value)
+            this.props.updateProp("preview", "previewText", value)
           }
+          faIcon="fa-search-plus"
         />
-        <Textarea
+        <IconTextarea
           placeholder="Content"
           label="Content"
           rows="10"
-          value={this.props.post.content}
-          onChange={value => this.props.updateProps("post", "content", value)}
+          value={this.props.selected.post.content}
+          onChange={value => this.props.updateProp("post", "content", value)}
           onSelect={this.onSelectContent.bind(this)}
+          faIcon="fa-info"
         />
         <br />
       </div>
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+    selected: state.PostEditor.selected,
+    categories: state.Categories.categories,
+    selectedCategory: state.PostEditor.selectedCategory,
+    subCategories: state.PostEditor.subCategories
+  };
+}
+const PostForm = connect(mapStateToProps, {
+  setImage: PostEditorActions.setImage,
+  clearPhoto: PostEditorActions.clearPhoto,
+  updateProp: PostEditorActions.updateProp,
+  selectCategory: PostEditorActions.selectCategory,
+  subscribeCategories: CategoriesActions.subscribe
+})(PostFormClass);
 
 export { PostForm };

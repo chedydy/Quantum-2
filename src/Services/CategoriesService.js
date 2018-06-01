@@ -35,14 +35,11 @@ const CategoriesService = {
         .catch(reject);
     });
   },
-  add(category) {
+  save(category) {
     return categoriesRef.child(category.name).update(category.subCategories);
   },
   delete(category) {
     return categoriesRef.child(category).remove();
-  },
-  update(category) {
-    return categoriesRef.child(category.name).update(category.subCategories);
   }
 };
 

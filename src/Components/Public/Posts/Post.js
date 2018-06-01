@@ -5,7 +5,9 @@ import { PostContent } from "./PostContent";
 class Post extends Component {
   state = {
     post: {
-      content: ""
+      content: "",
+      id: "",
+      imageUrl: ""
     },
     preview: {
       id: "",

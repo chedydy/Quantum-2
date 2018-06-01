@@ -1,20 +1,37 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import uuid from "uuid/v4";
+import moment from "moment";
 import { SubmitButton, Button } from "../../Common";
 import { PostContent } from "../../Public";
 import { PostForm } from "./PostForm";
 import "./EditPost.css";
-import { PostEditorActions, CategoriesActions } from "../../../Actions";
-import { connect } from "react-redux";
-
+import { PostEditorActions } from "../../../Actions";
+import { AuthService } from "../../../Services";
 class NewPostClass extends Component {
   componentWillMount() {
-    this.props.subscribeCategories();
     this.onInit();
   }
   onInit() {}
 
   onSubmit() {
-    this.props.save(this.props.preview, this.props.post).then(() => {
+    const id = uuid();
+    const user = AuthService.getUser();
+    const author = user.displayName;
+    const preview = {
+      ...this.props.selected.preview,
+      id,
+      author,
+      publishDate: moment().format("LL"),
+      authorLink: `https://www.facebook.com/app_scoped_user_id/${
+        user.providerData[0].uid
+      }`
+    };
+    const post = { ...this.props.selected.post, id };
+    const promise = this.props.image
+      ? this.props.saveWithImage(preview,post,this.props.image)
+      : this.props.save(preview,post);
+      promise.then(() => {
       this.props.history.push("/admin/posts");
     });
   }
@@ -38,15 +55,7 @@ class NewPostClass extends Component {
         >
           <div className="col">
             <form onSubmit={this.handleSubmit.bind(this)}>
-              <PostForm
-                post={this.props.post}
-                preview={this.props.preview}
-                categories={this.props.categories}
-                subCategories={this.props.subCategories}
-                selectedCategory={this.props.selectedCategory}
-                updateProps={this.props.updateProp.bind(this)}
-                selectCategories={this.props.selectCategory.bind(this)}
-              />
+              <PostForm />
               <br />
               <div className="row justify-content-end col">
                 <Button
@@ -62,7 +71,10 @@ class NewPostClass extends Component {
           className="preview"
           style={{ display: this.props.showPreview ? "inline" : "none" }}
         >
-          <PostContent post={this.props.post} preview={this.props.preview} />
+          <PostContent
+            post={this.props.selected.post}
+            preview={this.props.selected.preview}
+          />
         </div>
       </div>
     );
@@ -70,13 +82,15 @@ class NewPostClass extends Component {
 }
 function mapStateToProps(state) {
   return {
-    ...state.PostEditor,
-    categories: state.Categories.categories
+    image: state.PostEditor.image,
+    showPreview: state.PostEditor.showPreview,
+    selected: state.PostEditor.selected
   };
 }
 const NewPost = connect(mapStateToProps, {
-  ...PostEditorActions,
-  subscribeCategories: CategoriesActions.subscribe
+  save: PostEditorActions.save,
+  saveWithImage: PostEditorActions.saveWithImage,
+  togglePreview: PostEditorActions.togglePreview
 })(NewPostClass);
 
-export { NewPost, NewPostClass };
+export { NewPost,NewPostClass };

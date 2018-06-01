@@ -110,10 +110,7 @@ const PostPreviewService = {
       });
     });
   },
-  updatePreview: function(preview) {
-    // const tags = _.mapKeys(preview.tags);
-    // tagsRef.update(tags);
-    delete preview.tags;
+  save: function(preview) {
     return postPreviewRef.child(preview.id).set(preview);
   },
   deletePreview: function(id) {
