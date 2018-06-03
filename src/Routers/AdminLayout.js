@@ -13,7 +13,8 @@ import {
   NewCategory,
   Authors,
   NewAuthor,
-  EditAuthor
+  EditAuthor,
+  Login
 } from "../Components/Admin";
 
 const AdminLayout = () => {
@@ -64,7 +65,7 @@ const AdminLayout = () => {
           component={EditAuthor}
           exact={true}
         />
-        <PrivateRoute path="/admin/" component={Posts} exact={true} />
+        <PrivateRoute path="/admin/" component={Login} exact={true} />
       </Switch>
     </div>
   );

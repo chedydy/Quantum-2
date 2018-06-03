@@ -1,4 +1,5 @@
-import { provider, auth } from "../firebase/firebase";
+import { provider, auth, app } from "../firebase/firebase";
+const usersRef = app.ref().child("user_groups");
 const AuthService = {
   login: function() {
     return new Promise((resolve, reject) => {
@@ -32,6 +33,15 @@ const AuthService = {
     } else {
       return false;
     }
+  },
+  isAdmin: () => {
+    return new Promise((resolve, reject) => {
+      usersRef
+        .child(auth().currentUser.uid)
+        .once("value")
+        .then(() => resolve())
+        .catch(() => reject());
+    });
   },
   checkAuthState: function() {
     return new Promise((resolve, reject) => {
