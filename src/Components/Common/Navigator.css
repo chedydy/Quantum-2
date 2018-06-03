@@ -224,6 +224,7 @@
   .nav-item {
     margin-right: 0;
     min-width: 20vw;
+    justify-content: center;
   }
   .navigatorClass-mobile-list {
     flex-basis: 100%;
