@@ -185,9 +185,12 @@
 }
 .nav-link {
   font-size: larger;
+  padding: 0rem;
 }
 /*Responsive Styles*/
-
+.collapse {
+  padding-bottom: 2%;
+}
 @media screen and (max-width: 800px) {
   .mobile-menu .lines {
     border-bottom: 15px double #f8f8f8;

@@ -77,9 +77,9 @@ class NavigatorComponent extends Component {
             <Nav className="ml-auto" navbar>
               {this.props.children.map((child, index) => {
                 return (
-                  <NavItem className="grow">
+                  <NavItem>
                     {" "}
-                    <NavLink>
+                    <NavLink className="grow">
                       {child}{" "}
                     </NavLink>
                   </NavItem>
