@@ -1,9 +1,33 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink
+} from "reactstrap";
 import logo from "../../img/quantumcivilisation - home.png";
 import "./Navigator.css";
 
 class NavigatorComponent extends Component {
+  constructor(props) {
+    super(props);
+
+    this.toggleNavbar = this.toggleNavbar.bind(this);
+    this.state = {
+      collapsed: true
+    };
+  }
+
+  toggleNavbar() {
+    this.setState({
+      collapsed: !this.state.collapsed
+    });
+  }
+
   componentWillMount() {
     this.setState({
       menuDisplay: "none",
@@ -20,16 +44,13 @@ class NavigatorComponent extends Component {
   }
   render() {
     return (
-      <div className="navigator">
-        <nav
+      <div>
+        {/* <nav
           className="navbar navbar-expand-xl navbar-light background"
           id="mainNav"
-        >
-          <div className="container-fluid background__color">
-            <Link to="/" className="logo-button">
-              <img src={logo} className="navbar-brand logo-style" alt="logo" />
-            </Link>
-            <button
+        > */}
+        {/* <div className="container-fluid background__color"> */}
+        {/* <button
               className="navbar-toggler navbar-toggler-right"
               type="button"
               onClick={this.showMenu.bind(this, true)}
@@ -44,26 +65,48 @@ class NavigatorComponent extends Component {
             >
               <div className="hamburger-box">
                 <div className="hamburger-inner" />
-              </div>
-              <ul className="navbar-nav ml-auto">
-                {this.props.children.map((child, index) => {
-                  return (
-                    <li
-                      className={`nav-item ${
-                        child.props.to === this.state.currentPath
-                          ? "nav-item-active"
-                          : ""
-                      }`}
-                      key={index}
-                    >
-                      {child}
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          </div>
-        </nav>
+              </div> */}
+        <Navbar color="faded" light>
+          <NavbarBrand className="mr-auto">
+            <Link to="/" className="logo-button">
+              <img src={logo} className="navbar-brand logo-style" alt="logo" />
+            </Link>
+          </NavbarBrand>
+          <NavbarToggler onClick={this.toggleNavbar} className="mr-2"/>
+          <Collapse isOpen={!this.state.collapsed} navbar>
+            <Nav className="ml-auto" navbar>
+              {this.props.children.map((child, index) => {
+                return (
+                  <NavItem className="grow">
+                    {" "}
+                    <NavLink>
+                      {child}{" "}
+                    </NavLink>
+                  </NavItem>
+                );
+              })}
+            </Nav>
+          </Collapse>
+        </Navbar>
+        {/* <ul className="navbar-nav ml-auto">
+              {this.props.children.map((child, index) => {
+                return (
+                  <li
+                    className={`nav-item ${
+                      child.props.to === this.state.currentPath
+                        ? "nav-item-active"
+                        : ""
+                    }`}
+                    key={index}
+                  >
+                    {child}
+                  </li>
+                );
+              })}
+            </ul> */}
+        {/* </div> */}
+        {/* </div> */}
+        {/* </nav> */}
         <div
           className="side-menu-filler"
           style={{

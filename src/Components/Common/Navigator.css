@@ -93,8 +93,14 @@
 .nav-item:hover,
 .nav-item:active {
   /* background-color: #e6ccff; */
-  border-bottom: 3px solid #0085a1;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
+  /* border-bottom: 3px solid #0085a1;*/
+  /* box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);  */
+}
+.grow {
+  transition: all 0.2s ease-in-out;
+}
+.grow:hover {
+  transform: scale(1.1);
 }
 .logo-style {
   padding: 0px !important;
@@ -171,7 +177,15 @@
 .mobile-menu input[type="checkbox"]:checked ~ #menu {
   display: block;
 }
-
+.navbar {
+  background: aliceblue;
+}
+.ml-auto {
+  display: inline-block;
+}
+.nav-link {
+  font-size: larger;
+}
 /*Responsive Styles*/
 
 @media screen and (max-width: 800px) {
