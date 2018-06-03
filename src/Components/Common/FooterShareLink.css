@@ -1,3 +1,6 @@
 .color-button {
-    color: #E6CCFF;
+  color: #0085a1;
+}
+.color-button:hover {
+  color: #005b6e;
 }

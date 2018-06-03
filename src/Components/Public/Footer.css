@@ -6,6 +6,8 @@
   justify-content: center;
   border-top: 1px solid lightgray;
   flex-grow: 1;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 
 .footer-text {
@@ -13,7 +15,6 @@
   font-size: 15px;
   color: black;
   font-weight: 700;
-  margin: 2%;
 }
 
 .footer-panel-fill {

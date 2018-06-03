@@ -1,6 +1,3 @@
-import _ from "lodash";
-import moment from "moment";
-import uuid from "uuid/v4";
 import {
   POST_EDITOR_UPDATE_PROPS,
   POST_EDITOR_SUBMIT_SUCCESS,

@@ -4,16 +4,16 @@ import { Link } from "react-router-dom";
 const PublicNavigator = props => {
   return (
     <Navigator>
-      <Link className="nav-link" to="/">
+      <Link className="nav-link grow" to="/">
         Home
       </Link>
-      <Link className="nav-link" to="/about">
+      <Link className="nav-link grow" to="/about">
         About
       </Link>
-      <Link className="nav-link" to="/posts">
+      <Link className="nav-link grow" to="/posts">
         Posts
       </Link>
-      <Link className="nav-link" to="/contact">
+      <Link className="nav-link grow" to="/contact">
         Contact
       </Link>
     </Navigator>
