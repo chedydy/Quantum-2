@@ -43,13 +43,15 @@ class NavigatorComponent extends Component {
             onClick={this.toggleNavbar}
             className="mr-2 navigatorClass-mobile"
           />
-          <Collapse isOpen={!this.state.collapsed} navbar>
-            <Nav className="ml-auto" navbar>
-              {this.props.children.map((child, index) => {
-                return <NavItem key={index}>{child}</NavItem>;
-              })}
-            </Nav>
-          </Collapse>
+          <div className="navigatorClass-mobile navigatorClass-mobile-list">
+            <Collapse isOpen={!this.state.collapsed} navbar>
+              <Nav className="ml-auto" navbar>
+                {this.props.children.map((child, index) => {
+                  return <NavItem key={index}>{child}</NavItem>;
+                })}
+              </Nav>
+            </Collapse>
+          </div>
         </Navbar>
       </div>
     );
