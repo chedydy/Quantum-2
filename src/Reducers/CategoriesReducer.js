@@ -34,7 +34,7 @@ const CategoriesReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case CATEGORIES_GET: {
       const filter = state.filter;
-      const categories = action.payload;
+      const categories = action.payload || {};
       const filteredCategories = filterCategories(filter, categories);
       return {
         ...state,

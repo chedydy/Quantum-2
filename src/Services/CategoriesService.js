@@ -36,7 +36,9 @@ const CategoriesService = {
     });
   },
   save(category) {
-    return categoriesRef.child(category.name).update(category.subCategories);
+    return categoriesRef
+      .child(category.name)
+      .set(category.subCategories.length === 0 ? true : category.subCategories);
   },
   delete(category) {
     return categoriesRef.child(category).remove();

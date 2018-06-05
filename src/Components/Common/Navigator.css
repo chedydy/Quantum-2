@@ -23,53 +23,6 @@
   outline: 0;
 }
 
-.side-menu-filler {
-  width: 70vw;
-  position: fixed;
-  float: left;
-  left: 0px;
-  top: 0px;
-  bottom: 0px;
-  background-color: transparent;
-  z-index: 1;
-}
-.side-menu {
-  width: 30vw;
-  position: fixed;
-  float: right;
-  right: 0px;
-  top: 0px;
-  bottom: 0px;
-  /* border-left: 1px solid aliceblue; */
-  /* background-color: #f0f8ff; */
-  z-index: 1;
-}
-
-.side-menu-list {
-  list-style-position: inside;
-  padding-left: 0px;
-  border-top: 67px solid transparent;
-}
-.side-menu-list-item {
-  list-style-type: none;
-  text-align: start;
-  border-bottom: 1px solid lightgray;
-  background-color: #f3e6ff;
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 800;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
-}
-
-.side-menu-list-item:hover,
-.side-menu-list-item:active,
-.side-menu-list-item-active {
-  background-color: #e6ccff;
-  border-left: 6px solid #c000ff;
-}
-
 .navbar-height {
   height: 6vh;
 }
@@ -91,6 +44,7 @@
   display: flex !important;
   align-items: center !important;
   margin-right: 1em;
+  justify-content: center;
 }
 
 .nav-item-active {
@@ -111,74 +65,10 @@
   cursor: pointer !important;
 }
 
-#mainNav {
-  border: 0px !important;
-}
 .logo-button {
   padding: 13px;
 }
 
-.mobile-menu li:hover a {
-  color: #4db3ff;
-  background-color: #ccddee;
-}
-
-/*Style for dropdown links*/
-.mobile-menu li:hover ul a {
-  background: #f3f3f3;
-  color: #2f3036;
-  height: 40px;
-  line-height: 40px;
-}
-
-/*Hover state for dropdown links*/
-.mobile-menu li:hover .mobile-menu ul a:hover {
-  color: #4db3ff;
-}
-
-/*Hide dropdown links until they are needed*/
-.mobile-menu li ul {
-  display: none;
-}
-
-/*Make dropdown links vertical*/
-.mobile-menu li ul li {
-  display: block;
-  float: none;
-}
-
-/*Prevent text wrapping*/
-.mobile-menu li ul li a {
-  width: auto;
-  min-width: 100px;
-  padding: 0 20px;
-}
-
-/*Style 'show menu' label button and hide it by default*/
-.mobile-menu .show-menu {
-  text-decoration: none;
-  color: #fff;
-  background: #8aa8bd;
-  text-align: center;
-  padding: 10px 15px;
-  display: none;
-  cursor: pointer;
-  text-transform: uppercase;
-}
-
-.mobile-menu .show-menu span {
-  padding-left: 35px;
-}
-
-/*Hide checkbox*/
-.mobile-menu input[type="checkbox"] {
-  display: none;
-}
-
-/*Show menu when invisible checkbox is checked*/
-.mobile-menu input[type="checkbox"]:checked ~ #menu {
-  display: block;
-}
 .navbar {
   background: aliceblue;
 }
@@ -224,7 +114,6 @@
   .nav-item {
     margin-right: 0;
     min-width: 20vw;
-    justify-content: center;
   }
   .navigatorClass-mobile-list {
     flex-basis: 100%;
